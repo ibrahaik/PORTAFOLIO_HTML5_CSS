@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ibrahim Haik - Full Stack Developer | ibrahimelhaouzihaik@gmail.com</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0a0f;
+      color: #e2e8f0;
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Animated Background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+      animation: backgroundShift 20s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    @keyframes backgroundShift {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.1) rotate(180deg); }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Floating Particles */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+      50% { transform: translateY(-100px) rotate(180deg); opacity: 1; }
+    }
+
+    /* Header Hero Section */
+    .hero {
+      text-align: center;
+      padding: 6rem 0;
+      background: linear-gradient(135deg, 
+        rgba(59, 130, 246, 0.1) 0%, 
+        rgba(147, 51, 234, 0.1) 25%,
+        rgba(236, 72, 153, 0.1) 50%,
+        rgba(59, 130, 246, 0.1) 100%);
+      border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+      margin-bottom: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+      animation: rotate 20s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 25%, #ec4899 50%, #06b6d4 75%, #3b82f6 100%);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      animation: gradientShift 4s ease-in-out infinite, textGlow 2s ease-in-out infinite alternate;
+      position: relative;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @keyframes textGlow {
+      from { filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.5)); }
+      to { filter: drop-shadow(0 0 40px rgba(139, 92, 246, 0.8)); }
+    }
+
+    .hero .subtitle {
+      font-size: 1.8rem;
+      color: #94a3b8;
+      margin-bottom: 2rem;
+      font-weight: 300;
+      animation: fadeInUp 1s ease-out 0.5s both;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero .description {
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: 1.2rem;
+      color: #cbd5e1;
+      line-height: 1.8;
+      background: rgba(15, 23, 42, 0.6);
+      padding: 3rem;
+      border-radius: 1.5rem;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+      animation: fadeInUp 1s ease-out 1s both;
+      position: relative;
+    }
+
+    .hero .description::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 1.5rem;
+      padding: 2px;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899, #06b6d4);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      animation: borderGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes borderGlow {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    .skills-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 3rem;
+      animation: fadeInUp 1s ease-out 1.5s both;
+    }
+
+    .skill-badge {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(147, 51, 234, 0.2) 100%);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      padding: 0.8rem 1.5rem;
+      border-radius: 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-badge::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.6s;
+    }
+
+    .skill-badge:hover::before {
+      left: 100%;
+    }
+
+    .skill-badge:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
+      border-color: rgba(59, 130, 246, 0.8);
+    }
+
+    /* Projects Section */
+    .projects-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .projects-header h2 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #f1f5f9 0%, #3b82f6 50%, #8b5cf6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .repo-card {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.9) 100%);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 1.5rem;
+      padding: 2.5rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(20px);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .repo-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899, #06b6d4);
+      background-size: 300% 100%;
+      animation: gradientMove 3s ease-in-out infinite;
+    }
+
+    @keyframes gradientMove {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .repo-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      border-radius: 1.5rem;
+    }
+
+    .repo-card:hover::after {
+      opacity: 1;
+    }
+
+    .repo-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 30px 60px rgba(59, 130, 246, 0.3);
+      border-color: rgba(59, 130, 246, 0.6);
+    }
+
+    .repo-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .repo-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .repo-title:hover {
+      color: #3b82f6;
+      transform: scale(1.05);
+    }
+
+    .repo-stats {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.95rem;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+
+    .repo-stats span {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: color 0.3s ease;
+    }
+
+    .repo-stats span:hover {
+      color: #3b82f6;
+    }
+
+    .repo-description {
+      color: #cbd5e1;
+      margin-bottom: 2rem;
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      position: relative;
+      z-index: 2;
+    }
+
+    .tech-stack {
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .tech-stack h4 {
+      color: #f1f5f9;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tech-icons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .tech-icon {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(147, 51, 234, 0.15) 100%);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      padding: 0.6rem 1rem;
+      border-radius: 0.8rem;
+      font-size: 0.9rem;
+      color: #e2e8f0;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tech-icon::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.5s;
+    }
+
+    .tech-icon:hover::before {
+      left: 100%;
+    }
+
+    .tech-icon:hover {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(147, 51, 234, 0.3) 100%);
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+      border-color: rgba(59, 130, 246, 0.6);
+    }
+
+    .tech-icon i {
+      font-size: 1.1rem;
+    }
+
+    .btn-toggle {
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 0.8rem;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 2;
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+    }
+
+    .btn-toggle::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.6s;
+    }
+
+    .btn-toggle:hover::before {
+      left: 100%;
+    }
+
+    .btn-toggle:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.5);
+    }
+
+    .readme {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin-top: 1.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: #e2e8f0;
+      white-space: pre-wrap;
+      display: none;
+      max-height: 500px;
+      overflow-y: auto;
+      backdrop-filter: blur(10px);
+      box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 2;
+    }
+
+    .readme::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    .readme::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.5);
+      border-radius: 5px;
+    }
+
+    .readme::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      border-radius: 5px;
+    }
+
+    .readme::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+    }
+
+    .loading {
+      text-align: center;
+      padding: 4rem;
+      color: #94a3b8;
+    }
+
+    .spinner {
+      border: 4px solid rgba(59, 130, 246, 0.3);
+      border-radius: 50%;
+      border-top: 4px solid #3b82f6;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 2rem;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 4rem 0;
+      border-top: 1px solid rgba(59, 130, 246, 0.3);
+      margin-top: 5rem;
+      color: #94a3b8;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.5) 0%, rgba(30, 41, 59, 0.5) 100%);
+      backdrop-filter: blur(10px);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .social-links a {
+      color: #94a3b8;
+      font-size: 2rem;
+      transition: all 0.4s ease;
+      padding: 1rem;
+      border-radius: 50%;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+
+    .social-links a:hover {
+      color: #3b82f6;
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
+      background: rgba(59, 130, 246, 0.2);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      
+      .hero .subtitle {
+        font-size: 1.4rem;
+      }
+      
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .container {
+        padding: 0 1rem;
+      }
+      
+      .repo-card {
+        padding: 2rem;
+      }
+      
+      .skills-badges {
+        gap: 0.8rem;
+      }
+      
+      .skill-badge {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.2rem;
+      }
+
+      .tech-icons {
+        gap: 0.6rem;
+      }
+
+      .tech-icon {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Ibrahim Haik</h1>
+      <p class="subtitle">Full Stack Developer & Freelancer</p>
+      <div class="description">
+        <p>Desarrollador Full Stack titulado en <strong>Desarrollo de Aplicaciones Multiplataforma (DAM)</strong> y especializado en <strong>Sistemas Microinformáticos y Redes</strong>. Con experiencia como freelancer, me apasiona crear soluciones tecnológicas innovadoras y eficientes.</p>
+        <br>
+        <p>Especializado en desarrollo web moderno, aplicaciones móviles y arquitecturas escalables. Siempre en búsqueda de nuevos desafíos y oportunidades para aplicar las últimas tecnologías en proyectos que generen impacto real.</p>
+      </div>
+      <div class="skills-badges">
+        <span class="skill-badge">🚀 Full Stack Development</span>
+        <span class="skill-badge">📱 Mobile Applications</span>
+        <span class="skill-badge">☁️ Cloud Architecture</span>
+        <span class="skill-badge">🔧 System Administration</span>
+        <span class="skill-badge">💼 Freelance Experience</span>
+        <span class="skill-badge">🎯 Problem Solving</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="projects-header">
+      <h2>Mis Proyectos</h2>
+      <p style="color: #94a3b8; font-size: 1.2rem;">Explora mi trabajo y contribuciones en GitHub</p>
+    </div>
+    
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+      <p>Cargando repositorios...</p>
+    </div>
+    
+    <div class="projects-grid" id="repos"></div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="social-links">
+        <a href="https://github.com/ibrahaik" target="_blank" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/ibrahim-haik-a12654226/" target="_blank" title="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="mailto:ibrahimelhaouzihaik@gmail.com" title="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      
+  
+  </footer>
+
+  <script>
+    const username = "ibrahaik";
+
+    // Mapeo extenso de tecnologías a iconos y colores
+    const techIcons = {
+      // Frontend Frameworks & Libraries
+      'JavaScript': { icon: 'fab fa-js-square', color: '#f7df1e' },
+      'TypeScript': { icon: 'fas fa-code', color: '#3178c6' },
+      'React': { icon: 'fab fa-react', color: '#61dafb' },
+      'React Native': { icon: 'fab fa-react', color: '#61dafb' },
+      'Vue': { icon: 'fab fa-vuejs', color: '#4fc08d' },
+      'Vue.js': { icon: 'fab fa-vuejs', color: '#4fc08d' },
+      'Angular': { icon: 'fab fa-angular', color: '#dd0031' },
+      'Svelte': { icon: 'fas fa-code', color: '#ff3e00' },
+      'Next.js': { icon: 'fas fa-arrow-right', color: '#000000' },
+      'Nuxt.js': { icon: 'fas fa-mountain', color: '#00dc82' },
+      'Gatsby': { icon: 'fas fa-rocket', color: '#663399' },
+      'jQuery': { icon: 'fas fa-dollar-sign', color: '#0769ad' },
+      
+      // Backend & Server
+      'Node.js': { icon: 'fab fa-node-js', color: '#339933' },
+      'Express': { icon: 'fas fa-server', color: '#000000' },
+      'Express.js': { icon: 'fas fa-server', color: '#000000' },
+      'Fastify': { icon: 'fas fa-bolt', color: '#000000' },
+      'Koa': { icon: 'fas fa-leaf', color: '#33333d' },
+      'NestJS': { icon: 'fas fa-cat', color: '#e0234e' },
+      'PHP': { icon: 'fab fa-php', color: '#777bb4' },
+      'Laravel': { icon: 'fas fa-gem', color: '#ff2d20' },
+      'Symfony': { icon: 'fas fa-music', color: '#000000' },
+      'Python': { icon: 'fab fa-python', color: '#3776ab' },
+      'Django': { icon: 'fas fa-guitar', color: '#092e20' },
+      'Flask': { icon: 'fas fa-flask', color: '#000000' },
+      'FastAPI': { icon: 'fas fa-rocket', color: '#009688' },
+      'Ruby': { icon: 'fas fa-gem', color: '#cc342d' },
+      'Ruby on Rails': { icon: 'fas fa-train', color: '#cc0000' },
+      'Java': { icon: 'fab fa-java', color: '#ed8b00' },
+      'Spring': { icon: 'fas fa-leaf', color: '#6db33f' },
+      'C#': { icon: 'fas fa-code', color: '#239120' },
+      '.NET': { icon: 'fas fa-circle-dot', color: '#512bd4' },
+      'Go': { icon: 'fas fa-code', color: '#00add8' },
+      'Rust': { icon: 'fas fa-gear', color: '#000000' },
+      'Kotlin': { icon: 'fas fa-mobile-alt', color: '#7f52ff' },
+      'Swift': { icon: 'fab fa-swift', color: '#fa7343' },
+      
+      // Databases
+      'MySQL': { icon: 'fas fa-database', color: '#4479a1' },
+      'PostgreSQL': { icon: 'fas fa-elephant', color: '#336791' },
+      'MongoDB': { icon: 'fas fa-leaf', color: '#47a248' },
+      'Redis': { icon: 'fas fa-memory', color: '#dc382d' },
+      'SQLite': { icon: 'fas fa-database', color: '#003b57' },
+      'MariaDB': { icon: 'fas fa-database', color: '#003545' },
+      'Oracle': { icon: 'fas fa-database', color: '#f80000' },
+      'Cassandra': { icon: 'fas fa-database', color: '#1287b1' },
+      'DynamoDB': { icon: 'fas fa-database', color: '#ff9900' },
+      'Supabase': { icon: 'fas fa-database', color: '#3ecf8e' },
+      
+      // Cloud & DevOps
+      'AWS': { icon: 'fab fa-aws', color: '#ff9900' },
+      'Azure': { icon: 'fab fa-microsoft', color: '#0078d4' },
+      'Google Cloud': { icon: 'fab fa-google', color: '#4285f4' },
+      'Firebase': { icon: 'fas fa-fire', color: '#ffca28' },
+      'Vercel': { icon: 'fas fa-triangle', color: '#000000' },
+      'Netlify': { icon: 'fas fa-globe', color: '#00c7b7' },
+      'Heroku': { icon: 'fas fa-cloud', color: '#430098' },
+      'DigitalOcean': { icon: 'fas fa-water', color: '#0080ff' },
+      'Docker': { icon: 'fab fa-docker', color: '#2496ed' },
+      'Kubernetes': { icon: 'fas fa-dharmachakra', color: '#326ce5' },
+      'Jenkins': { icon: 'fas fa-tools', color: '#d33833' },
+      'GitHub Actions': { icon: 'fab fa-github', color: '#2088ff' },
+      'GitLab CI': { icon: 'fab fa-gitlab', color: '#fc6d26' },
+      'Terraform': { icon: 'fas fa-layer-group', color: '#623ce4' },
+      
+      // Mobile Development
+      'Flutter': { icon: 'fas fa-mobile-alt', color: '#02569b' },
+      'Dart': { icon: 'fas fa-code', color: '#0175c2' },
+      'Ionic': { icon: 'fas fa-mobile-alt', color: '#3880ff' },
+      'Xamarin': { icon: 'fas fa-mobile-alt', color: '#3498db' },
+      'Cordova': { icon: 'fas fa-mobile-alt', color: '#e8e8e8' },
+      
+      // Frontend Tools & Styling
+      'HTML': { icon: 'fab fa-html5', color: '#e34f26' },
+      'CSS': { icon: 'fab fa-css3-alt', color: '#1572b6' },
+      'Sass': { icon: 'fab fa-sass', color: '#cc6699' },
+      'SCSS': { icon: 'fab fa-sass', color: '#cc6699' },
+      'Less': { icon: 'fas fa-code', color: '#1d365d' },
+      'Tailwind CSS': { icon: 'fas fa-wind', color: '#06b6d4' },
+      'Bootstrap': { icon: 'fab fa-bootstrap', color: '#7952b3' },
+      'Material-UI': { icon: 'fas fa-palette', color: '#0081cb' },
+      'Chakra UI': { icon: 'fas fa-circle', color: '#319795' },
+      'Styled Components': { icon: 'fas fa-paint-brush', color: '#db7093' },
+      'Emotion': { icon: 'fas fa-heart', color: '#d36ac2' },
+      
+      // Build Tools & Bundlers
+      'Webpack': { icon: 'fas fa-cube', color: '#8dd6f9' },
+      'Vite': { icon: 'fas fa-bolt', color: '#646cff' },
+      'Rollup': { icon: 'fas fa-box', color: '#ec4a3f' },
+      'Parcel': { icon: 'fas fa-package', color: '#e1a95f' },
+      'Gulp': { icon: 'fas fa-stream', color: '#cf4647' },
+      'Grunt': { icon: 'fas fa-hammer', color: '#fba919' },
+      'ESLint': { icon: 'fas fa-check-circle', color: '#4b32c3' },
+      'Prettier': { icon: 'fas fa-magic', color: '#f7b93e' },
+      
+      // Testing
+      'Jest': { icon: 'fas fa-vial', color: '#c21325' },
+      'Cypress': { icon: 'fas fa-tree', color: '#17202c' },
+      'Selenium': { icon: 'fas fa-robot', color: '#43b02a' },
+      'Mocha': { icon: 'fas fa-coffee', color: '#8d6748' },
+      'Chai': { icon: 'fas fa-tea', color: '#a40802' },
+      'Puppeteer': { icon: 'fas fa-theater-masks', color: '#40b5a4' },
+      'Playwright': { icon: 'fas fa-play', color: '#2eac4a' },
+      
+      // Version Control & Collaboration
+      'Git': { icon: 'fab fa-git-alt', color: '#f05032' },
+      'GitHub': { icon: 'fab fa-github', color: '#181717' },
+      'GitLab': { icon: 'fab fa-gitlab', color: '#fc6d26' },
+      'Bitbucket': { icon: 'fab fa-bitbucket', color: '#0052cc' },
+      'SVN': { icon: 'fas fa-code-branch', color: '#809cc9' },
+      
+      // CMS & E-commerce
+      'WordPress': { icon: 'fab fa-wordpress', color: '#21759b' },
+      'Drupal': { icon: 'fab fa-drupal', color: '#0077c0' },
+      'Joomla': { icon: 'fab fa-joomla', color: '#5091cd' },
+      'Shopify': { icon: 'fab fa-shopify', color: '#7ab55c' },
+      'WooCommerce': { icon: 'fab fa-wordpress', color: '#96588a' },
+      'Magento': { icon: 'fas fa-shopping-cart', color: '#ee672f' },
+      'Strapi': { icon: 'fas fa-layer-group', color: '#2e7eea' },
+      'Contentful': { icon: 'fas fa-file-alt', color: '#2478cc' },
+      
+      // Analytics & Monitoring
+      'Google Analytics': { icon: 'fas fa-chart-line', color: '#e37400' },
+      'Sentry': { icon: 'fas fa-bug', color: '#362d59' },
+      'New Relic': { icon: 'fas fa-chart-area', color: '#008c99' },
+      'Datadog': { icon: 'fas fa-dog', color: '#632ca6' },
+      'Grafana': { icon: 'fas fa-chart-bar', color: '#f46800' },
+      'Prometheus': { icon: 'fas fa-fire', color: '#e6522c' },
+      
+      // Other Tools & Technologies
+      'Electron': { icon: 'fas fa-desktop', color: '#47848f' },
+      'GraphQL': { icon: 'fas fa-project-diagram', color: '#e10098' },
+      'Apollo': { icon: 'fas fa-rocket', color: '#311c87' },
+      'REST API': { icon: 'fas fa-exchange-alt', color: '#25d366' },
+      'WebSocket': { icon: 'fas fa-plug', color: '#010101' },
+      'Socket.io': { icon: 'fas fa-plug', color: '#010101' },
+      'Nginx': { icon: 'fas fa-server', color: '#009639' },
+      'Apache': { icon: 'fas fa-feather', color: '#d22128' },
+      'Linux': { icon: 'fab fa-linux', color: '#fcc624' },
+      'Ubuntu': { icon: 'fab fa-ubuntu', color: '#e95420' },
+      'CentOS': { icon: 'fab fa-centos', color: '#262577' },
+      'Shell': { icon: 'fas fa-terminal', color: '#89e051' },
+      'Bash': { icon: 'fas fa-terminal', color: '#4eaa25' },
+      'PowerShell': { icon: 'fas fa-terminal', color: '#5391fe' },
+      'Vim': { icon: 'fas fa-edit', color: '#019733' },
+      'VS Code': { icon: 'fas fa-code', color: '#007acc' },
+      'IntelliJ': { icon: 'fas fa-brain', color: '#000000' },
+      'Postman': { icon: 'fas fa-paper-plane', color: '#ff6c37' },
+      'Insomnia': { icon: 'fas fa-moon', color: '#4000bf' },
+      'Figma': { icon: 'fab fa-figma', color: '#f24e1e' },
+      'Adobe XD': { icon: 'fab fa-adobe', color: '#ff61f6' },
+      'Sketch': { icon: 'fas fa-pencil-ruler', color: '#f7b500' }
+    };
+
+    // Crear partículas flotantes
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 6 + 's';
+        particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    function decodeBase64Utf8(base64) {
+      try {
+        const binary = atob(base64);
+        const bytes = Uint8Array.from(binary, char => char.charCodeAt(0));
+        const decoder = new TextDecoder("utf-8");
+        return decoder.decode(bytes);
+      } catch (error) {
+        return "Error al decodificar el README";
+      }
+    }
+
+    async function getReadme(repo) {
+      try {
+        const url = `https://api.github.com/repos/${username}/${repo}/readme`;
+        const res = await fetch(url);
+        if (!res.ok) return null;
+        const data = await res.json();
+        const content = decodeBase64Utf8(data.content);
+        return content;
+      } catch (error) {
+        return null;
+      }
+    }
+
+    async function getRepoLanguages(repo) {
+      try {
+        const url = `https://api.github.com/repos/${username}/${repo}/languages`;
+        const res = await fetch(url);
+        if (!res.ok) return {};
+        return await res.json();
+      } catch (error) {
+        return {};
+      }
+    }
+
+    // Función mejorada para detectar tecnologías adicionales
+    function detectAdditionalTechs(repoName, description, readme) {
+      const additionalTechs = new Set();
+      const content = `${repoName} ${description || ''} ${readme || ''}`.toLowerCase();
+      
+      // Mapeo de palabras clave a tecnologías
+      const techKeywords = {
+        'express': 'Express',
+        'firebase': 'Firebase',
+        'react native': 'React Native',
+        'react-native': 'React Native',
+        'next.js': 'Next.js',
+        'nextjs': 'Next.js',
+        'vue.js': 'Vue.js',
+        'vuejs': 'Vue.js',
+        'angular': 'Angular',
+        'docker': 'Docker',
+        'kubernetes': 'Kubernetes',
+        'aws': 'AWS',
+        'azure': 'Azure',
+        'google cloud': 'Google Cloud',
+        'mongodb': 'MongoDB',
+        'mysql': 'MySQL',
+        'postgresql': 'PostgreSQL',
+        'redis': 'Redis',
+        'graphql': 'GraphQL',
+        'apollo': 'Apollo',
+        'tailwind': 'Tailwind CSS',
+        'bootstrap': 'Bootstrap',
+        'sass': 'Sass',
+        'scss': 'SCSS',
+        'webpack': 'Webpack',
+        'vite': 'Vite',
+        'electron': 'Electron',
+        'flutter': 'Flutter',
+        'dart': 'Dart',
+        'ionic': 'Ionic',
+        'cordova': 'Cordova',
+        'laravel': 'Laravel',
+        'django': 'Django',
+        'flask': 'Flask',
+        'fastapi': 'FastAPI',
+        'spring': 'Spring',
+        'nest': 'NestJS',
+        'nestjs': 'NestJS',
+        'strapi': 'Strapi',
+        'wordpress': 'WordPress',
+        'shopify': 'Shopify',
+        'magento': 'Magento',
+        'jest': 'Jest',
+        'cypress': 'Cypress',
+        'selenium': 'Selenium',
+        'nginx': 'Nginx',
+        'apache': 'Apache',
+        'linux': 'Linux',
+        'ubuntu': 'Ubuntu',
+        'socket.io': 'Socket.io',
+        'websocket': 'WebSocket',
+        'rest api': 'REST API',
+        'api rest': 'REST API',
+        'material-ui': 'Material-UI',
+        'mui': 'Material-UI',
+        'chakra': 'Chakra UI',
+        'styled-components': 'Styled Components',
+        'emotion': 'Emotion',
+        'figma': 'Figma',
+        'adobe xd': 'Adobe XD',
+        'sketch': 'Sketch',
+        'postman': 'Postman',
+        'insomnia': 'Insomnia',
+        'git': 'Git',
+        'github': 'GitHub',
+        'gitlab': 'GitLab',
+        'bitbucket': 'Bitbucket',
+        'vercel': 'Vercel',
+        'netlify': 'Netlify',
+        'heroku': 'Heroku',
+        'digitalocean': 'DigitalOcean',
+        'supabase': 'Supabase'
+      };
+
+      Object.entries(techKeywords).forEach(([keyword, tech]) => {
+        if (content.includes(keyword)) {
+          additionalTechs.add(tech);
+        }
+      });
+
+      return Array.from(additionalTechs);
+    }
+
+    function createTechIcon(tech) {
+      const techInfo = techIcons[tech] || { icon: 'fas fa-code', color: '#6b7280' };
+      return `<span class="tech-icon" style="border-color: ${techInfo.color}33; background: linear-gradient(135deg, ${techInfo.color}15, ${techInfo.color}25);">
+        <i class="${techInfo.icon}" style="color: ${techInfo.color};"></i> 
+        ${tech}
+      </span>`;
+    }
+
+    function formatNumber(num) {
+      if (num >= 1000) {
+        return (num / 1000).toFixed(1) + 'k';
+      }
+      return num.toString();
+    }
+
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('es-ES', { 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric' 
+      });
+    }
+
+    async function loadRepos() {
+  try {
+    // Verificar límite de API primero
+    const rateLimitRes = await fetch('https://api.github.com/rate_limit');
+    const rateLimitData = await rateLimitRes.json();
+    
+    console.log('Rate limit info:', rateLimitData);
+    
+    if (rateLimitData.rate.remaining < 10) {
+      const resetTime = new Date(rateLimitData.rate.reset * 1000);
+      const loading = document.getElementById("loading");
+      loading.innerHTML = `
+        <div style="color: #f59e0b;">
+          <i class="fas fa-clock"></i>
+          <h3>Límite de API alcanzado</h3>
+          <p>Se ha alcanzado el límite de solicitudes a la API de GitHub.</p>
+          <p>Se restablecerá a las: <strong>${resetTime.toLocaleTimeString()}</strong></p>
+          <p style="margin-top: 1rem; font-size: 0.9rem;">Solicitudes restantes: ${rateLimitData.rate.remaining}/${rateLimitData.rate.limit}</p>
+          <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #3b82f6; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">
+            Intentar de nuevo
+          </button>
+        </div>
+      `;
+      return;
+    }
+
+    const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=20`);
+    
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+    }
+    
+    const repos = await res.json();
+    const container = document.getElementById("repos");
+    const loading = document.getElementById("loading");
+    
+    loading.style.display = "none";
+
+    // Filtrar repositorios fork y ordenar por estrellas y actividad
+    const filteredRepos = repos
+      .filter(repo => !repo.fork)
+      .sort((a, b) => {
+        if (b.stargazers_count !== a.stargazers_count) {
+          return b.stargazers_count - a.stargazers_count;
+        }
+        return new Date(b.updated_at) - new Date(a.updated_at);
+      });
+
+    // Procesar repos en lotes para evitar sobrecargar la API
+    for (let i = 0; i < filteredRepos.length; i++) {
+      const repo = filteredRepos[i];
+      
+      // Crear la tarjeta primero con información básica
+      const div = document.createElement("div");
+      div.className = "repo-card";
+      const readmeId = `readme-${repo.id}`;
+      
+      // Información básica sin llamadas adicionales a la API
+      div.innerHTML = `
+        <div class="repo-header">
+          <a href="${repo.html_url}" target="_blank" class="repo-title">
+            <i class="fab fa-github"></i> ${repo.name}
+          </a>
+          <div class="repo-stats">
+            <span title="Estrellas"><i class="fas fa-star"></i> ${formatNumber(repo.stargazers_count)}</span>
+            <span title="Forks"><i class="fas fa-code-branch"></i> ${formatNumber(repo.forks_count)}</span>
+            <span title="Última actualización"><i class="fas fa-clock"></i> ${formatDate(repo.updated_at)}</span>
+          </div>
+        </div>
+        
+        ${repo.description ? `<p class="repo-description">"${repo.description}"</p>` : ''}
+        
+        <div class="tech-stack">
+          <h4><i class="fas fa-tools"></i> Tecnologías utilizadas:</h4>
+          <div class="tech-icons" id="tech-${repo.id}">
+            <span style="color: #94a3b8; font-style: italic;">Cargando tecnologías...</span>
+          </div>
+        </div>
+        
+        <button class="btn-toggle" onclick="loadReadmeForRepo('${repo.name}', '${readmeId}', this)">
+          <i class="fas fa-book-open"></i> Ver README
+        </button>
+        <div id="${readmeId}" class="readme" style="display: none;">
+          <p style="color: #94a3b8;">Cargando README...</p>
+        </div>
+      `;
+      
+      container.appendChild(div);
+      
+      // Cargar tecnologías de forma asíncrona
+      loadTechnologiesForRepo(repo);
+      
+      // Pequeña pausa para animación escalonada
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }
+    
+    // Mostrar información del rate limit
+    const rateLimitInfo = document.createElement('div');
+    rateLimitInfo.style.cssText = 'text-align: center; margin-top: 2rem; padding: 1rem; background: rgba(59, 130, 246, 0.1); border-radius: 0.5rem; font-size: 0.9rem; color: #94a3b8;';
+    rateLimitInfo.innerHTML = `
+      <i class="fas fa-info-circle"></i> 
+      Solicitudes API restantes: ${rateLimitData.rate.remaining}/${rateLimitData.rate.limit} 
+      (se restablece a las ${new Date(rateLimitData.rate.reset * 1000).toLocaleTimeString()})
+    `;
+    container.appendChild(rateLimitInfo);
+    
+  } catch (error) {
+    const loading = document.getElementById("loading");
+    loading.innerHTML = `
+      <div style="color: #ef4444;">
+        <i class="fas fa-exclamation-triangle"></i>
+        <h3>Error al cargar los repositorios</h3>
+        <p>Ha ocurrido un error al conectar con GitHub.</p>
+        <p style="font-size: 0.9rem; margin-top: 1rem; color: #94a3b8;">Error: ${error.message}</p>
+        <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #3b82f6; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">
+          Intentar de nuevo
+        </button>
+      </div>
+    `;
+  }
+}
+
+// Función para cargar tecnologías de forma asíncrona
+async function loadTechnologiesForRepo(repo) {
+  try {
+    const languages = await getRepoLanguages(repo.name);
+    const additionalTechs = detectAdditionalTechs(repo.name, repo.description, '');
+    const githubTechs = Object.keys(languages);
+    const allTechs = [...new Set([...githubTechs, ...additionalTechs])];
+    
+    const techContainer = document.getElementById(`tech-${repo.id}`);
+    if (techContainer && allTechs.length > 0) {
+      const techStack = allTechs.map(tech => createTechIcon(tech)).join('');
+      techContainer.innerHTML = techStack;
+    } else if (techContainer) {
+      techContainer.innerHTML = '<span style="color: #94a3b8; font-style: italic;">No se detectaron tecnologías específicas</span>';
+    }
+  } catch (error) {
+    const techContainer = document.getElementById(`tech-${repo.id}`);
+    if (techContainer) {
+      techContainer.innerHTML = '<span style="color: #ef4444; font-style: italic;">Error al cargar tecnologías</span>';
+    }
+  }
+}
+
+// Función para cargar README bajo demanda
+async function loadReadmeForRepo(repoName, readmeId, button) {
+  const readmeDiv = document.getElementById(readmeId);
+  
+  if (readmeDiv.style.display === "none" || readmeDiv.style.display === "") {
+    // Si el README no se ha cargado aún
+    if (readmeDiv.innerHTML.includes('Cargando README...')) {
+      try {
+        button.disabled = true;
+        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Cargando...';
+        
+        const readme = await getReadme(repoName);
+        if (readme) {
+          readmeDiv.innerHTML = readme;
+        } else {
+          readmeDiv.innerHTML = '<p style="color: #94a3b8; font-style: italic;"><i class="fas fa-info-circle"></i> No hay README disponible.</p>';
+        }
+      } catch (error) {
+        readmeDiv.innerHTML = '<p style="color: #ef4444; font-style: italic;"><i class="fas fa-exclamation-triangle"></i> Error al cargar README.</p>';
+      } finally {
+        button.disabled = false;
+        button.innerHTML = '<i class="fas fa-book"></i> Ocultar README';
+      }
+    }
+    readmeDiv.style.display = "block";
+    if (!button.disabled) {
+      button.innerHTML = '<i class="fas fa-book"></i> Ocultar README';
+    }
+  } else {
+    readmeDiv.style.display = "none";
+    button.innerHTML = '<i class="fas fa-book-open"></i> Ver README';
+  }
+}
+
+    // Inicializar la página
+    document.addEventListener('DOMContentLoaded', () => {
+      createParticles();
+      loadRepos();
+    });
+  </script>
+</body>
+</html>

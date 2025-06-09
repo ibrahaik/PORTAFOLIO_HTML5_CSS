@@ -103,7 +103,6 @@
     .particle {
       position: absolute;
       border-radius: 50%;
-      animation: float 8s ease-in-out infinite;
       background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #06b6d4);
       background-size: 400% 400%;
       animation: float 8s ease-in-out infinite, gradientShift 4s ease-in-out infinite;
@@ -185,7 +184,7 @@
       padding: 6rem 0;
       position: relative;
       overflow: hidden;
-      z-index: 10; /* Asegurar que el hero tenga z-index alto */
+      z-index: 10;
     }
 
     .hero::before {
@@ -236,10 +235,6 @@
       font-family: 'Orbitron', monospace;
       font-size: 3rem;
       font-weight: 900;
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      background-image: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
       position: relative;
       overflow: hidden;
     }
@@ -346,7 +341,7 @@
       100% { left: 100%; }
     }
 
-    /* Botones de acción premium - CORREGIDO */
+    /* Botones de acción premium */
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
@@ -355,7 +350,7 @@
       margin-bottom: 3rem;
       animation: fadeInUp 1s ease-out 1.2s both;
       position: relative;
-      z-index: 20; /* Z-index más alto para los botones */
+      z-index: 20;
     }
 
     .btn-primary {
@@ -375,7 +370,7 @@
       align-items: center;
       gap: 0.5rem;
       box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
-      z-index: 25; /* Z-index específico para el botón primario */
+      z-index: 25;
     }
 
     .btn-primary::before {
@@ -396,7 +391,7 @@
     .btn-primary:hover {
       transform: translateY(-3px) scale(1.05);
       box-shadow: 0 20px 40px rgba(59, 130, 246, 0.5);
-      z-index: 30; /* Z-index aún más alto en hover */
+      z-index: 30;
     }
 
     .btn-secondary {
@@ -415,62 +410,14 @@
       align-items: center;
       gap: 0.5rem;
       position: relative;
-      z-index: 25; /* Z-index específico para el botón secundario */
+      z-index: 25;
     }
 
     .btn-secondary:hover {
       background: rgba(255, 255, 255, 0.1);
       transform: translateY(-3px);
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-      z-index: 30; /* Z-index aún más alto en hover */
-    }
-
-    /* Skills badges mejorados */
-    .skills-badges {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 3rem;
-      animation: fadeInUp 1s ease-out 1.5s both;
-      position: relative;
-      z-index: 15;
-    }
-
-    .skill-badge {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      padding: 0.8rem 1.5rem;
-      border-radius: 2rem;
-      font-size: 1rem;
-      font-weight: 600;
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-    }
-
-    .skill-badge::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.6s;
-    }
-
-    .skill-badge:hover::before {
-      left: 100%;
-    }
-
-    .skill-badge:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
-      border-color: rgba(59, 130, 246, 0.8);
-      background: rgba(59, 130, 246, 0.1);
+      z-index: 30;
     }
 
     /* Scroll indicator */
@@ -983,15 +930,6 @@
         padding: 2rem;
       }
       
-      .skills-badges {
-        gap: 0.8rem;
-      }
-      
-      .skill-badge {
-        font-size: 0.9rem;
-        padding: 0.6rem 1.2rem;
-      }
-
       .tech-icons {
         gap: 0.6rem;
       }
@@ -1241,6 +1179,8 @@
     // Crear partículas mejoradas
     function createParticles() {
       const particlesContainer = document.getElementById('particles');
+      if (!particlesContainer) return;
+      
       for (let i = 0; i < 60; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
@@ -1255,17 +1195,6 @@
     }
 
     // Funciones de utilidad
-    function decodeBase64Utf8(base64) {
-      try {
-        const binary = atob(base64);
-        const bytes = Uint8Array.from(binary, char => char.charCodeAt(0));
-        const decoder = new TextDecoder("utf-8");
-        return decoder.decode(bytes);
-      } catch (error) {
-        return "Error al decodificar el README";
-      }
-    }
-
     async function getReadme(repo) {
       try {
         const res = await fetch(`/api/readme?repo=${repo}`);
@@ -1273,6 +1202,7 @@
         const data = await res.json();
         return data.content;
       } catch (error) {
+        console.error('Error fetching README:', error);
         return null;
       }
     }
@@ -1283,6 +1213,7 @@
         if (!res.ok) return {};
         return await res.json();
       } catch (error) {
+        console.error('Error fetching languages:', error);
         return {};
       }
     }
@@ -1368,6 +1299,11 @@
       try {
         const loading = document.getElementById("loading");
         const container = document.getElementById("repos");
+        
+        if (!loading || !container) {
+          console.error('Required elements not found');
+          return;
+        }
         
         const res = await fetch('/api/repos');
         
@@ -1457,19 +1393,22 @@
         container.appendChild(successInfo);
         
       } catch (error) {
+        console.error('Error loading repos:', error);
         const loading = document.getElementById("loading");
-        loading.innerHTML = `
-          <div style="color: #ef4444; background: var(--glass-bg); backdrop-filter: blur(20px); border-radius: 1rem; padding: 2rem; border: 1px solid rgba(239, 68, 68, 0.3);">
-            <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-            <h3>Error al cargar los repositorios</h3>
-            <p>Ha ocurrido un error al conectar con la API.</p>
-            
-            <p style="font-size: 0.9rem; margin-top: 1rem; color: #94a3b8;">Error: ${error.message}</p>
-            <button onclick="location.reload()" class="btn-primary" style="margin-top: 1rem;">
-              <i class="fas fa-redo"></i> Intentar de nuevo
-            </button>
-          </div>
-        `;
+        if (loading) {
+          loading.innerHTML = `
+            <div style="color: #ef4444; background: var(--glass-bg); backdrop-filter: blur(20px); border-radius: 1rem; padding: 2rem; border: 1px solid rgba(239, 68, 68, 0.3);">
+              <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+              <h3>Error al cargar los repositorios</h3>
+              <p>Ha ocurrido un error al conectar con la API.</p>
+              
+              <p style="font-size: 0.9rem; margin-top: 1rem; color: #94a3b8;">Error: ${error.message}</p>
+              <button onclick="location.reload()" class="btn-primary" style="margin-top: 1rem;">
+                <i class="fas fa-redo"></i> Intentar de nuevo
+              </button>
+            </div>
+          `;
+        }
       }
     }
 
@@ -1506,6 +1445,7 @@
           techContainer.innerHTML = '<span style="color: #94a3b8; font-style: italic;">No se detectaron tecnologías específicas</span>';
         }
       } catch (error) {
+        console.error('Error loading technologies for repo:', repo.name, error);
         const techContainer = document.getElementById(`tech-${repo.id}`);
         if (techContainer) {
           techContainer.innerHTML = '<span style="color: #ef4444; font-style: italic;">Error al cargar tecnologías</span>';
@@ -1516,6 +1456,11 @@
     // Función para cargar README bajo demanda
     async function loadReadmeForRepo(repoName, readmeId, button) {
       const readmeDiv = document.getElementById(readmeId);
+      
+      if (!readmeDiv || !button) {
+        console.error('README elements not found');
+        return;
+      }
 
       if (readmeDiv.style.display === "none" || readmeDiv.style.display === "") {
         if (readmeDiv.innerHTML.includes('Cargando README...')) {
@@ -1528,14 +1473,9 @@
               readmeDiv.innerHTML = readme;
               
               // Detectar más tecnologías del README
-              const repoElement = button.closest('.repo-card');
               const repoId = readmeId.replace('readme-', '');
-              const techContainer = document.getElementById(`tech-${');
               const techContainer = document.getElementById(`tech-${repoId}`);
-                
-
-                
-          
+              
               if (techContainer) {
                 const currentTechs = Array.from(techContainer.querySelectorAll('.tech-icon'))
                   .map(el => el.textContent.trim());
@@ -1552,6 +1492,7 @@
               readmeDiv.innerHTML = '<p style="color: #94a3b8; font-style: italic;"><i class="fas fa-info-circle"></i> No hay README disponible.</p>';
             }
           } catch (error) {
+            console.error('Error loading README:', error);
             readmeDiv.innerHTML = '<p style="color: #ef4444; font-style: italic;"><i class="fas fa-exclamation-triangle"></i> Error al cargar README.</p>';
           } finally {
             button.disabled = false;
@@ -1602,16 +1543,6 @@
       const fadeElements = document.querySelectorAll('.fade-in, .fade-in-delay-1, .fade-in-delay-2, .fade-in-delay-3, .fade-in-delay-4');
       fadeElements.forEach(el => observer.observe(el));
     });
-
-    // Efecto de parallax en scroll - DESHABILITADO para evitar problemas de z-index
-    // window.addEventListener('scroll', () => {
-    //   const scrolled = window.pageYOffset;
-    //   const parallax = document.querySelector('.hero');
-    //   if (parallax) {
-    //     const speed = scrolled * 0.5;
-    //     parallax.style.transform = `translateY(${speed}px)`;
-    //   }
-    // });
 
     // Inicializar la página
     document.addEventListener('DOMContentLoaded', () => {

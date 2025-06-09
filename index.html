@@ -185,6 +185,7 @@
       padding: 6rem 0;
       position: relative;
       overflow: hidden;
+      z-index: 10; /* Asegurar que el hero tenga z-index alto */
     }
 
     .hero::before {
@@ -210,6 +211,7 @@
       margin: 0 auto 2rem;
       position: relative;
       animation: avatarFloat 6s ease-in-out infinite;
+      z-index: 15;
     }
 
     .hero-avatar::before {
@@ -284,6 +286,7 @@
       animation: gradientShift 4s ease-in-out infinite, textPulse 2s ease-in-out infinite alternate;
       position: relative;
       letter-spacing: -0.02em;
+      z-index: 15;
     }
 
     @keyframes textPulse {
@@ -298,6 +301,8 @@
       font-weight: 300;
       animation: fadeInUp 1s ease-out 0.5s both;
       letter-spacing: 0.05em;
+      position: relative;
+      z-index: 15;
     }
 
     @keyframes fadeInUp {
@@ -322,6 +327,7 @@
       animation: fadeInUp 1s ease-out 1s both;
       position: relative;
       overflow: hidden;
+      z-index: 15;
     }
 
     .hero .description::before {
@@ -340,7 +346,7 @@
       100% { left: 100%; }
     }
 
-    /* Botones de acción premium */
+    /* Botones de acción premium - CORREGIDO */
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
@@ -348,6 +354,8 @@
       gap: 1.5rem;
       margin-bottom: 3rem;
       animation: fadeInUp 1s ease-out 1.2s both;
+      position: relative;
+      z-index: 20; /* Z-index más alto para los botones */
     }
 
     .btn-primary {
@@ -367,6 +375,7 @@
       align-items: center;
       gap: 0.5rem;
       box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+      z-index: 25; /* Z-index específico para el botón primario */
     }
 
     .btn-primary::before {
@@ -387,6 +396,7 @@
     .btn-primary:hover {
       transform: translateY(-3px) scale(1.05);
       box-shadow: 0 20px 40px rgba(59, 130, 246, 0.5);
+      z-index: 30; /* Z-index aún más alto en hover */
     }
 
     .btn-secondary {
@@ -404,12 +414,15 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      position: relative;
+      z-index: 25; /* Z-index específico para el botón secundario */
     }
 
     .btn-secondary:hover {
       background: rgba(255, 255, 255, 0.1);
       transform: translateY(-3px);
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      z-index: 30; /* Z-index aún más alto en hover */
     }
 
     /* Skills badges mejorados */
@@ -420,6 +433,8 @@
       gap: 1rem;
       margin-top: 3rem;
       animation: fadeInUp 1s ease-out 1.5s both;
+      position: relative;
+      z-index: 15;
     }
 
     .skill-badge {
@@ -466,6 +481,7 @@
       transform: translateX(-50%);
       animation: bounce 2s infinite;
       color: var(--text-muted);
+      z-index: 15;
     }
 
     @keyframes bounce {
@@ -481,6 +497,8 @@
       backdrop-filter: blur(20px);
       border-top: 1px solid var(--glass-border);
       border-bottom: 1px solid var(--glass-border);
+      position: relative;
+      z-index: 5;
     }
 
     .stats-grid {
@@ -545,6 +563,8 @@
       text-align: center;
       margin-bottom: 4rem;
       padding: 4rem 0;
+      position: relative;
+      z-index: 5;
     }
 
     .projects-header h2 {
@@ -572,6 +592,8 @@
       grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
       gap: 2.5rem;
       margin-bottom: 4rem;
+      position: relative;
+      z-index: 5;
     }
 
     .repo-card {
@@ -829,6 +851,8 @@
       text-align: center;
       padding: 4rem;
       color: var(--text-muted);
+      position: relative;
+      z-index: 5;
     }
 
     .spinner {
@@ -870,6 +894,7 @@
       background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.8) 100%);
       backdrop-filter: blur(20px);
       position: relative;
+      z-index: 5;
     }
 
     .footer::before {
@@ -1071,15 +1096,15 @@
       <h1 class="fade-in">Ibrahim Haik</h1>
       <p class="subtitle fade-in-delay-1">Full Stack Developer & Freelancer</p>
       
-<div class="description fade-in-delay-2">
-  <p>Soy desarrollador Full Stack titulado en <strong>Desarrollo de Aplicaciones Multiplataforma (DAM)</strong>, con base en <strong>Sistemas Microinformáticos y Redes</strong>. Me gusta trabajar sobre todo el backend, donde me siento más cómodo y productivo.</p>
-  <br>
-  <p>He desarrollado todo tipo de proyectos: apps móviles, programas de escritorio y algunas webs. Uno de los más completos fue <strong>Golden Bulk</strong>, una app que hice desde cero y puedes ver en mi portafolio.</p>
-  <br>
-  <p>Trabajo con tecnologías como <strong>Java, Node.js, React, PostgreSQL, MongoDB, Linux, Express y React Native</strong>. Me gusta escribir código limpio, modular y bien organizado. He trabajado tanto por mi cuenta como en equipo, y siempre intento seguir aprendiendo y mejorando.</p>
-  <br>
-  <p>Estoy buscando incorporarme a proyectos reales cuanto antes, especialmente en desarrollo backend, donde creo que más puedo aportar.</p>
-</div>
+      <div class="description fade-in-delay-2">
+        <p>Soy desarrollador Full Stack titulado en <strong>Desarrollo de Aplicaciones Multiplataforma (DAM)</strong>, con base en <strong>Sistemas Microinformáticos y Redes</strong>. Me gusta trabajar sobre todo el backend, donde me siento más cómodo y productivo.</p>
+        <br>
+        <p>He desarrollado todo tipo de proyectos: apps móviles, programas de escritorio y algunas webs. Uno de los más completos fue <strong>Golden Bulk</strong>, una app que hice desde cero y puedes ver en mi portafolio.</p>
+        <br>
+        <p>Trabajo con tecnologías como <strong>Java, Node.js, React, PostgreSQL, MongoDB, Linux, Express y React Native</strong>. Me gusta escribir código limpio, modular y bien organizado. He trabajado tanto por mi cuenta como en equipo, y siempre intento seguir aprendiendo y mejorando.</p>
+        <br>
+        <p>Estoy buscando incorporarme a proyectos reales cuanto antes, especialmente en desarrollo backend, donde creo que más puedo aportar.</p>
+      </div>
 
       <div class="hero-actions fade-in-delay-3">
         <a href="#" class="btn-primary">
@@ -1091,8 +1116,6 @@
           Ver Proyectos
         </a>
       </div>
-      
-     
 
       <div class="scroll-indicator">
         <i class="fas fa-chevron-down"></i>
@@ -1507,8 +1530,12 @@
               // Detectar más tecnologías del README
               const repoElement = button.closest('.repo-card');
               const repoId = readmeId.replace('readme-', '');
+              const techContainer = document.getElementById(`tech-${');
               const techContainer = document.getElementById(`tech-${repoId}`);
-              
+                
+
+                
+          
               if (techContainer) {
                 const currentTechs = Array.from(techContainer.querySelectorAll('.tech-icon'))
                   .map(el => el.textContent.trim());
@@ -1576,15 +1603,15 @@
       fadeElements.forEach(el => observer.observe(el));
     });
 
-    // Efecto de parallax en scroll
-    window.addEventListener('scroll', () => {
-      const scrolled = window.pageYOffset;
-      const parallax = document.querySelector('.hero');
-      if (parallax) {
-        const speed = scrolled * 0.5;
-        parallax.style.transform = `translateY(${speed}px)`;
-      }
-    });
+    // Efecto de parallax en scroll - DESHABILITADO para evitar problemas de z-index
+    // window.addEventListener('scroll', () => {
+    //   const scrolled = window.pageYOffset;
+    //   const parallax = document.querySelector('.hero');
+    //   if (parallax) {
+    //     const speed = scrolled * 0.5;
+    //     parallax.style.transform = `translateY(${speed}px)`;
+    //   }
+    // });
 
     // Inicializar la página
     document.addEventListener('DOMContentLoaded', () => {

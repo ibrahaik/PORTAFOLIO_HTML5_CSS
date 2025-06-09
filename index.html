@@ -3,10 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ibrahim Haik - Full Stack Developer | ibrahimelhaouzihaik@gmail.com</title>
+  <title>Ibrahim Haik - Full Stack Developer | Portfolio Premium</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --text-primary: #ffffff;
+      --text-secondary: #e2e8f0;
+      --text-muted: #94a3b8;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -16,14 +27,14 @@
     body {
       font-family: 'Inter', sans-serif;
       background: #0a0a0f;
-      color: #e2e8f0;
+      color: var(--text-primary);
       min-height: 100vh;
       line-height: 1.6;
       overflow-x: hidden;
       position: relative;
     }
 
-    /* Animated Background */
+    /* Fondo animado mejorado */
     body::before {
       content: '';
       position: fixed;
@@ -32,27 +43,53 @@
       width: 100%;
       height: 100%;
       background: 
-        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
-      animation: backgroundShift 20s ease-in-out infinite;
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 60% 70%, rgba(255, 165, 0, 0.2) 0%, transparent 50%);
+      animation: backgroundShift 25s ease-in-out infinite;
+      z-index: -2;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.08"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E') repeat;
       z-index: -1;
     }
 
     @keyframes backgroundShift {
-      0%, 100% { transform: scale(1) rotate(0deg); }
-      50% { transform: scale(1.1) rotate(180deg); }
+      0%, 100% { 
+        transform: scale(1) rotate(0deg);
+        filter: hue-rotate(0deg);
+      }
+      25% { 
+        transform: scale(1.1) rotate(90deg);
+        filter: hue-rotate(90deg);
+      }
+      50% { 
+        transform: scale(1.2) rotate(180deg);
+        filter: hue-rotate(180deg);
+      }
+      75% { 
+        transform: scale(1.1) rotate(270deg);
+        filter: hue-rotate(270deg);
+      }
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
       padding: 0 2rem;
       position: relative;
       z-index: 1;
     }
 
-    /* Floating Particles */
+    /* Partículas flotantes mejoradas */
     .particles {
       position: fixed;
       top: 0;
@@ -65,29 +102,87 @@
 
     .particle {
       position: absolute;
-      width: 4px;
-      height: 4px;
-      background: linear-gradient(45deg, #3b82f6, #8b5cf6);
       border-radius: 50%;
-      animation: float 6s ease-in-out infinite;
+      animation: float 8s ease-in-out infinite;
+      background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #06b6d4);
+      background-size: 400% 400%;
+      animation: float 8s ease-in-out infinite, gradientShift 4s ease-in-out infinite;
+    }
+
+    .particle:nth-child(odd) {
+      animation-direction: reverse;
     }
 
     @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0; }
-      50% { transform: translateY(-100px) rotate(180deg); opacity: 1; }
+      0%, 100% { 
+        transform: translateY(0px) translateX(0px) rotate(0deg); 
+        opacity: 0; 
+        scale: 0;
+      }
+      25% { 
+        opacity: 0.3; 
+        scale: 0.5;
+      }
+      50% { 
+        transform: translateY(-120px) translateX(50px) rotate(180deg); 
+        opacity: 1; 
+        scale: 1;
+      }
+      75% { 
+        opacity: 0.7; 
+        scale: 0.8;
+      }
     }
 
-    /* Header Hero Section */
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    /* Navegación flotante */
+    .nav-floating {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      z-index: 1000;
+      display: flex;
+      gap: 1rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 2rem;
+      padding: 1rem;
+      animation: slideInFromRight 1s ease-out;
+    }
+
+    .nav-floating a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 1rem;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .nav-floating a:hover {
+      color: var(--text-primary);
+      background: var(--glass-bg);
+      transform: translateY(-2px);
+    }
+
+    @keyframes slideInFromRight {
+      from { transform: translateX(100px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    /* Hero Section Premium */
     .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
       padding: 6rem 0;
-      background: linear-gradient(135deg, 
-        rgba(59, 130, 246, 0.1) 0%, 
-        rgba(147, 51, 234, 0.1) 25%,
-        rgba(236, 72, 153, 0.1) 50%,
-        rgba(59, 130, 246, 0.1) 100%);
-      border-bottom: 1px solid rgba(59, 130, 246, 0.3);
-      margin-bottom: 4rem;
       position: relative;
       overflow: hidden;
     }
@@ -99,8 +194,8 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: conic-gradient(from 0deg, transparent, rgba(59, 130, 246, 0.1), transparent);
-      animation: rotate 20s linear infinite;
+      background: conic-gradient(from 0deg, transparent, rgba(59, 130, 246, 0.1), transparent, rgba(147, 51, 234, 0.1), transparent);
+      animation: rotate 30s linear infinite;
       z-index: -1;
     }
 
@@ -109,20 +204,64 @@
       to { transform: rotate(360deg); }
     }
 
-    .hero h1 {
-      font-size: 4rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 25%, #ec4899 50%, #06b6d4 75%, #3b82f6 100%);
-      background-size: 300% 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 1rem;
-      animation: gradientShift 4s ease-in-out infinite, textGlow 2s ease-in-out infinite alternate;
+    .hero-avatar {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 2rem;
       position: relative;
+      animation: avatarFloat 6s ease-in-out infinite;
     }
 
-    @keyframes gradientShift {
+    .hero-avatar::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #06b6d4, #3b82f6);
+      background-size: 300% 300%;
+      animation: gradientRotate 4s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    .hero-avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Orbitron', monospace;
+      font-size: 3rem;
+      font-weight: 900;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      background-image: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-avatar-inner::before {
+      content: 'IH';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: textGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes avatarFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    @keyframes gradientRotate {
       0%, 100% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
     }
@@ -132,12 +271,33 @@
       to { filter: drop-shadow(0 0 40px rgba(139, 92, 246, 0.8)); }
     }
 
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900;
+      font-family: 'Orbitron', monospace;
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 25%, #ec4899 50%, #06b6d4 75%, #3b82f6 100%);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      animation: gradientShift 4s ease-in-out infinite, textPulse 2s ease-in-out infinite alternate;
+      position: relative;
+      letter-spacing: -0.02em;
+    }
+
+    @keyframes textPulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.02); }
+    }
+
     .hero .subtitle {
-      font-size: 1.8rem;
-      color: #94a3b8;
+      font-size: clamp(1.2rem, 4vw, 2rem);
+      color: var(--text-secondary);
       margin-bottom: 2rem;
       font-weight: 300;
       animation: fadeInUp 1s ease-out 0.5s both;
+      letter-spacing: 0.05em;
     }
 
     @keyframes fadeInUp {
@@ -147,40 +307,112 @@
 
     .hero .description {
       max-width: 900px;
-      margin: 0 auto;
+      margin: 0 auto 3rem;
       font-size: 1.2rem;
-      color: #cbd5e1;
+      color: var(--text-secondary);
       line-height: 1.8;
-      background: rgba(15, 23, 42, 0.6);
-      padding: 3rem;
-      border-radius: 1.5rem;
-      border: 1px solid rgba(59, 130, 246, 0.3);
+      background: var(--glass-bg);
       backdrop-filter: blur(20px);
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+      padding: 3rem;
+      border-radius: 2rem;
+      border: 1px solid var(--glass-border);
+      box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
       animation: fadeInUp 1s ease-out 1s both;
       position: relative;
+      overflow: hidden;
     }
 
     .hero .description::before {
       content: '';
       position: absolute;
       top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: 1.5rem;
-      padding: 2px;
-      background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899, #06b6d4);
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask-composite: exclude;
-      animation: borderGlow 3s ease-in-out infinite;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      animation: shimmer 3s ease-in-out infinite;
     }
 
-    @keyframes borderGlow {
-      0%, 100% { opacity: 0.5; }
-      50% { opacity: 1; }
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
     }
 
+    /* Botones de acción premium */
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      animation: fadeInUp 1s ease-out 1.2s both;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      color: white;
+      border: none;
+      padding: 1rem 2.5rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.6s;
+    }
+
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.5);
+    }
+
+    .btn-secondary {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      color: white;
+      border: 1px solid var(--glass-border);
+      padding: 1rem 2.5rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Skills badges mejorados */
     .skills-badges {
       display: flex;
       flex-wrap: wrap;
@@ -191,8 +423,9 @@
     }
 
     .skill-badge {
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(147, 51, 234, 0.2) 100%);
-      border: 1px solid rgba(59, 130, 246, 0.4);
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
       padding: 0.8rem 1.5rem;
       border-radius: 2rem;
       font-size: 1rem;
@@ -200,6 +433,7 @@
       transition: all 0.4s ease;
       position: relative;
       overflow: hidden;
+      cursor: pointer;
     }
 
     .skill-badge::before {
@@ -221,23 +455,116 @@
       transform: translateY(-5px) scale(1.05);
       box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
       border-color: rgba(59, 130, 246, 0.8);
+      background: rgba(59, 130, 246, 0.1);
     }
 
-    /* Projects Section */
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+      color: var(--text-muted);
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-10px); }
+      60% { transform: translateX(-50%) translateY(-5px); }
+    }
+
+    /* Stats Section */
+    .stats-section {
+      padding: 6rem 0;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.5) 0%, rgba(30, 41, 59, 0.5) 100%);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .stat-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899, #06b6d4);
+      background-size: 300% 100%;
+      animation: gradientMove 3s ease-in-out infinite;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 30px 60px rgba(59, 130, 246, 0.3);
+      border-color: rgba(59, 130, 246, 0.6);
+    }
+
+    .stat-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      font-family: 'Orbitron', monospace;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    /* Projects Section mejorada */
     .projects-header {
       text-align: center;
       margin-bottom: 4rem;
+      padding: 4rem 0;
     }
 
     .projects-header h2 {
-      font-size: 3rem;
-      font-weight: 700;
-      color: #f1f5f9;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 900;
+      font-family: 'Orbitron', monospace;
+      color: var(--text-primary);
       margin-bottom: 1rem;
       background: linear-gradient(135deg, #f1f5f9 0%, #3b82f6 50%, #8b5cf6 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      animation: gradientShift 4s ease-in-out infinite;
+    }
+
+    .projects-header p {
+      font-size: 1.3rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
     }
 
     .projects-grid {
@@ -248,12 +575,12 @@
     }
 
     .repo-card {
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.9) 100%);
-      border: 1px solid rgba(59, 130, 246, 0.3);
-      border-radius: 1.5rem;
-      padding: 2.5rem;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: var(--glass-bg);
       backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 2rem;
+      padding: 2.5rem;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -271,11 +598,6 @@
       animation: gradientMove 3s ease-in-out infinite;
     }
 
-    @keyframes gradientMove {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-
     .repo-card::after {
       content: '';
       position: absolute;
@@ -286,7 +608,8 @@
       background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
       opacity: 0;
       transition: opacity 0.4s ease;
-      border-radius: 1.5rem;
+      border-radius: 2rem;
+      pointer-events: none;
     }
 
     .repo-card:hover::after {
@@ -294,9 +617,14 @@
     }
 
     .repo-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 30px 60px rgba(59, 130, 246, 0.3);
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 40px 80px rgba(59, 130, 246, 0.4);
       border-color: rgba(59, 130, 246, 0.6);
+    }
+
+    @keyframes gradientMove {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
     }
 
     .repo-header {
@@ -311,7 +639,7 @@
     .repo-title {
       font-size: 1.6rem;
       font-weight: 700;
-      color: #f1f5f9;
+      color: var(--text-primary);
       text-decoration: none;
       transition: all 0.3s ease;
       display: flex;
@@ -328,7 +656,7 @@
       display: flex;
       gap: 1.5rem;
       font-size: 0.95rem;
-      color: #94a3b8;
+      color: var(--text-muted);
       font-weight: 500;
     }
 
@@ -337,20 +665,28 @@
       align-items: center;
       gap: 0.3rem;
       transition: color 0.3s ease;
+      padding: 0.3rem 0.6rem;
+      border-radius: 0.5rem;
+      background: rgba(255, 255, 255, 0.05);
     }
 
     .repo-stats span:hover {
       color: #3b82f6;
+      background: rgba(59, 130, 246, 0.1);
     }
 
     .repo-description {
-      color: #cbd5e1;
+      color: var(--text-secondary);
       margin-bottom: 2rem;
       font-style: italic;
       font-size: 1.05rem;
       line-height: 1.6;
       position: relative;
       z-index: 2;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 1rem;
+      border-left: 4px solid rgba(59, 130, 246, 0.5);
     }
 
     .tech-stack {
@@ -360,7 +696,7 @@
     }
 
     .tech-stack h4 {
-      color: #f1f5f9;
+      color: var(--text-primary);
       margin-bottom: 1rem;
       font-size: 1.1rem;
       font-weight: 600;
@@ -379,12 +715,13 @@
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(147, 51, 234, 0.15) 100%);
-      border: 1px solid rgba(59, 130, 246, 0.3);
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
       padding: 0.6rem 1rem;
-      border-radius: 0.8rem;
+      border-radius: 1rem;
       font-size: 0.9rem;
-      color: #e2e8f0;
+      color: var(--text-secondary);
       font-weight: 500;
       transition: all 0.3s ease;
       position: relative;
@@ -407,14 +744,10 @@
     }
 
     .tech-icon:hover {
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(147, 51, 234, 0.3) 100%);
+      background: rgba(59, 130, 246, 0.2);
       transform: translateY(-2px) scale(1.05);
       box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
       border-color: rgba(59, 130, 246, 0.6);
-    }
-
-    .tech-icon i {
-      font-size: 1.1rem;
     }
 
     .btn-toggle {
@@ -422,7 +755,7 @@
       color: white;
       border: none;
       padding: 1rem 2rem;
-      border-radius: 0.8rem;
+      border-radius: 1rem;
       cursor: pointer;
       font-weight: 600;
       font-size: 1rem;
@@ -431,6 +764,7 @@
       overflow: hidden;
       z-index: 2;
       box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+      width: 100%;
     }
 
     .btn-toggle::before {
@@ -449,24 +783,24 @@
     }
 
     .btn-toggle:hover {
-      transform: translateY(-3px) scale(1.05);
+      transform: translateY(-3px) scale(1.02);
       box-shadow: 0 20px 40px rgba(59, 130, 246, 0.5);
     }
 
     .readme {
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
-      border: 1px solid rgba(59, 130, 246, 0.3);
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
       border-radius: 1rem;
       padding: 2rem;
       margin-top: 1.5rem;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.9rem;
-      color: #e2e8f0;
+      color: var(--text-secondary);
       white-space: pre-wrap;
       display: none;
       max-height: 500px;
       overflow-y: auto;
-      backdrop-filter: blur(10px);
       box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
       position: relative;
       z-index: 2;
@@ -490,20 +824,35 @@
       background: linear-gradient(135deg, #2563eb, #7c3aed);
     }
 
+    /* Loading mejorado */
     .loading {
       text-align: center;
       padding: 4rem;
-      color: #94a3b8;
+      color: var(--text-muted);
     }
 
     .spinner {
       border: 4px solid rgba(59, 130, 246, 0.3);
       border-radius: 50%;
       border-top: 4px solid #3b82f6;
-      width: 50px;
-      height: 50px;
+      width: 60px;
+      height: 60px;
       animation: spin 1s linear infinite;
       margin: 0 auto 2rem;
+      position: relative;
+    }
+
+    .spinner::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      right: 2px;
+      bottom: 2px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      border-top: 2px solid #8b5cf6;
+      animation: spin 0.8s linear infinite reverse;
     }
 
     @keyframes spin {
@@ -511,42 +860,83 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* Footer */
+    /* Footer mejorado */
     .footer {
       text-align: center;
-      padding: 4rem 0;
-      border-top: 1px solid rgba(59, 130, 246, 0.3);
+      padding: 6rem 0;
+      border-top: 1px solid var(--glass-border);
       margin-top: 5rem;
-      color: #94a3b8;
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.5) 0%, rgba(30, 41, 59, 0.5) 100%);
-      backdrop-filter: blur(10px);
+      color: var(--text-muted);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.8) 100%);
+      backdrop-filter: blur(20px);
+      position: relative;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), transparent);
     }
 
     .social-links {
       display: flex;
       justify-content: center;
       gap: 2rem;
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
     }
 
     .social-links a {
-      color: #94a3b8;
+      color: var(--text-muted);
       font-size: 2rem;
       transition: all 0.4s ease;
-      padding: 1rem;
+      padding: 1.5rem;
       border-radius: 50%;
-      background: rgba(59, 130, 246, 0.1);
-      border: 1px solid rgba(59, 130, 246, 0.2);
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-links a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(147, 51, 234, 0.2));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 50%;
+    }
+
+    .social-links a:hover::before {
+      opacity: 1;
     }
 
     .social-links a:hover {
       color: #3b82f6;
-      transform: translateY(-5px) scale(1.1);
-      box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
-      background: rgba(59, 130, 246, 0.2);
+      transform: translateY(-10px) scale(1.1);
+      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.4);
+      background: rgba(59, 130, 246, 0.1);
     }
 
-    /* Responsive Design */
+    .footer-text {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-subtext {
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    /* Responsive Design mejorado */
     @media (max-width: 768px) {
       .hero h1 {
         font-size: 2.8rem;
@@ -585,33 +975,120 @@
         padding: 0.5rem 0.8rem;
         font-size: 0.85rem;
       }
+
+      .nav-floating {
+        top: 1rem;
+        right: 1rem;
+        padding: 0.8rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+
+      .social-links {
+        gap: 1.5rem;
+      }
+
+      .social-links a {
+        padding: 1rem;
+        font-size: 1.5rem;
+      }
+    }
+
+    /* Animaciones de entrada */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    .fade-in-delay-1 { animation-delay: 0.2s; }
+    .fade-in-delay-2 { animation-delay: 0.4s; }
+    .fade-in-delay-3 { animation-delay: 0.6s; }
+    .fade-in-delay-4 { animation-delay: 0.8s; }
+
+    /* Efectos de hover globales */
+    .hover-glow:hover {
+      filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.5));
+    }
+
+    .hover-scale:hover {
+      transform: scale(1.05);
+    }
+
+    /* Mejoras de accesibilidad */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Focus states mejorados */
+    button:focus,
+    a:focus {
+      outline: 2px solid #3b82f6;
+      outline-offset: 2px;
     }
   </style>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-D5B2DZM7WH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-D5B2DZM7WH');
-</script>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D5B2DZM7WH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-D5B2DZM7WH');
+  </script>
 </head>
 <body>
-  <!-- Floating Particles -->
+  <!-- Navegación flotante -->
+  <nav class="nav-floating">
+    <a href="#home">Inicio</a>
+    <a href="#projects">Proyectos</a>
+    <a href="#contact">Contacto</a>
+  </nav>
+
+  <!-- Partículas flotantes -->
   <div class="particles" id="particles"></div>
 
   <!-- Hero Section -->
-  <section class="hero">
+  <section class="hero" id="home">
     <div class="container">
-      <h1>Ibrahim Haik</h1>
-      <p class="subtitle">Full Stack Developer & Freelancer</p>
-      <div class="description">
+      <div class="hero-avatar">
+        <div class="hero-avatar-inner"></div>
+      </div>
+      
+      <h1 class="fade-in">Ibrahim Haik</h1>
+      <p class="subtitle fade-in-delay-1">Full Stack Developer & Freelancer</p>
+      
+      <div class="description fade-in-delay-2">
         <p>Desarrollador Full Stack titulado en <strong>Desarrollo de Aplicaciones Multiplataforma (DAM)</strong> y especializado en <strong>Sistemas Microinformáticos y Redes</strong>. Con experiencia como freelancer, me apasiona crear soluciones tecnológicas innovadoras y eficientes.</p>
         <br>
         <p>Especializado en desarrollo web moderno, aplicaciones móviles y arquitecturas escalables. Siempre en búsqueda de nuevos desafíos y oportunidades para aplicar las últimas tecnologías en proyectos que generen impacto real.</p>
       </div>
-      <div class="skills-badges">
+
+      <div class="hero-actions fade-in-delay-3">
+        <a href="#" class="btn-primary">
+          <i class="fas fa-download"></i>
+          Descargar CV
+        </a>
+        <a href="#projects" class="btn-secondary">
+          <i class="fas fa-eye"></i>
+          Ver Proyectos
+        </a>
+      </div>
+      
+      <div class="skills-badges fade-in-delay-4">
         <span class="skill-badge">🚀 Full Stack Development</span>
         <span class="skill-badge">📱 Mobile Applications</span>
         <span class="skill-badge">☁️ Cloud Architecture</span>
@@ -619,39 +1096,77 @@
         <span class="skill-badge">💼 Freelance Experience</span>
         <span class="skill-badge">🎯 Problem Solving</span>
       </div>
+
+      <div class="scroll-indicator">
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card fade-in">
+          <span class="stat-icon">🚀</span>
+          <div class="stat-number">25+</div>
+          <div class="stat-label">Proyectos Completados</div>
+        </div>
+        <div class="stat-card fade-in-delay-1">
+          <span class="stat-icon">⚡</span>
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Tecnologías Dominadas</div>
+        </div>
+        <div class="stat-card fade-in-delay-2">
+          <span class="stat-icon">📈</span>
+          <div class="stat-number">3+</div>
+          <div class="stat-label">Años de Experiencia</div>
+        </div>
+        <div class="stat-card fade-in-delay-3">
+          <span class="stat-icon">⭐</span>
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Clientes Satisfechos</div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Projects Section -->
-  <section class="container">
+  <section class="container" id="projects">
     <div class="projects-header">
       <h2>Mis Proyectos</h2>
-      <p style="color: #94a3b8; font-size: 1.2rem;">Explora mi trabajo y contribuciones en GitHub</p>
+      <p>Explora mi trabajo y contribuciones que demuestran mi pasión por la tecnología</p>
     </div>
     
     <div class="loading" id="loading">
       <div class="spinner"></div>
-      <p>Cargando repositorios...</p>
+      <p>Cargando proyectos increíbles...</p>
     </div>
     
     <div class="projects-grid" id="repos"></div>
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
+  <footer class="footer" id="contact">
     <div class="container">
+      <h2 style="margin-bottom: 2rem; background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+        ¿Listo para crear algo increíble juntos?
+      </h2>
+      
       <div class="social-links">
-        <a href="https://github.com/ibrahaik" target="_blank" title="GitHub">
+        <a href="https://github.com/ibrahaik" target="_blank" title="GitHub" class="hover-glow">
           <i class="fab fa-github"></i>
         </a>
-        <a href="https://www.linkedin.com/in/ibrahim-haik-a12654226/" target="_blank" title="LinkedIn">
+        <a href="https://www.linkedin.com/in/ibrahim-haik-a12654226/" target="_blank" title="LinkedIn" class="hover-glow">
           <i class="fab fa-linkedin"></i>
         </a>
-        <a href="mailto:ibrahimelhaouzihaik@gmail.com" title="Email">
+        <a href="mailto:ibrahimelhaouzihaik@gmail.com" title="Email" class="hover-glow">
           <i class="fas fa-envelope"></i>
         </a>
       </div>
-      <p>&copy; 2024 Ibrahim Haik. Todos los derechos reservados.</p>
+      
+      <div class="footer-text">&copy; 2024 Ibrahim Haik. Todos los derechos reservados.</div>
+      <div class="footer-subtext">Hecho con ❤️ y mucho ☕</div>
     </div>
   </footer>
 
@@ -660,7 +1175,6 @@
 
     // Mapeo extenso de tecnologías a iconos y colores
     const techIcons = {
-      // Frontend Frameworks & Libraries
       'JavaScript': { icon: 'fab fa-js-square', color: '#f7df1e' },
       'TypeScript': { icon: 'fas fa-code', color: '#3178c6' },
       'React': { icon: 'fab fa-react', color: '#61dafb' },
@@ -668,395 +1182,59 @@
       'Vue': { icon: 'fab fa-vuejs', color: '#4fc08d' },
       'Vue.js': { icon: 'fab fa-vuejs', color: '#4fc08d' },
       'Angular': { icon: 'fab fa-angular', color: '#dd0031' },
-      'Svelte': { icon: 'fas fa-code', color: '#ff3e00' },
       'Next.js': { icon: 'fas fa-arrow-right', color: '#000000' },
-      'Nuxt.js': { icon: 'fas fa-mountain', color: '#00dc82' },
-      'Gatsby': { icon: 'fas fa-rocket', color: '#663399' },
-      'jQuery': { icon: 'fas fa-dollar-sign', color: '#0769ad' },
-      'Redux': { icon: 'fas fa-cubes', color: '#764abc' },
-      'MobX': { icon: 'fas fa-atom', color: '#ff9955' },
-      'Zustand': { icon: 'fas fa-box', color: '#764abc' },
-      'Recoil': { icon: 'fas fa-atom', color: '#3578e5' },
-      'Jotai': { icon: 'fas fa-atom', color: '#333333' },
-      'Preact': { icon: 'fab fa-react', color: '#673ab8' },
-      'Solid.js': { icon: 'fas fa-code', color: '#2c4f7c' },
-      'Lit': { icon: 'fas fa-fire', color: '#324fff' },
-      'Alpine.js': { icon: 'fas fa-mountain', color: '#77c1d2' },
-      'Stimulus': { icon: 'fas fa-bolt', color: '#77e8b9' },
-      'Ember.js': { icon: 'fas fa-fire', color: '#e04e39' },
-      'Backbone.js': { icon: 'fas fa-code', color: '#0071b5' },
-      'Meteor': { icon: 'fas fa-rocket', color: '#de4f4f' },
-      'Mithril': { icon: 'fas fa-code', color: '#1e5799' },
-      'Aurelia': { icon: 'fas fa-code', color: '#ed2b88' },
-      'Knockout': { icon: 'fas fa-code', color: '#0066bf' },
-      'Polymer': { icon: 'fas fa-code', color: '#ff4470' },
-      'Riot.js': { icon: 'fas fa-code', color: '#a71e49' },
-      'Inferno': { icon: 'fas fa-fire', color: '#e60022' },
-      'Marko': { icon: 'fas fa-code', color: '#44b9b0' },
-      'Hyperapp': { icon: 'fas fa-code', color: '#00bbff' },
-      
-      // Backend & Server
       'Node.js': { icon: 'fab fa-node-js', color: '#339933' },
       'Express': { icon: 'fas fa-server', color: '#000000' },
       'Express.js': { icon: 'fas fa-server', color: '#000000' },
-      'Fastify': { icon: 'fas fa-bolt', color: '#000000' },
-      'Koa': { icon: 'fas fa-leaf', color: '#33333d' },
-      'NestJS': { icon: 'fas fa-cat', color: '#e0234e' },
       'PHP': { icon: 'fab fa-php', color: '#777bb4' },
       'Laravel': { icon: 'fas fa-gem', color: '#ff2d20' },
-      'Symfony': { icon: 'fas fa-music', color: '#000000' },
       'Python': { icon: 'fab fa-python', color: '#3776ab' },
       'Django': { icon: 'fas fa-guitar', color: '#092e20' },
       'Flask': { icon: 'fas fa-flask', color: '#000000' },
-      'FastAPI': { icon: 'fas fa-rocket', color: '#009688' },
-      'Ruby': { icon: 'fas fa-gem', color: '#cc342d' },
-      'Ruby on Rails': { icon: 'fas fa-train', color: '#cc0000' },
-      'Java': { icon: 'fab fa-java', color: '#ed8b00' },
-      'Spring': { icon: 'fas fa-leaf', color: '#6db33f' },
-      'Spring Boot': { icon: 'fas fa-leaf', color: '#6db33f' },
-      'C#': { icon: 'fas fa-code', color: '#239120' },
-      '.NET': { icon: 'fas fa-circle-dot', color: '#512bd4' },
-      'ASP.NET': { icon: 'fas fa-circle-dot', color: '#512bd4' },
-      'Go': { icon: 'fas fa-code', color: '#00add8' },
-      'Rust': { icon: 'fas fa-gear', color: '#000000' },
-      'Kotlin': { icon: 'fas fa-mobile-alt', color: '#7f52ff' },
-      'Swift': { icon: 'fab fa-swift', color: '#fa7343' },
-      'Deno': { icon: 'fas fa-dinosaur', color: '#000000' },
-      'Bun': { icon: 'fas fa-bread-slice', color: '#fbf0df' },
-      'Hapi': { icon: 'fas fa-server', color: '#f6941e' },
-      'Adonis.js': { icon: 'fas fa-server', color: '#5a45ff' },
-      'Sails.js': { icon: 'fas fa-ship', color: '#1b75bb' },
-      'Loopback': { icon: 'fas fa-server', color: '#3f5dff' },
-      'Strapi': { icon: 'fas fa-layer-group', color: '#2e7eea' },
-      'Feathers': { icon: 'fas fa-feather', color: '#333333' },
-      'Meteor': { icon: 'fas fa-rocket', color: '#de4f4f' },
-      'Elixir': { icon: 'fas fa-vial', color: '#4e2a8e' },
-      'Phoenix': { icon: 'fas fa-fire', color: '#fd4f00' },
-      'Scala': { icon: 'fas fa-code', color: '#dc322f' },
-      'Play Framework': { icon: 'fas fa-play', color: '#92d13d' },
-      'Clojure': { icon: 'fas fa-code', color: '#5881d8' },
-      'Perl': { icon: 'fas fa-code', color: '#39457e' },
-      'Lua': { icon: 'fas fa-moon', color: '#000080' },
-      'Haskell': { icon: 'fas fa-code', color: '#5d4f85' },
-      'Erlang': { icon: 'fas fa-code', color: '#a90533' },
-      'Crystal': { icon: 'fas fa-gem', color: '#000000' },
-      'Groovy': { icon: 'fas fa-code', color: '#4298b8' },
-      'Dart': { icon: 'fas fa-bullseye', color: '#0175c2' },
-      'Zig': { icon: 'fas fa-bolt', color: '#f7a41d' },
-      'Nim': { icon: 'fas fa-code', color: '#ffe953' },
-      'OCaml': { icon: 'fas fa-code', color: '#ec6813' },
-      'F#': { icon: 'fas fa-code', color: '#378bba' },
-      'R': { icon: 'fab fa-r-project', color: '#276dc3' },
-      'Julia': { icon: 'fas fa-code', color: '#9558b2' },
-      'Solidity': { icon: 'fab fa-ethereum', color: '#363636' },
-      'WebAssembly': { icon: 'fas fa-cube', color: '#654ff0' },
-      
-      // Databases
       'MySQL': { icon: 'fas fa-database', color: '#4479a1' },
       'PostgreSQL': { icon: 'fas fa-database', color: '#336791' },
       'MongoDB': { icon: 'fas fa-leaf', color: '#47a248' },
       'Redis': { icon: 'fas fa-memory', color: '#dc382d' },
-      'SQLite': { icon: 'fas fa-database', color: '#003b57' },
-      'MariaDB': { icon: 'fas fa-database', color: '#003545' },
-      'Oracle': { icon: 'fas fa-database', color: '#f80000' },
-      'Cassandra': { icon: 'fas fa-database', color: '#1287b1' },
-      'DynamoDB': { icon: 'fas fa-database', color: '#ff9900' },
-      'Supabase': { icon: 'fas fa-database', color: '#3ecf8e' },
-      'Firebase Realtime DB': { icon: 'fas fa-fire', color: '#ffca28' },
-      'Firestore': { icon: 'fas fa-fire', color: '#ffca28' },
-      'CouchDB': { icon: 'fas fa-couch', color: '#e42528' },
-      'Neo4j': { icon: 'fas fa-project-diagram', color: '#008cc1' },
-      'Elasticsearch': { icon: 'fas fa-search', color: '#005571' },
-      'InfluxDB': { icon: 'fas fa-database', color: '#22adf6' },
-      'Fauna': { icon: 'fas fa-leaf', color: '#3a1ab6' },
-      'PlanetScale': { icon: 'fas fa-globe', color: '#000000' },
-      'Cockroach DB': { icon: 'fas fa-bug', color: '#6933ff' },
-      'Prisma': { icon: 'fas fa-database', color: '#2d3748' },
-      'TypeORM': { icon: 'fas fa-database', color: '#f0672a' },
-      'Sequelize': { icon: 'fas fa-database', color: '#3b76c3' },
-      'Mongoose': { icon: 'fas fa-database', color: '#880000' },
-      'Knex.js': { icon: 'fas fa-database', color: '#e16426' },
-      'Drizzle ORM': { icon: 'fas fa-database', color: '#c5f74f' },
-      'SQL Server': { icon: 'fas fa-database', color: '#cc2927' },
-      'Couchbase': { icon: 'fas fa-database', color: '#ea2328' },
-      'RethinkDB': { icon: 'fas fa-database', color: '#273238' },
-      'ArangoDB': { icon: 'fas fa-database', color: '#68b246' },
-      'HBase': { icon: 'fas fa-database', color: '#ba160c' },
-      'Memcached': { icon: 'fas fa-memory', color: '#00805c' },
-      'RabbitMQ': { icon: 'fas fa-rabbit', color: '#ff6600' },
-      'Kafka': { icon: 'fas fa-stream', color: '#000000' },
-      'GraphQL': { icon: 'fas fa-project-diagram', color: '#e10098' },
-      'Apollo': { icon: 'fas fa-rocket', color: '#311c87' },
-      
-      // Cloud & DevOps
-      'AWS': { icon: 'fab fa-aws', color: '#ff9900' },
-      'Azure': { icon: 'fab fa-microsoft', color: '#0078d4' },
-      'Google Cloud': { icon: 'fab fa-google', color: '#4285f4' },
       'Firebase': { icon: 'fas fa-fire', color: '#ffca28' },
-      'Vercel': { icon: 'fas fa-triangle', color: '#000000' },
-      'Netlify': { icon: 'fas fa-globe', color: '#00c7b7' },
-      'Heroku': { icon: 'fas fa-cloud', color: '#430098' },
-      'DigitalOcean': { icon: 'fas fa-water', color: '#0080ff' },
+      'AWS': { icon: 'fab fa-aws', color: '#ff9900' },
       'Docker': { icon: 'fab fa-docker', color: '#2496ed' },
-      'Kubernetes': { icon: 'fas fa-dharmachakra', color: '#326ce5' },
-      'Jenkins': { icon: 'fas fa-tools', color: '#d33833' },
-      'GitHub Actions': { icon: 'fab fa-github', color: '#2088ff' },
-      'GitLab CI': { icon: 'fab fa-gitlab', color: '#fc6d26' },
-      'Terraform': { icon: 'fas fa-layer-group', color: '#623ce4' },
-      'Cloudflare': { icon: 'fas fa-cloud', color: '#f38020' },
-      'Cloudinary': { icon: 'fas fa-cloud-upload-alt', color: '#3448c5' },
-      'Linode': { icon: 'fas fa-server', color: '#00a95c' },
-      'Render': { icon: 'fas fa-server', color: '#46e3b7' },
-      'Fly.io': { icon: 'fas fa-paper-plane', color: '#7b36f6' },
-      'Railway': { icon: 'fas fa-train', color: '#0b0d0e' },
-      'Deta': { icon: 'fas fa-cloud', color: '#ef39a8' },
-      'Glitch': { icon: 'fas fa-fish', color: '#3333ff' },
-      'Replit': { icon: 'fas fa-code', color: '#56676e' },
-      'Serverless': { icon: 'fas fa-bolt', color: '#fd5750' },
-      'AWS Lambda': { icon: 'fab fa-aws', color: '#ff9900' },
-      'Azure Functions': { icon: 'fab fa-microsoft', color: '#0078d4' },
-      'Google Cloud Functions': { icon: 'fab fa-google', color: '#4285f4' },
-      'Cloudflare Workers': { icon: 'fas fa-cloud', color: '#f38020' },
-      'Ansible': { icon: 'fas fa-cogs', color: '#ee0000' },
-      'Chef': { icon: 'fas fa-utensils', color: '#f38b00' },
-      'Puppet': { icon: 'fas fa-dog', color: '#ffae1a' },
-      'Salt': { icon: 'fas fa-cube', color: '#57beea' },
-      'Vagrant': { icon: 'fas fa-box', color: '#1563ff' },
-      'Packer': { icon: 'fas fa-box', color: '#00acff' },
-      'Prometheus': { icon: 'fas fa-chart-line', color: '#e6522c' },
-      'Grafana': { icon: 'fas fa-chart-bar', color: '#f46800' },
-      'ELK Stack': { icon: 'fas fa-layer-group', color: '#00bfb3' },
-      'Logstash': { icon: 'fas fa-stream', color: '#fec514' },
-      'Kibana': { icon: 'fas fa-chart-bar', color: '#e8488b' },
-      'Datadog': { icon: 'fas fa-dog', color: '#632ca6' },
-      'New Relic': { icon: 'fas fa-chart-area', color: '#008c99' },
-      'Sentry': { icon: 'fas fa-bug', color: '#362d59' },
-      'CircleCI': { icon: 'fas fa-circle', color: '#343434' },
-      'Travis CI': { icon: 'fas fa-check', color: '#3eaaaf' },
-      'Drone CI': { icon: 'fas fa-drone', color: '#212121' },
-      'Buildkite': { icon: 'fas fa-building', color: '#14cc80' },
-      'Pulumi': { icon: 'fas fa-cloud', color: '#8a3391' },
-      'Helm': { icon: 'fas fa-ship-wheel', color: '#277a9f' },
-      'Istio': { icon: 'fas fa-network-wired', color: '#466bb0' },
-      'Envoy': { icon: 'fas fa-network-wired', color: '#b7c1cb' },
-      'Consul': { icon: 'fas fa-network-wired', color: '#ca2171' },
-      'Vault': { icon: 'fas fa-lock', color: '#000000' },
-      'Nomad': { icon: 'fas fa-globe', color: '#00bc7f' },
-      'Traefik': { icon: 'fas fa-network-wired', color: '#24a1c1' },
-      'NGINX': { icon: 'fas fa-server', color: '#009639' },
-      'Apache': { icon: 'fas fa-feather', color: '#d22128' },
-      'HAProxy': { icon: 'fas fa-network-wired', color: '#106a9c' },
-      'Caddy': { icon: 'fas fa-server', color: '#00acd7' },
-      
-      // Mobile Development
-      'Flutter': { icon: 'fas fa-mobile-alt', color: '#02569b' },
-      'Dart': { icon: 'fas fa-code', color: '#0175c2' },
-      'Ionic': { icon: 'fas fa-mobile-alt', color: '#3880ff' },
-      'Xamarin': { icon: 'fas fa-mobile-alt', color: '#3498db' },
-      'Cordova': { icon: 'fas fa-mobile-alt', color: '#e8e8e8' },
-      'Capacitor': { icon: 'fas fa-bolt', color: '#119eff' },
-      'Swift UI': { icon: 'fab fa-swift', color: '#fa7343' },
-      'Kotlin Multiplatform': { icon: 'fas fa-mobile-alt', color: '#7f52ff' },
-      'Jetpack Compose': { icon: 'fab fa-android', color: '#3ddc84' },
-      'React Native': { icon: 'fab fa-react', color: '#61dafb' },
-      'Expo': { icon: 'fas fa-mobile-alt', color: '#000020' },
-      'NativeScript': { icon: 'fas fa-mobile-alt', color: '#3655ff' },
-      'Android': { icon: 'fab fa-android', color: '#3ddc84' },
-      'iOS': { icon: 'fab fa-apple', color: '#000000' },
-      'Objective-C': { icon: 'fas fa-code', color: '#438eff' },
-      'SwiftUI': { icon: 'fab fa-swift', color: '#fa7343' },
-      'UIKit': { icon: 'fab fa-apple', color: '#000000' },
-      'Android SDK': { icon: 'fab fa-android', color: '#3ddc84' },
-      'Android Jetpack': { icon: 'fab fa-android', color: '#3ddc84' },
-      'Kotlin/Native': { icon: 'fas fa-mobile-alt', color: '#7f52ff' },
-      'Flutter Web': { icon: 'fas fa-globe', color: '#02569b' },
-      'PWA': { icon: 'fas fa-mobile-alt', color: '#5a0fc8' },
-      'Tauri': { icon: 'fas fa-window-maximize', color: '#ffc131' },
-      'Electron': { icon: 'fas fa-desktop', color: '#47848f' },
-      
-      // Frontend Tools & Styling
+      'Git': { icon: 'fab fa-git-alt', color: '#f05032' },
       'HTML': { icon: 'fab fa-html5', color: '#e34f26' },
       'CSS': { icon: 'fab fa-css3-alt', color: '#1572b6' },
       'Sass': { icon: 'fab fa-sass', color: '#cc6699' },
-      'SCSS': { icon: 'fab fa-sass', color: '#cc6699' },
-      'Less': { icon: 'fas fa-code', color: '#1d365d' },
       'Tailwind CSS': { icon: 'fas fa-wind', color: '#06b6d4' },
       'Bootstrap': { icon: 'fab fa-bootstrap', color: '#7952b3' },
-      'Material-UI': { icon: 'fas fa-palette', color: '#0081cb' },
-      'Chakra UI': { icon: 'fas fa-circle', color: '#319795' },
-      'Styled Components': { icon: 'fas fa-paint-brush', color: '#db7093' },
-      'Emotion': { icon: 'fas fa-heart', color: '#d36ac2' },
-      'Radix UI': { icon: 'fas fa-layer-group', color: '#161618' },
-      'Headless UI': { icon: 'fas fa-ghost', color: '#66e3ff' },
-      'Shadcn UI': { icon: 'fas fa-palette', color: '#000000' },
-      'Ant Design': { icon: 'fas fa-bug', color: '#1890ff' },
-      'Semantic UI': { icon: 'fas fa-th', color: '#35bdb2' },
-      'Bulma': { icon: 'fas fa-leaf', color: '#00d1b2' },
-      'Foundation': { icon: 'fas fa-th-large', color: '#14679e' },
-      'Materialize': { icon: 'fas fa-adjust', color: '#ee6e73' },
-      'UIkit': { icon: 'fas fa-paint-brush', color: '#2396f3' },
-      'Tachyons': { icon: 'fas fa-tachometer-alt', color: '#273238' },
-      'PureCSS': { icon: 'fas fa-paint-brush', color: '#1f8dd6' },
-      'Skeleton': { icon: 'fas fa-skull', color: '#f0f0f0' },
-      'Milligram': { icon: 'fas fa-feather', color: '#9b4dca' },
-      'Spectre.css': { icon: 'fas fa-ghost', color: '#5755d9' },
-      'Primer': { icon: 'fab fa-github', color: '#0366d6' },
-      'Halfmoon': { icon: 'fas fa-moon', color: '#000000' },
-      'Pico.css': { icon: 'fas fa-feather-alt', color: '#1095c1' },
-      'Water.css': { icon: 'fas fa-water', color: '#2196f3' },
-      'Windi CSS': { icon: 'fas fa-wind', color: '#48b0f1' },
-      'UnoCSS': { icon: 'fas fa-wind', color: '#333333' },
-      'CSS Modules': { icon: 'fab fa-css3', color: '#000000' },
-      'PostCSS': { icon: 'fas fa-paint-brush', color: '#dd3a0a' },
-      'Stylus': { icon: 'fas fa-paint-brush', color: '#333333' },
-      'Stitches': { icon: 'fas fa-paint-brush', color: '#7928ca' },
-      'Vanilla Extract': { icon: 'fas fa-ice-cream', color: '#db8cff' },
-      'CSS-in-JS': { icon: 'fas fa-code', color: '#f5da55' },
-      'Framer Motion': { icon: 'fas fa-film', color: '#0055ff' },
-      'GSAP': { icon: 'fas fa-magic', color: '#88ce02' },
-      'Three.js': { icon: 'fas fa-cube', color: '#000000' },
-      'D3.js': { icon: 'fas fa-chart-bar', color: '#f9a03c' },
-      'Chart.js': { icon: 'fas fa-chart-pie', color: '#ff6384' },
-      'Recharts': { icon: 'fas fa-chart-line', color: '#22b5bf' },
-      'Highcharts': { icon: 'fas fa-chart-line', color: '#8087e8' },
-      'Plotly': { icon: 'fas fa-chart-bar', color: '#3f4f75' },
-      'Visx': { icon: 'fas fa-chart-bar', color: '#00aeef' },
-      'Nivo': { icon: 'fas fa-chart-bar', color: '#46a9cb' },
-      'Victory': { icon: 'fas fa-chart-line', color: '#f1515f' },
-      'Echarts': { icon: 'fas fa-chart-bar', color: '#aa344d' },
-      'Leaflet': { icon: 'fas fa-map', color: '#199900' },
-      'Mapbox': { icon: 'fas fa-map-marker-alt', color: '#4264fb' },
-      'OpenLayers': { icon: 'fas fa-map', color: '#1f6b75' },
-      'Cesium': { icon: 'fas fa-globe', color: '#2eaf33' },
-      'Deck.gl': { icon: 'fas fa-layer-group', color: '#00aeef' },
-      'Babylon.js': { icon: 'fas fa-cube', color: '#bb464b' },
-      'PixiJS': { icon: 'fas fa-wand-magic-sparkles', color: '#e72264' },
-      'P5.js': { icon: 'fas fa-paint-brush', color: '#ed225d' },
-      'Paper.js': { icon: 'fas fa-pencil-alt', color: '#4d4d4d' },
-      'Fabric.js': { icon: 'fas fa-tshirt', color: '#ff5722' },
-      'Konva': { icon: 'fas fa-paint-brush', color: '#0db7ed' },
-      'Phaser': { icon: 'fas fa-gamepad', color: '#b7191c' },
-      'A-Frame': { icon: 'fas fa-vr-cardboard', color: '#ef2d5e' },
-      'React Three Fiber': { icon: 'fas fa-cube', color: '#61dafb' },
-      'Anime.js': { icon: 'fas fa-film', color: '#fd0' },
-      'Motion One': { icon: 'fas fa-film', color: '#ff1461' },
-      'Popmotion': { icon: 'fas fa-film', color: '#ff1461' },
-      'Lottie': { icon: 'fas fa-film', color: '#00d1b2' },
-      'Rive': { icon: 'fas fa-film', color: '#0d3b4a' },
-      'Remotion': { icon: 'fas fa-film', color: '#0cf' },
-      'Zdog': { icon: 'fas fa-dog', color: '#333' },
-      
-      // Build Tools & Bundlers
-      'Webpack': { icon: 'fas fa-cube', color: '#8dd6f9' },
-      'Vite': { icon: 'fas fa-bolt', color: '#646cff' },
-      'Rollup': { icon: 'fas fa-box', color: '#ec4a3f' },
-      'Parcel': { icon: 'fas fa-package', color: '#e1a95f' },
-      'Gulp': { icon: 'fas fa-stream', color: '#cf4647' },
-      'Grunt': { icon: 'fas fa-hammer', color: '#fba919' },
-      'ESLint': { icon: 'fas fa-check-circle', color: '#4b32c3' },
-      'Prettier': { icon: 'fas fa-magic', color: '#f7b93e' },
-      'Babel': { icon: 'fas fa-code', color: '#f5da55' },
-      'TypeScript': { icon: 'fas fa-code', color: '#3178c6' },
-      'esbuild': { icon: 'fas fa-bolt', color: '#ffcf00' },
-      'SWC': { icon: 'fas fa-bolt', color: '#f8c307' },
-      'Turbopack': { icon: 'fas fa-bolt', color: '#0070f3' },
-      'Turborepo': { icon: 'fas fa-bolt', color: '#0070f3' },
-      'Nx': { icon: 'fas fa-project-diagram', color: '#143055' },
-      'Lerna': { icon: 'fas fa-layer-group', color: '#9333ea' },
-      'pnpm': { icon: 'fas fa-box', color: '#f69220' },
-      'Yarn': { icon: 'fas fa-yarn', color: '#2c8ebb' },
-      'npm': { icon: 'fab fa-npm', color: '#cb3837' },
-      'Bun': { icon: 'fas fa-bread-slice', color: '#fbf0df' },
-      'Snowpack': { icon: 'fas fa-snowflake', color: '#2e5e82' },
-      'Browserify': { icon: 'fas fa-box', color: '#3c6991' },
-      'Microbundle': { icon: 'fas fa-box-open', color: '#5c5c5c' },
-      'Rspack': { icon: 'fas fa-box', color: '#37e8f7' },
-      'Stylelint': { icon: 'fas fa-paint-brush', color: '#000000' },
-      'TSLint': { icon: 'fas fa-check-circle', color: '#3178c6' },
-      'JSHint': { icon: 'fas fa-check-circle', color: '#f0db4f' },
-      'Husky': { icon: 'fas fa-dog', color: '#42b983' },
-      'Lint-staged': { icon: 'fas fa-broom', color: '#9e9e9e' },
-      'Commitlint': { icon: 'fas fa-check-circle', color: '#000000' },
-      'Conventional Commits': { icon: 'fas fa-comment', color: '#fe5196' },
-      'Semantic Release': { icon: 'fas fa-tag', color: '#000000' },
-      'Changesets': { icon: 'fas fa-list', color: '#2e5e82' },
-      'Storybook': { icon: 'fas fa-book', color: '#ff4785' },
-      'Docusaurus': { icon: 'fas fa-book', color: '#2e8555' },
-      'VitePress': { icon: 'fas fa-book', color: '#646cff' },
-      'Nextra': { icon: 'fas fa-book', color: '#000000' },
-      'MDX': { icon: 'fas fa-file-alt', color: '#1b1f24' },
-      'JSDoc': { icon: 'fas fa-file-alt', color: '#f7df1e' },
-      'TSDoc': { icon: 'fas fa-file-alt', color: '#3178c6' },
-      'Typedoc': { icon: 'fas fa-file-alt', color: '#3178c6' },
-      
-      // Testing
-      'Jest': { icon: 'fas fa-vial', color: '#c21325' },
-      'Cypress': { icon: 'fas fa-tree', color: '#17202c' },
-      'Selenium': { icon: 'fas fa-robot', color: '#43b02a' },
-      'Mocha': { icon: 'fas fa-coffee', color: '#8d6748' },
-      'Chai': { icon: 'fas fa-tea', color: '#a40802' },
-      'Puppeteer': { icon: 'fas fa-theater-masks', color: '#40b5a4' },
-      'Playwright': { icon: 'fas fa-play', color: '#2eac4a' },
-      'Vitest': { icon: 'fas fa-vial', color: '#729b1b' },
-      'Testing Library': { icon: 'fas fa-vial', color: '#e33332' },
-      'Jasmine': { icon: 'fas fa-flower', color: '#8a4182' },
-      'Karma': { icon: 'fas fa-circle', color: '#429f87' },
-      'Enzyme': { icon: 'fas fa-vial', color: '#ff5a5f' },
-      'AVA': { icon: 'fas fa-vial', color: '#2e2e2e' },
-      'Tape': { icon: 'fas fa-tape', color: '#f2f2f2' },
-      'QUnit': { icon: 'fas fa-vial', color: '#9c3493' },
-      'Sinon': { icon: 'fas fa-mask', color: '#b94545' },
-      'WebdriverIO': { icon: 'fas fa-car', color: '#ea5906' },
-      'Nightwatch': { icon: 'fas fa-moon', color: '#6c5ce7' },
-      'TestCafe': { icon: 'fas fa-vial', color: '#36b6e5' },
-      'Storybook': { icon: 'fas fa-book', color: '#ff4785' },
-      'Chromatic': { icon: 'fas fa-palette', color: '#fc521f' },
-      'Percy': { icon: 'fas fa-eye', color: '#9e66bf' },
-      'Applitools': { icon: 'fas fa-eye', color: '#3c3c3c' },
-      'Axe': { icon: 'fas fa-universal-access', color: '#00718b' },
-      'Pa11y': { icon: 'fas fa-universal-access', color: '#005b96' },
-      'Lighthouse': { icon: 'fas fa-lighthouse', color: '#f44b21' },
-      'JMeter': { icon: 'fas fa-tachometer-alt', color: '#d22128' },
-      'k6': { icon: 'fas fa-tachometer-alt', color: '#7d64ff' },
-      'Artillery': { icon: 'fas fa-bomb', color: '#e43a19' },
-      'Gatling': { icon: 'fas fa-tachometer-alt', color: '#ff9e2a' },
-      'Locust': { icon: 'fas fa-bug', color: '#a1c538' },
-      'Postman': { icon: 'fas fa-paper-plane', color: '#ff6c37' },
-      'Insomnia': { icon: 'fas fa-moon', color: '#4000bf' },
-      'SoapUI': { icon: 'fas fa-soap', color: '#4dc07c' },
-      'Pact': { icon: 'fas fa-handshake', color: '#fff200' },
-      'Swagger': { icon: 'fas fa-file-alt', color: '#85ea2d' },
-      'OpenAPI': { icon: 'fas fa-file-alt', color: '#3371e3' },
-      
-      // Version Control & Collaboration
-      'Git': { icon: 'fab fa-git-alt', color: '#f05032' },
-      'GitHub': { icon: 'fab fa-github', color: '#181717' },
-      'GitLab': { icon: 'fab fa-gitlab', color: '#fc6d26' },
-      'Bitbucket': { icon: 'fab fa-bitbucket', color: '#0052cc' },
-      'SVN': { icon: 'fas fa-code-branch', color: '#809cc9' }
+      'Cloudinary': { icon: 'fas fa-cloud-upload-alt', color: '#3448c5' },
+      'Vercel': { icon: 'fas fa-triangle', color: '#000000' },
+      'Netlify': { icon: 'fas fa-globe', color: '#00c7b7' },
+      'Heroku': { icon: 'fas fa-cloud', color: '#430098' },
     };
 
-    // Proyectos conocidos con tecnologías específicas
+    // Proyectos conocidos
     const knownProjects = {
       'GOLDEN_BULK_BACKEND': ['Node.js', 'Express', 'PostgreSQL', 'Firebase', 'Cloudinary', 'React Native', 'JavaScript'],
       'GOLDEN_BULK_FRONTEND': ['Node.js', 'Express', 'PostgreSQL', 'Firebase', 'Cloudinary', 'React Native', 'JavaScript'],
       'golden_bulk': ['Node.js', 'Express', 'PostgreSQL', 'Firebase', 'Cloudinary', 'React Native', 'JavaScript'],
       'GoldenBulk': ['Node.js', 'Express', 'PostgreSQL', 'Firebase', 'Cloudinary', 'React Native', 'JavaScript'],
-      // Añade más proyectos conocidos aquí
     };
 
+    // Crear partículas mejoradas
     function createParticles() {
       const particlesContainer = document.getElementById('particles');
-      for (let i = 0; i < 50; i++) {
+      for (let i = 0; i < 60; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
         particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 6 + 's';
-        particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.width = Math.random() * 6 + 2 + 'px';
+        particle.style.height = particle.style.width;
+        particle.style.animationDelay = Math.random() * 8 + 's';
+        particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
         particlesContainer.appendChild(particle);
       }
     }
 
+    // Funciones de utilidad
     function decodeBase64Utf8(base64) {
       try {
         const binary = atob(base64);
@@ -1104,98 +1282,32 @@
         }
       }
       
-      // Mapeo extenso de palabras clave a tecnologías
+      // Mapeo de palabras clave a tecnologías
       const techKeywords = {
-        // Backend específico
         'express': 'Express',
         'expressjs': 'Express',
         'express.js': 'Express',
-        'fastify': 'Fastify',
-        'koa': 'Koa',
-        'koajs': 'Koa',
-        'nestjs': 'NestJS',
-        'nest.js': 'NestJS',
-        'nest': 'NestJS',
-        
-        // Bases de datos específicas
         'postgresql': 'PostgreSQL',
         'postgres': 'PostgreSQL',
-        'pg': 'PostgreSQL',
         'mysql': 'MySQL',
         'mongodb': 'MongoDB',
         'mongo': 'MongoDB',
         'redis': 'Redis',
-        'sqlite': 'SQLite',
-        'sqlite3': 'SQLite',
-        
-        // Cloud y servicios específicos
         'firebase': 'Firebase',
         'cloudinary': 'Cloudinary',
-        'aws': 'AWS',
-        'azure': 'Azure',
-        'google cloud': 'Google Cloud',
-        'vercel': 'Vercel',
-        'netlify': 'Netlify',
-        'heroku': 'Heroku',
-        'digitalocean': 'DigitalOcean',
-        'docker': 'Docker',
-        'kubernetes': 'Kubernetes',
-        
-        // Frontend específico
         'react native': 'React Native',
         'react-native': 'React Native',
-        'reactnative': 'React Native',
         'next.js': 'Next.js',
         'nextjs': 'Next.js',
         'vue.js': 'Vue.js',
         'vuejs': 'Vue.js',
-        'angular': 'Angular',
-        
-        // Styling específico
         'tailwind': 'Tailwind CSS',
-        'tailwindcss': 'Tailwind CSS',
         'bootstrap': 'Bootstrap',
-        'sass': 'Sass',
-        'scss': 'SCSS',
-        
-        // Build tools específicos
-        'webpack': 'Webpack',
-        'vite': 'Vite',
-        'rollup': 'Rollup',
-        'parcel': 'Parcel',
-        'gulp': 'Gulp',
-        'grunt': 'Grunt',
-        
-        // Testing específico
-        'jest': 'Jest',
-        'cypress': 'Cypress',
-        'selenium': 'Selenium',
-        'mocha': 'Mocha',
-        'chai': 'Chai',
-        'puppeteer': 'Puppeteer',
-        'playwright': 'Playwright',
-        
-        // Mobile específico
-        'flutter': 'Flutter',
-        'dart': 'Dart',
-        'ionic': 'Ionic',
-        'xamarin': 'Xamarin',
-        'cordova': 'Cordova',
-        'expo': 'Expo',
-        
-        // Otros específicos
-        'graphql': 'GraphQL',
-        'apollo': 'Apollo',
-        'rest api': 'REST API',
-        'websocket': 'WebSocket',
-        'socket.io': 'Socket.io',
-        'nginx': 'Nginx',
-        'apache': 'Apache',
-        'linux': 'Linux',
-        'ubuntu': 'Ubuntu',
-        'postman': 'Postman',
-        'insomnia': 'Insomnia',
-        'figma': 'Figma'
+        'docker': 'Docker',
+        'aws': 'AWS',
+        'vercel': 'Vercel',
+        'netlify': 'Netlify',
+        'heroku': 'Heroku',
       };
 
       Object.entries(techKeywords).forEach(([keyword, tech]) => {
@@ -1231,12 +1343,12 @@
       });
     }
 
+    // Función principal para cargar repositorios
     async function loadRepos() {
       try {
         const loading = document.getElementById("loading");
         const container = document.getElementById("repos");
         
-        // Usar nuestra API segura en lugar de llamar directamente a GitHub
         const res = await fetch('/api/repos');
         
         if (!res.ok) {
@@ -1246,7 +1358,7 @@
         const repos = await res.json();
         loading.style.display = "none";
 
-        // Filtrar repositorios fork y ordenar por estrellas y actividad
+        // Filtrar y ordenar repositorios
         const filteredRepos = repos
           .filter(repo => !repo.fork)
           .sort((a, b) => {
@@ -1256,19 +1368,18 @@
             return new Date(b.updated_at) - new Date(a.updated_at);
           });
 
-        // Procesar repos en lotes para evitar sobrecargar la API
+        // Procesar repos con animaciones escalonadas
         for (let i = 0; i < filteredRepos.length; i++) {
           const repo = filteredRepos[i];
           
-          // Crear la tarjeta primero con información básica
           const div = document.createElement("div");
-          div.className = "repo-card";
+          div.className = "repo-card fade-in";
+          div.style.animationDelay = `${i * 0.1}s`;
           const readmeId = `readme-${repo.id}`;
           
-          // Información básica sin llamadas adicionales a la API
           div.innerHTML = `
             <div class="repo-header">
-              <a href="${repo.html_url}" target="_blank" class="repo-title">
+              <a href="${repo.html_url}" target="_blank" class="repo-title hover-scale">
                 <i class="fab fa-github"></i> ${repo.name}
               </a>
               <div class="repo-stats">
@@ -1300,30 +1411,42 @@
           // Cargar tecnologías de forma asíncrona
           loadTechnologiesForRepo(repo);
           
-          // Pequeña pausa para animación escalonada
+          // Pausa para animación escalonada
           await new Promise(resolve => setTimeout(resolve, 100));
         }
         
-        // Mostrar información de éxito
+        // Información de éxito mejorada
         const successInfo = document.createElement('div');
-        successInfo.style.cssText = 'text-align: center; margin-top: 2rem; padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 0.5rem; font-size: 0.9rem; color: #22c55e;';
+        successInfo.style.cssText = `
+          text-align: center; 
+          margin-top: 3rem; 
+          padding: 2rem; 
+          background: var(--glass-bg); 
+          backdrop-filter: blur(20px);
+          border-radius: 1rem; 
+          font-size: 1rem; 
+          color: #22c55e;
+          border: 1px solid rgba(34, 197, 94, 0.3);
+        `;
         successInfo.innerHTML = `
-          <i class="fas fa-check-circle"></i> 
-          Repositorios cargados exitosamente usando API segura
+          <i class="fas fa-check-circle" style="font-size: 2rem; margin-bottom: 1rem; display: block;"></i> 
+          <strong>Repositorios cargados exitosamente</strong>
+          <br>
+          <span style="font-size: 0.9rem; opacity: 0.8;">Usando API segura de Vercel</span>
         `;
         container.appendChild(successInfo);
         
       } catch (error) {
         const loading = document.getElementById("loading");
         loading.innerHTML = `
-          <div style="color: #ef4444;">
-            <i class="fas fa-exclamation-triangle"></i>
+          <div style="color: #ef4444; background: var(--glass-bg); backdrop-filter: blur(20px); border-radius: 1rem; padding: 2rem; border: 1px solid rgba(239, 68, 68, 0.3);">
+            <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem;"></i>
             <h3>Error al cargar los repositorios</h3>
             <p>Ha ocurrido un error al conectar con la API.</p>
             
             <p style="font-size: 0.9rem; margin-top: 1rem; color: #94a3b8;">Error: ${error.message}</p>
-            <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #3b82f6; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">
-              Intentar de nuevo
+            <button onclick="location.reload()" class="btn-primary" style="margin-top: 1rem;">
+              <i class="fas fa-redo"></i> Intentar de nuevo
             </button>
           </div>
         `;
@@ -1335,7 +1458,6 @@
       try {
         const languages = await getRepoLanguages(repo.name);
         
-        // Verificar si es un proyecto conocido primero
         let additionalTechs = [];
         const normalizedRepoName = repo.name.toLowerCase().replace(/[-_\s]/g, '');
         
@@ -1376,7 +1498,6 @@
       const readmeDiv = document.getElementById(readmeId);
 
       if (readmeDiv.style.display === "none" || readmeDiv.style.display === "") {
-        // Si el README no se ha cargado aún
         if (readmeDiv.innerHTML.includes('Cargando README...')) {
           try {
             button.disabled = true;
@@ -1386,23 +1507,18 @@
             if (readme) {
               readmeDiv.innerHTML = readme;
               
-              // Después de cargar el README, intentar detectar más tecnologías
+              // Detectar más tecnologías del README
               const repoElement = button.closest('.repo-card');
               const repoId = readmeId.replace('readme-', '');
               const techContainer = document.getElementById(`tech-${repoId}`);
               
               if (techContainer) {
-                // Obtener tecnologías actuales
                 const currentTechs = Array.from(techContainer.querySelectorAll('.tech-icon'))
                   .map(el => el.textContent.trim());
                 
-                // Detectar tecnologías adicionales del README
                 const additionalTechs = detectAdditionalTechs(repoName, '', readme);
-                
-                // Filtrar solo las nuevas tecnologías
                 const newTechs = additionalTechs.filter(tech => !currentTechs.includes(tech));
                 
-                // Añadir nuevas tecnologías si se encontraron
                 if (newTechs.length > 0) {
                   const newTechIcons = newTechs.map(tech => createTechIcon(tech)).join('');
                   techContainer.innerHTML += newTechIcons;
@@ -1428,11 +1544,83 @@
       }
     }
 
+    // Smooth scrolling para navegación
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Intersection Observer para animaciones
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observar elementos con clase fade-in
+    document.addEventListener('DOMContentLoaded', () => {
+      const fadeElements = document.querySelectorAll('.fade-in, .fade-in-delay-1, .fade-in-delay-2, .fade-in-delay-3, .fade-in-delay-4');
+      fadeElements.forEach(el => observer.observe(el));
+    });
+
+    // Efecto de parallax en scroll
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const parallax = document.querySelector('.hero');
+      if (parallax) {
+        const speed = scrolled * 0.5;
+        parallax.style.transform = `translateY(${speed}px)`;
+      }
+    });
+
     // Inicializar la página
     document.addEventListener('DOMContentLoaded', () => {
       createParticles();
       loadRepos();
+      
+      // Añadir efecto de typing al título
+      const title = document.querySelector('.hero h1');
+      if (title) {
+        title.style.overflow = 'hidden';
+        title.style.borderRight = '3px solid';
+        title.style.whiteSpace = 'nowrap';
+        title.style.animation = 'typing 3s steps(40, end), blink-caret 0.75s step-end infinite';
+      }
     });
+
+    // Añadir estilos para el efecto de typing
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes typing {
+        from { width: 0 }
+        to { width: 100% }
+      }
+      
+      @keyframes blink-caret {
+        from, to { border-color: transparent }
+        50% { border-color: #3b82f6; }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Hacer la función global para el onclick
+    window.loadReadmeForRepo = loadReadmeForRepo;
   </script>
 </body>
 </html>

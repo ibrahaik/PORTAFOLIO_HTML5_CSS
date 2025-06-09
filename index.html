@@ -650,7 +650,6 @@
         <a href="mailto:ibrahimelhaouzihaik@gmail.com" title="Email">
           <i class="fas fa-envelope"></i>
         </a>
-   
       </div>
       <p>&copy; 2024 Ibrahim Haik. Todos los derechos reservados.</p>
     </div>
@@ -658,6 +657,24 @@
 
   <script>
     const username = "ibrahaik";
+    
+    // ⚠️ IMPORTANTE: Para producción, NUNCA expongas tokens en el frontend
+    // Opciones seguras para producción:
+    // 1. Usar variables de entorno del servidor (Vercel, Netlify)
+    // 2. Crear un backend/API proxy que maneje las llamadas a GitHub
+    // 3. Usar GitHub Apps con permisos limitados
+    // 4. Implementar autenticación OAuth para que los usuarios usen sus propios tokens
+    
+    // Para desarrollo/demo únicamente - REMOVER en producción
+    const GITHUB_TOKEN = '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';
+    
+    // Headers para autenticación con GitHub
+    const getAuthHeaders = () => {
+      return {
+        'Authorization': `token ${GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github.v3+json'
+      };
+    };
 
     // Mapeo extenso de tecnologías a iconos y colores
     const techIcons = {
@@ -1024,6 +1041,8 @@
       'Locust': { icon: 'fas fa-bug', color: '#a1c538' },
       'Postman': { icon: 'fas fa-paper-plane', color: '#ff6c37' },
       'Insomnia': { icon: 'fas fa-moon', color: '#4000bf' },
+      'SoapUI': { icon: 'fas fa-soap',
+      'Insomnia': { icon: 'fas fa-moon', color: '#4000bf' },
       'SoapUI': { icon: 'fas fa-soap', color: '#4dc07c' },
       'Pact': { icon: 'fas fa-handshake', color: '#fff200' },
       'Swagger': { icon: 'fas fa-file-alt', color: '#85ea2d' },
@@ -1034,384 +1053,7 @@
       'GitHub': { icon: 'fab fa-github', color: '#181717' },
       'GitLab': { icon: 'fab fa-gitlab', color: '#fc6d26' },
       'Bitbucket': { icon: 'fab fa-bitbucket', color: '#0052cc' },
-      'SVN': { icon: 'fas fa-code-branch', color: '#809cc9' },
-      'Mercurial': { icon: 'fas fa-code-branch', color: '#999999' },
-      'Perforce': { icon: 'fas fa-code-branch', color: '#404040' },
-      'Jira': { icon: 'fab fa-jira', color: '#0052cc' },
-      'Confluence': { icon: 'fab fa-confluence', color: '#172b4d' },
-      'Trello': { icon: 'fab fa-trello', color: '#0079bf' },
-      'Asana': { icon: 'fas fa-tasks', color: '#fc636b' },
-      'Monday': { icon: 'fas fa-calendar', color: '#ff3d57' },
-      'ClickUp': { icon: 'fas fa-check-circle', color: '#7b68ee' },
-      'Notion': { icon: 'fas fa-book', color: '#000000' },
-      'Linear': { icon: 'fas fa-tasks', color: '#5e6ad2' },
-      'Basecamp': { icon: 'fas fa-mountain', color: '#1f7042' },
-      'Slack': { icon: 'fab fa-slack', color: '#4a154b' },
-      'Discord': { icon: 'fab fa-discord', color: '#5865f2' },
-      'Microsoft Teams': { icon: 'fab fa-microsoft', color: '#6264a7' },
-      'Zoom': { icon: 'fas fa-video', color: '#2d8cff' },
-      'Figma': { icon: 'fab fa-figma', color: '#f24e1e' },
-      'Adobe XD': { icon: 'fab fa-adobe', color: '#ff61f6' },
-      'Sketch': { icon: 'fas fa-pencil-ruler', color: '#f7b500' },
-      'InVision': { icon: 'fas fa-eye', color: '#ff3366' },
-      'Zeplin': { icon: 'fas fa-layer-group', color: '#fdbd39' },
-      'Abstract': { icon: 'fas fa-shapes', color: '#191a1b' },
-      'Principle': { icon: 'fas fa-play-circle', color: '#000000' },
-      'Framer': { icon: 'fas fa-frame', color: '#0055ff' },
-      'ProtoPie': { icon: 'fas fa-pie-chart', color: '#5c6ac4' },
-      'Marvel': { icon: 'fas fa-magic', color: '#1fb6ff' },
-      'Balsamiq': { icon: 'fas fa-pencil-alt', color: '#a60000' },
-      'Axure': { icon: 'fas fa-sitemap', color: '#00b956' },
-      'UXPin': { icon: 'fas fa-pencil-ruler', color: '#2dca8b' },
-      'Miro': { icon: 'fas fa-project-diagram', color: '#050038' },
-      'Whimsical': { icon: 'fas fa-lightbulb', color: '#6c5ce7' },
-      'Lucidchart': { icon: 'fas fa-chart-line', color: '#f96302' },
-      'Draw.io': { icon: 'fas fa-project-diagram', color: '#f08705' },
-      'Canva': { icon: 'fas fa-paint-brush', color: '#00c4cc' },
-      'Adobe Photoshop': { icon: 'fab fa-adobe', color: '#31a8ff' },
-      'Adobe Illustrator': { icon: 'fab fa-adobe', color: '#ff9a00' },
-      'Adobe After Effects': { icon: 'fab fa-adobe', color: '#9999ff' },
-      'Adobe Premiere': { icon: 'fab fa-adobe', color: '#9999ff' },
-      'Final Cut Pro': { icon: 'fas fa-film', color: '#000000' },
-      'DaVinci Resolve': { icon: 'fas fa-film', color: '#233a51' },
-      'Blender': { icon: 'fas fa-cube', color: '#f5792a' },
-      'Cinema 4D': { icon: 'fas fa-cube', color: '#011a6a' },
-      'Maya': { icon: 'fas fa-cube', color: '#37a5cc' },
-      '3ds Max': { icon: 'fas fa-cube', color: '#0696d7' },
-      'Unity': { icon: 'fab fa-unity', color: '#000000' },
-      'Unreal Engine': { icon: 'fas fa-gamepad', color: '#313131' },
-      'Godot': { icon: 'fas fa-gamepad', color: '#478cbf' },
-      'GameMaker': { icon: 'fas fa-gamepad', color: '#8fb832' },
-      'Construct': { icon: 'fas fa-gamepad', color: '#00b4f1' },
-      'Defold': { icon: 'fas fa-gamepad', color: '#1fb6ff' },
-      'Corona SDK': { icon: 'fas fa-gamepad', color: '#f96302' },
-      'Cocos2d': { icon: 'fas fa-gamepad', color: '#55c2e1' },
-      'LibGDX': { icon: 'fas fa-gamepad', color: '#b92025' },
-      'MonoGame': { icon: 'fas fa-gamepad', color: '#e73c00' },
-      'LÖVE': { icon: 'fas fa-heart', color: '#ea316e' },
-      'Panda3D': { icon: 'fas fa-gamepad', color: '#ffff00' },
-      'Ogre3D': { icon: 'fas fa-cube', color: '#669900' },
-      'Irrlicht': { icon: 'fas fa-cube', color: '#000000' },
-      'OpenGL': { icon: 'fas fa-cube', color: '#5586a4' },
-      'DirectX': { icon: 'fas fa-cube', color: '#004880' },
-      'Vulkan': { icon: 'fas fa-cube', color: '#ac162c' },
-      'Metal': { icon: 'fas fa-cube', color: '#000000' },
-      'WebGL': { icon: 'fas fa-cube', color: '#990000' },
-      'WebGPU': { icon: 'fas fa-cube', color: '#005a9c' },
-      'OpenCL': { icon: 'fas fa-microchip', color: '#000000' },
-      'CUDA': { icon: 'fas fa-microchip', color: '#76b900' },
-      'TensorFlow': { icon: 'fas fa-brain', color: '#ff6f00' },
-      'PyTorch': { icon: 'fas fa-fire', color: '#ee4c2c' },
-      'Keras': { icon: 'fas fa-brain', color: '#d00000' },
-      'Scikit-learn': { icon: 'fas fa-chart-line', color: '#f7931e' },
-      'Pandas': { icon: 'fas fa-table', color: '#150458' },
-      'NumPy': { icon: 'fas fa-calculator', color: '#013243' },
-      'Matplotlib': { icon: 'fas fa-chart-bar', color: '#11557c' },
-      'Seaborn': { icon: 'fas fa-chart-bar', color: '#388e3c' },
-      'Plotly': { icon: 'fas fa-chart-bar', color: '#3f4f75' },
-      'Bokeh': { icon: 'fas fa-chart-bar', color: '#e84d39' },
-      'Altair': { icon: 'fas fa-chart-bar', color: '#4c78a8' },
-      'Jupyter': { icon: 'fas fa-book', color: '#f37626' },
-      'Google Colab': { icon: 'fab fa-google', color: '#f9ab00' },
-      'Kaggle': { icon: 'fas fa-chart-line', color: '#20beff' },
-      'Anaconda': { icon: 'fas fa-snake', color: '#44a833' },
-      'Conda': { icon: 'fas fa-box', color: '#44a833' },
-      'pip': { icon: 'fab fa-python', color: '#3776ab' },
-      'Poetry': { icon: 'fas fa-feather', color: '#60a5fa' },
-      'Pipenv': { icon: 'fab fa-python', color: '#3776ab' },
-      'virtualenv': { icon: 'fab fa-python', color: '#3776ab' },
-      'pyenv': { icon: 'fab fa-python', color: '#3776ab' },
-      'Homebrew': { icon: 'fas fa-beer', color: '#fbb040' },
-      'Chocolatey': { icon: 'fas fa-box', color: '#80b5e3' },
-      'Scoop': { icon: 'fas fa-ice-cream', color: '#000000' },
-      'Winget': { icon: 'fab fa-windows', color: '#0078d4' },
-      'APT': { icon: 'fab fa-ubuntu', color: '#e95420' },
-      'YUM': { icon: 'fab fa-redhat', color: '#ee0000' },
-      'DNF': { icon: 'fab fa-fedora', color: '#294172' },
-      'Pacman': { icon: 'fab fa-linux', color: '#1793d1' },
-      'Portage': { icon: 'fab fa-linux', color: '#54487a' },
-      'Zypper': { icon: 'fab fa-suse', color: '#0c322c' },
-      'Snap': { icon: 'fab fa-ubuntu', color: '#e95420' },
-      'Flatpak': { icon: 'fab fa-linux', color: '#4a90d9' },
-      'AppImage': { icon: 'fab fa-linux', color: '#368ce7' },
-      'Docker Compose': { icon: 'fab fa-docker', color: '#2496ed' },
-      'Podman': { icon: 'fas fa-cube', color: '#892ca0' },
-      'LXC': { icon: 'fas fa-cube', color: '#333333' },
-      'LXD': { icon: 'fas fa-cube', color: '#e95420' },
-      'VirtualBox': { icon: 'fas fa-cube', color: '#183a61' },
-      'VMware': { icon: 'fas fa-cube', color: '#607078' },
-      'QEMU': { icon: 'fas fa-cube', color: '#ff6600' },
-      'KVM': { icon: 'fas fa-cube', color: '#000000' },
-      'Xen': { icon: 'fas fa-cube', color: '#0e4b99' },
-      'Hyper-V': { icon: 'fab fa-microsoft', color: '#0078d4' },
-      'Parallels': { icon: 'fas fa-cube', color: '#fa4616' },
-      'UTM': { icon: 'fas fa-cube', color: '#1e88e5' },
-      'Multipass': { icon: 'fab fa-ubuntu', color: '#e95420' },
-      'Lima': { icon: 'fab fa-linux', color: '#fcc624' },
-      'Colima': { icon: 'fab fa-docker', color: '#2496ed' },
-      'Rancher Desktop': { icon: 'fas fa-desktop', color: '#0075a8' },
-      'Docker Desktop': { icon: 'fab fa-docker', color: '#2496ed' },
-      'Podman Desktop': { icon: 'fas fa-desktop', color: '#892ca0' },
-      'Lens': { icon: 'fas fa-dharmachakra', color: '#3d90ce' },
-      'K9s': { icon: 'fas fa-dharmachakra', color: '#326ce5' },
-      'Kubectl': { icon: 'fas fa-dharmachakra', color: '#326ce5' },
-      'Minikube': { icon: 'fas fa-dharmachakra', color: '#326ce5' },
-      'Kind': { icon: 'fas fa-dharmachakra', color: '#326ce5' },
-      'K3s': { icon: 'fas fa-dharmachakra', color: '#326ce5' },
-      'K3d': { icon: 'fas fa-dharmachakra', color: '#326ce5' },
-      'MicroK8s': { icon: 'fas fa-dharmachakra', color: '#326ce5' },
-      'OpenShift': { icon: 'fab fa-redhat', color: '#ee0000' },
-      'EKS': { icon: 'fab fa-aws', color: '#ff9900' },
-      'GKE': { icon: 'fab fa-google', color: '#4285f4' },
-      'AKS': { icon: 'fab fa-microsoft', color: '#0078d4' },
-      'DigitalOcean Kubernetes': { icon: 'fas fa-water', color: '#0080ff' },
-      'Linode Kubernetes': { icon: 'fas fa-server', color: '#00a95c' },
-      'Vultr Kubernetes': { icon: 'fas fa-server', color: '#007bfc' },
-      'Scaleway Kubernetes': { icon: 'fas fa-server', color: '#4f0599' },
-      'OVH Kubernetes': { icon: 'fas fa-server', color: '#123f6d' },
-      'Hetzner Cloud': { icon: 'fas fa-cloud', color: '#d50c2d' },
-      'Contabo': { icon: 'fas fa-server', color: '#ff6600' },
-      'Ionos': { icon: 'fas fa-server', color: '#003d8f' },
-      'Kamatera': { icon: 'fas fa-server', color: '#1e88e5' },
-      'Atlantic.net': { icon: 'fas fa-server', color: '#0066cc' },
-      'Hostinger': { icon: 'fas fa-server', color: '#673de6' },
-      'Namecheap': { icon: 'fas fa-server', color: '#de3723' },
-      'GoDaddy': { icon: 'fas fa-server', color: '#1bdbdb' },
-      'Bluehost': { icon: 'fas fa-server', color: '#3d5998' },
-      'SiteGround': { icon: 'fas fa-server', color: '#eb6924' },
-      'HostGator': { icon: 'fas fa-server', color: '#ff6600' },
-      'DreamHost': { icon: 'fas fa-server', color: '#0066cc' },
-      'A2 Hosting': { icon: 'fas fa-server', color: '#0066cc' },
-      'InMotion': { icon: 'fas fa-server', color: '#0066cc' },
-      'WP Engine': { icon: 'fab fa-wordpress', color: '#40bac8' },
-      'Kinsta': { icon: 'fab fa-wordpress', color: '#5333ed' },
-      'Pantheon': { icon: 'fab fa-wordpress', color: '#efd01b' },
-      'Acquia': { icon: 'fab fa-drupal', color: '#0678be' },
-      'Platform.sh': { icon: 'fas fa-server', color: '#1a1a1a' },
-      'Cloudways': { icon: 'fas fa-cloud', color: '#2c39bd' },
-      'GridPane': { icon: 'fas fa-th', color: '#1e88e5' },
-      'RunCloud': { icon: 'fas fa-cloud', color: '#1e88e5' },
-      'SpinupWP': { icon: 'fab fa-wordpress', color: '#0073aa' },
-      'Trellis': { icon: 'fab fa-wordpress', color: '#525ddc' },
-      'Bedrock': { icon: 'fab fa-wordpress', color: '#525ddc' },
-      'Sage': { icon: 'fab fa-wordpress', color: '#525ddc' },
-      'Timber': { icon: 'fab fa-wordpress', color: '#0f7b0f' },
-      'ACF': { icon: 'fab fa-wordpress', color: '#0073aa' },
-      'Gravity Forms': { icon: 'fab fa-wordpress', color: '#0073aa' },
-      'Contact Form 7': { icon: 'fab fa-wordpress', color: '#0073aa' },
-      'Yoast SEO': { icon: 'fab fa-wordpress', color: '#a4286a' },
-      'Rank Math': { icon: 'fab fa-wordpress', color: '#0066cc' },
-      'Elementor': { icon: 'fab fa-wordpress', color: '#92003b' },
-      'Divi': { icon: 'fab fa-wordpress', color: '#8b6db8' },
-      'Beaver Builder': { icon: 'fab fa-wordpress', color: '#ba4a00' },
-      'Visual Composer': { icon: 'fab fa-wordpress', color: '#5a9fd4' },
-      'Gutenberg': { icon: 'fab fa-wordpress', color: '#0073aa' },
-      'WooCommerce': { icon: 'fab fa-wordpress', color: '#96588a' },
-      'Easy Digital Downloads': { icon: 'fab fa-wordpress', color: '#2794da' },
-      'WP Rocket': { icon: 'fab fa-wordpress', color: '#f56640' },
-      'W3 Total Cache': { icon: 'fab fa-wordpress', color: '#0073aa' },
-      'WP Super Cache': { icon: 'fab fa-wordpress', color: '#0073aa' },
-      'LiteSpeed Cache': { icon: 'fab fa-wordpress', color: '#0073aa' },
-      'Cloudflare': { icon: 'fas fa-cloud', color: '#f38020' },
-      'MaxCDN': { icon: 'fas fa-cloud', color: '#ff6600' },
-      'KeyCDN': { icon: 'fas fa-cloud', color: '#047eed' },
-      'BunnyCDN': { icon: 'fas fa-cloud', color: '#ff6600' },
-      'jsDelivr': { icon: 'fas fa-cloud', color: '#e84d3d' },
-      'unpkg': { icon: 'fas fa-cloud', color: '#000000' },
-      'cdnjs': { icon: 'fas fa-cloud', color: '#cb3837' },
-      'Google Fonts': { icon: 'fab fa-google', color: '#4285f4' },
-      'Adobe Fonts': { icon: 'fab fa-adobe', color: '#ff0000' },
-      'Font Awesome': { icon: 'fab fa-font-awesome', color: '#339af0' },
-      'Feather Icons': { icon: 'fas fa-feather', color: '#333333' },
-      'Heroicons': { icon: 'fas fa-star', color: '#8b5cf6' },
-      'Phosphor Icons': { icon: 'fas fa-circle', color: '#000000' },
-      'Tabler Icons': { icon: 'fas fa-table', color: '#206bc4' },
-      'Lucide': { icon: 'fas fa-feather', color: '#f56565' },
-      'React Icons': { icon: 'fab fa-react', color: '#61dafb' },
-      'Vue Icons': { icon: 'fab fa-vuejs', color: '#4fc08d' },
-      'Angular Material': { icon: 'fab fa-angular', color: '#dd0031' },
-      'Ionic Icons': { icon: 'fas fa-mobile-alt', color: '#3880ff' },
-      'Material Icons': { icon: 'fas fa-palette', color: '#757575' },
-      'Octicons': { icon: 'fab fa-github', color: '#181717' },
-      'Simple Icons': { icon: 'fas fa-icons', color: '#111111' },
-      'Devicons': { icon: 'fas fa-code', color: '#000000' },
-      'Weather Icons': { icon: 'fas fa-cloud-sun', color: '#00aaff' },
-      'Flag Icons': { icon: 'fas fa-flag', color: '#000000' },
-      'Cryptocurrency Icons': { icon: 'fab fa-bitcoin', color: '#f7931a' },
-      'Payment Icons': { icon: 'fas fa-credit-card', color: '#000000' },
-      'Social Icons': { icon: 'fas fa-share-alt', color: '#000000' },
-      'Brand Icons': { icon: 'fas fa-trademark', color: '#000000' },
-      'File Icons': { icon: 'fas fa-file', color: '#000000' },
-      'Emoji': { icon: 'fas fa-smile', color: '#ffdd44' },
-      'Noto Emoji': { icon: 'fab fa-google', color: '#4285f4' },
-      'Apple Emoji': { icon: 'fab fa-apple', color: '#000000' },
-      'Microsoft Emoji': { icon: 'fab fa-microsoft', color: '#0078d4' },
-      'Samsung Emoji': { icon: 'fab fa-android', color: '#1428a0' },
-      'WhatsApp Emoji': { icon: 'fab fa-whatsapp', color: '#25d366' },
-      'Facebook Emoji': { icon: 'fab fa-facebook', color: '#1877f2' },
-      'Discord Emoji': { icon: 'fab fa-discord', color: '#5865f2' },
-      'Slack Emoji': { icon: 'fab fa-slack', color: '#4a154b' },
-      'Telegram Emoji': { icon: 'fab fa-telegram', color: '#0088cc' },
-      'Signal Emoji': { icon: 'fas fa-signal', color: '#3a76f0' },
-      'Viber Emoji': { icon: 'fab fa-viber', color: '#665cac' },
-      'Line Emoji': { icon: 'fab fa-line', color: '#00c300' },
-      'WeChat Emoji': { icon: 'fab fa-weixin', color: '#7bb32e' },
-      'Skype Emoji': { icon: 'fab fa-skype', color: '#00aff0' },
-      'Zoom Emoji': { icon: 'fas fa-video', color: '#2d8cff' },
-      'Teams Emoji': { icon: 'fab fa-microsoft', color: '#6264a7' },
-      'Google Meet Emoji': { icon: 'fab fa-google', color: '#00897b' },
-      'Jitsi Emoji': { icon: 'fas fa-video', color: '#1d76ba' },
-      'BigBlueButton Emoji': { icon: 'fas fa-video', color: '#283593' },
-      'Whereby Emoji': { icon: 'fas fa-video', color: '#1e88e5' },
-      'GoToMeeting Emoji': { icon: 'fas fa-video', color: '#ff6900' },
-      'WebEx Emoji': { icon: 'fas fa-video', color: '#00bceb' },
-      'BlueJeans Emoji': { icon: 'fas fa-video', color: '#0e76a8' },
-      'RingCentral Emoji': { icon: 'fas fa-video', color: '#ff6900' },
-      '8x8 Emoji': { icon: 'fas fa-video', color: '#1976d2' },
-      'Dialpad Emoji': { icon: 'fas fa-video', color: '#ff6900' },
-      'Vonage Emoji': { icon: 'fas fa-video', color: '#000000' },
-      'Twilio Emoji': { icon: 'fas fa-video', color: '#f22f46' },
-      'Agora Emoji': { icon: 'fas fa-video', color: '#099dfd' },
-      'Pusher Emoji': { icon: 'fas fa-broadcast-tower', color: '#300d4f' },
-      'Socket.IO Emoji': { icon: 'fas fa-plug', color: '#010101' },
-      'Ably Emoji': { icon: 'fas fa-broadcast-tower', color: '#ff5416' },
-      'PubNub Emoji': { icon: 'fas fa-broadcast-tower', color: '#ce0606' },
-      'Firebase Cloud Messaging': { icon: 'fas fa-fire', color: '#ffca28' },
-      'OneSignal': { icon: 'fas fa-bell', color: '#e54b4d' },
-      'Pusher Beams': { icon: 'fas fa-bell', color: '#300d4f' },
-      'Urban Airship': { icon: 'fas fa-bell', color: '#1976d2' },
-      'Airship': { icon: 'fas fa-bell', color: '#1976d2' },
-      'Braze': { icon: 'fas fa-bell', color: '#ff6900' },
-      'Leanplum': { icon: 'fas fa-bell', color: '#1976d2' },
-      'Mixpanel': { icon: 'fas fa-chart-line', color: '#7856ff' },
-      'Amplitude': { icon: 'fas fa-chart-line', color: '#1976d2' },
-      'Segment': { icon: 'fas fa-chart-line', color: '#52bd95' },
-      'Google Analytics': { icon: 'fas fa-chart-line', color: '#e37400' },
-      'Adobe Analytics': { icon: 'fab fa-adobe', color: '#ff0000' },
-      'Hotjar': { icon: 'fas fa-chart-line', color: '#fd3a69' },
-      'FullStory': { icon: 'fas fa-chart-line', color: '#1976d2' },
-      'LogRocket': { icon: 'fas fa-chart-line', color: '#764abc' },
-      'Smartlook': { icon: 'fas fa-chart-line', color: '#1976d2' },
-      'Crazy Egg': { icon: 'fas fa-chart-line', color: '#ff6900' },
-      'Optimizely': { icon: 'fas fa-chart-line', color: '#1976d2' },
-      'VWO': { icon: 'fas fa-chart-line', color: '#1976d2' },
-      'Google Optimize': { icon: 'fab fa-google', color: '#4285f4' },
-      'Adobe Target': { icon: 'fab fa-adobe', color: '#ff0000' },
-      'Unbounce': { icon: 'fas fa-chart-line', color: '#ff6900' },
-      'Leadpages': { icon: 'fas fa-chart-line', color: '#ff6900' },
-      'Instapage': { icon: 'fas fa-chart-line', color: '#ff6900' },
-      'ClickFunnels': { icon: 'fas fa-chart-line', color: '#ff6900' },
-      'Convertkit': { icon: 'fas fa-envelope', color: '#fb6970' },
-      'Mailchimp': { icon: 'fab fa-mailchimp', color: '#ffe01b' },
-      'Constant Contact': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Campaign Monitor': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'AWeber': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'GetResponse': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'ActiveCampaign': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Drip': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Klaviyo': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Sendinblue': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Mailgun': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'SendGrid': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Postmark': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Amazon SES': { icon: 'fab fa-aws', color: '#ff9900' },
-      'Mandrill': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'SparkPost': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Mailjet': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Elastic Email': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Pepipost': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'SocketLabs': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Mailersend': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Resend': { icon: 'fas fa-envelope', color: '#000000' },
-      'Loops': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Plunk': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'EmailJS': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Nodemailer': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'React Email': { icon: 'fas fa-envelope', color: '#61dafb' },
-      'MJML': { icon: 'fas fa-envelope', color: '#f45e43' },
-      'Foundation for Emails': { icon: 'fas fa-envelope', color: '#14679e' },
-      'Cerberus': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Email Framework': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Litmus': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Email on Acid': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Testi@': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Mailtrap': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'MailHog': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Papercut': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'smtp4dev': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'FakeSMTP': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'MailCatcher': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'MailDev': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Mailpit': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Inbucket': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Guerrilla Mail': { icon: 'fas fa-envelope', color: '#1976d2' },
-      '10 Minute Mail': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Temp Mail': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Disposable Email': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Burner Mail': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'ProtonMail': { icon: 'fas fa-envelope', color: '#8b89cc' },
-      'Tutanota': { icon: 'fas fa-envelope', color: '#840010' },
-      'FastMail': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Zoho Mail': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Outlook': { icon: 'fab fa-microsoft', color: '#0078d4' },
-      'Gmail': { icon: 'fab fa-google', color: '#ea4335' },
-      'Yahoo Mail': { icon: 'fab fa-yahoo', color: '#6001d2' },
-      'AOL Mail': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'iCloud Mail': { icon: 'fab fa-apple', color: '#000000' },
-      'Mail.ru': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Yandex Mail': { icon: 'fas fa-envelope', color: '#ffcc00' },
-      'GMX': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Web.de': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'T-Online': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Freenet': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Arcor': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Alice': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Libero': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Virgilio': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Tiscali': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Orange': { icon: 'fas fa-envelope', color: '#ff6900' },
-      'Free': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'SFR': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Bouygues': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'La Poste': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Wanadoo': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Neuf': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Club Internet': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Noos': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Numericable': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Darty': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Cegetel': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Tele2': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Completel': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Oreka': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Modulonet': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Nordnet': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Worldonline': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Infonie': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Voila': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Caramail': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Netcourrier': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Ifrance': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Multimania': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Mygale': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Nomade': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Altern': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Cybercable': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Easynet': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Grolier': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Imaginet': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Infomaniak': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Iol': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Libertysurf': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Lokace': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Mageos': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Netissimo': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Planetis': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Spray': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Sympatico': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Tm': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Wannadoo': { icon: 'fas fa-envelope', color: '#1976d2' },
-      'Webmails': { icon: 'fas fa-envelope', color: '#1976d2' }
+      'SVN': { icon: 'fas fa-code-branch', color: '#809cc9' }
     };
 
     // Proyectos conocidos con tecnologías específicas
@@ -1449,7 +1091,9 @@
     async function getReadme(repo) {
       try {
         const url = `https://api.github.com/repos/${username}/${repo}/readme`;
-        const res = await fetch(url);
+        const res = await fetch(url, {
+          headers: getAuthHeaders()
+        });
         if (!res.ok) return null;
         const data = await res.json();
         const content = decodeBase64Utf8(data.content);
@@ -1462,7 +1106,9 @@
     async function getRepoLanguages(repo) {
       try {
         const url = `https://api.github.com/repos/${username}/${repo}/languages`;
-        const res = await fetch(url);
+        const res = await fetch(url, {
+          headers: getAuthHeaders()
+        });
         if (!res.ok) return {};
         return await res.json();
       } catch (error) {
@@ -1497,17 +1143,6 @@
         'nestjs': 'NestJS',
         'nest.js': 'NestJS',
         'nest': 'NestJS',
-        'hapi': 'Hapi',
-        'hapijs': 'Hapi',
-        'adonis': 'Adonis.js',
-        'adonisjs': 'Adonis.js',
-        'sails': 'Sails.js',
-        'sailsjs': 'Sails.js',
-        'loopback': 'Loopback',
-        'feathers': 'Feathers',
-        'feathersjs': 'Feathers',
-        'meteor': 'Meteor',
-        'meteorjs': 'Meteor',
         
         // Bases de datos específicas
         'postgresql': 'PostgreSQL',
@@ -1519,60 +1154,19 @@
         'redis': 'Redis',
         'sqlite': 'SQLite',
         'sqlite3': 'SQLite',
-        'mariadb': 'MariaDB',
-        'oracle': 'Oracle',
-        'cassandra': 'Cassandra',
-        'dynamodb': 'DynamoDB',
-        'supabase': 'Supabase',
-        'firestore': 'Firestore',
-        'firebase realtime': 'Firebase Realtime DB',
-        'couchdb': 'CouchDB',
-        'neo4j': 'Neo4j',
-        'elasticsearch': 'Elasticsearch',
-        'influxdb': 'InfluxDB',
-        'fauna': 'Fauna',
-        'planetscale': 'PlanetScale',
-        'cockroachdb': 'Cockroach DB',
-        'prisma': 'Prisma',
-        'typeorm': 'TypeORM',
-        'sequelize': 'Sequelize',
-        'mongoose': 'Mongoose',
-        'knex': 'Knex.js',
-        'drizzle': 'Drizzle ORM',
         
         // Cloud y servicios específicos
         'firebase': 'Firebase',
         'cloudinary': 'Cloudinary',
         'aws': 'AWS',
-        'amazon web services': 'AWS',
         'azure': 'Azure',
-        'microsoft azure': 'Azure',
         'google cloud': 'Google Cloud',
-        'gcp': 'Google Cloud',
         'vercel': 'Vercel',
         'netlify': 'Netlify',
         'heroku': 'Heroku',
         'digitalocean': 'DigitalOcean',
         'docker': 'Docker',
         'kubernetes': 'Kubernetes',
-        'k8s': 'Kubernetes',
-        'jenkins': 'Jenkins',
-        'github actions': 'GitHub Actions',
-        'gitlab ci': 'GitLab CI',
-        'terraform': 'Terraform',
-        'cloudflare': 'Cloudflare',
-        'linode': 'Linode',
-        'render': 'Render',
-        'fly.io': 'Fly.io',
-        'railway': 'Railway',
-        'deta': 'Deta',
-        'glitch': 'Glitch',
-        'replit': 'Replit',
-        'serverless': 'Serverless',
-        'lambda': 'AWS Lambda',
-        'azure functions': 'Azure Functions',
-        'cloud functions': 'Google Cloud Functions',
-        'cloudflare workers': 'Cloudflare Workers',
         
         // Frontend específico
         'react native': 'React Native',
@@ -1583,30 +1177,6 @@
         'vue.js': 'Vue.js',
         'vuejs': 'Vue.js',
         'angular': 'Angular',
-        'svelte': 'Svelte',
-        'sveltekit': 'SvelteKit',
-        'nuxt': 'Nuxt.js',
-        'nuxtjs': 'Nuxt.js',
-        'gatsby': 'Gatsby',
-        'gatsbyjs': 'Gatsby',
-        'remix': 'Remix',
-        'solid': 'Solid.js',
-        'solidjs': 'Solid.js',
-        'preact': 'Preact',
-        'lit': 'Lit',
-        'alpine': 'Alpine.js',
-        'alpinejs': 'Alpine.js',
-        'stimulus': 'Stimulus',
-        'ember': 'Ember.js',
-        'emberjs': 'Ember.js',
-        'backbone': 'Backbone.js',
-        'backbonejs': 'Backbone.js',
-        'jquery': 'jQuery',
-        'redux': 'Redux',
-        'mobx': 'MobX',
-        'zustand': 'Zustand',
-        'recoil': 'Recoil',
-        'jotai': 'Jotai',
         
         // Styling específico
         'tailwind': 'Tailwind CSS',
@@ -1614,68 +1184,14 @@
         'bootstrap': 'Bootstrap',
         'sass': 'Sass',
         'scss': 'SCSS',
-        'less': 'Less',
-        'material-ui': 'Material-UI',
-        'mui': 'Material-UI',
-        'chakra': 'Chakra UI',
-        'chakra-ui': 'Chakra UI',
-        'styled-components': 'Styled Components',
-        'emotion': 'Emotion',
-        'radix': 'Radix UI',
-        'headless ui': 'Headless UI',
-        'shadcn': 'Shadcn UI',
-        'ant design': 'Ant Design',
-        'antd': 'Ant Design',
-        'semantic ui': 'Semantic UI',
-        'bulma': 'Bulma',
-        'foundation': 'Foundation',
-        'materialize': 'Materialize',
-        'uikit': 'UIkit',
-        'tachyons': 'Tachyons',
-        'purecss': 'PureCSS',
-        'skeleton': 'Skeleton',
-        'milligram': 'Milligram',
-        'spectre': 'Spectre.css',
-        'primer': 'Primer',
-        'halfmoon': 'Halfmoon',
-        'pico': 'Pico.css',
-        'water.css': 'Water.css',
-        'windi': 'Windi CSS',
-        'unocss': 'UnoCSS',
-        'postcss': 'PostCSS',
-        'stylus': 'Stylus',
-        'stitches': 'Stitches',
-        'vanilla extract': 'Vanilla Extract',
         
         // Build tools específicos
         'webpack': 'Webpack',
         'vite': 'Vite',
-        'vitejs': 'Vite',
         'rollup': 'Rollup',
-        'rollupjs': 'Rollup',
         'parcel': 'Parcel',
-        'parceljs': 'Parcel',
         'gulp': 'Gulp',
-        'gulpjs': 'Gulp',
         'grunt': 'Grunt',
-        'gruntjs': 'Grunt',
-        'babel': 'Babel',
-        'babeljs': 'Babel',
-        'typescript': 'TypeScript',
-        'esbuild': 'esbuild',
-        'swc': 'SWC',
-        'turbopack': 'Turbopack',
-        'turborepo': 'Turborepo',
-        'nx': 'Nx',
-        'lerna': 'Lerna',
-        'pnpm': 'pnpm',
-        'yarn': 'Yarn',
-        'npm': 'npm',
-        'bun': 'Bun',
-        'snowpack': 'Snowpack',
-        'browserify': 'Browserify',
-        'microbundle': 'Microbundle',
-        'rspack': 'Rspack',
         
         // Testing específico
         'jest': 'Jest',
@@ -1685,18 +1201,6 @@
         'chai': 'Chai',
         'puppeteer': 'Puppeteer',
         'playwright': 'Playwright',
-        'vitest': 'Vitest',
-        'testing library': 'Testing Library',
-        'jasmine': 'Jasmine',
-        'karma': 'Karma',
-        'enzyme': 'Enzyme',
-        'ava': 'AVA',
-        'tape': 'Tape',
-        'qunit': 'QUnit',
-        'sinon': 'Sinon',
-        'webdriverio': 'WebdriverIO',
-        'nightwatch': 'Nightwatch',
-        'testcafe': 'TestCafe',
         
         // Mobile específico
         'flutter': 'Flutter',
@@ -1704,182 +1208,21 @@
         'ionic': 'Ionic',
         'xamarin': 'Xamarin',
         'cordova': 'Cordova',
-        'capacitor': 'Capacitor',
-        'swift': 'Swift',
-        'swiftui': 'Swift UI',
-        'kotlin': 'Kotlin',
-        'kotlin multiplatform': 'Kotlin Multiplatform',
-        'jetpack compose': 'Jetpack Compose',
         'expo': 'Expo',
-        'nativescript': 'NativeScript',
-        'android': 'Android',
-        'ios': 'iOS',
-        'objective-c': 'Objective-C',
-        'uikit': 'UIKit',
-        'android sdk': 'Android SDK',
-        'android jetpack': 'Android Jetpack',
-        'kotlin/native': 'Kotlin/Native',
-        'flutter web': 'Flutter Web',
-        'pwa': 'PWA',
-        'progressive web app': 'PWA',
-        'tauri': 'Tauri',
-        'electron': 'Electron',
         
         // Otros específicos
         'graphql': 'GraphQL',
         'apollo': 'Apollo',
         'rest api': 'REST API',
-        'api rest': 'REST API',
         'websocket': 'WebSocket',
         'socket.io': 'Socket.io',
-        'socketio': 'Socket.io',
         'nginx': 'Nginx',
         'apache': 'Apache',
         'linux': 'Linux',
         'ubuntu': 'Ubuntu',
-        'centos': 'CentOS',
-        'debian': 'Debian',
-        'fedora': 'Fedora',
-        'arch': 'Arch Linux',
-        'manjaro': 'Manjaro',
-        'opensuse': 'openSUSE',
-        'redhat': 'Red Hat',
-        'shell': 'Shell',
-        'bash': 'Bash',
-        'zsh': 'Zsh',
-        'fish': 'Fish',
-        'powershell': 'PowerShell',
-        'vim': 'Vim',
-        'neovim': 'Neovim',
-        'emacs': 'Emacs',
-        'vscode': 'VS Code',
-        'visual studio code': 'VS Code',
-        'intellij': 'IntelliJ',
-        'webstorm': 'WebStorm',
-        'phpstorm': 'PhpStorm',
-        'pycharm': 'PyCharm',
-        'android studio': 'Android Studio',
-        'xcode': 'Xcode',
-        'sublime': 'Sublime Text',
-        'atom': 'Atom',
-        'brackets': 'Brackets',
-        'notepad++': 'Notepad++',
         'postman': 'Postman',
         'insomnia': 'Insomnia',
-        'figma': 'Figma',
-        'adobe xd': 'Adobe XD',
-        'sketch': 'Sketch',
-        'invision': 'InVision',
-        'zeplin': 'Zeplin',
-        'abstract': 'Abstract',
-        'principle': 'Principle',
-        'framer': 'Framer',
-        'protopie': 'ProtoPie',
-        'marvel': 'Marvel',
-        'balsamiq': 'Balsamiq',
-        'axure': 'Axure',
-        'uxpin': 'UXPin',
-        'miro': 'Miro',
-        'whimsical': 'Whimsical',
-        'lucidchart': 'Lucidchart',
-        'draw.io': 'Draw.io',
-        'canva': 'Canva',
-        'photoshop': 'Adobe Photoshop',
-        'illustrator': 'Adobe Illustrator',
-        'after effects': 'Adobe After Effects',
-        'premiere': 'Adobe Premiere',
-        'final cut': 'Final Cut Pro',
-        'davinci': 'DaVinci Resolve',
-        'blender': 'Blender',
-        'cinema 4d': 'Cinema 4D',
-        'maya': 'Maya',
-        '3ds max': '3ds Max',
-        'unity': 'Unity',
-        'unreal': 'Unreal Engine',
-        'godot': 'Godot',
-        'gamemaker': 'GameMaker',
-        'construct': 'Construct',
-        'defold': 'Defold',
-        'corona': 'Corona SDK',
-        'cocos2d': 'Cocos2d',
-        'libgdx': 'LibGDX',
-        'monogame': 'MonoGame',
-        'love2d': 'LÖVE',
-        'panda3d': 'Panda3D',
-        'ogre3d': 'Ogre3D',
-        'irrlicht': 'Irrlicht',
-        'opengl': 'OpenGL',
-        'directx': 'DirectX',
-        'vulkan': 'Vulkan',
-        'metal': 'Metal',
-        'webgl': 'WebGL',
-        'webgpu': 'WebGPU',
-        'opencl': 'OpenCL',
-        'cuda': 'CUDA',
-        'tensorflow': 'TensorFlow',
-        'pytorch': 'PyTorch',
-        'keras': 'Keras',
-        'scikit-learn': 'Scikit-learn',
-        'pandas': 'Pandas',
-        'numpy': 'NumPy',
-        'matplotlib': 'Matplotlib',
-        'seaborn': 'Seaborn',
-        'plotly': 'Plotly',
-        'bokeh': 'Bokeh',
-        'altair': 'Altair',
-        'jupyter': 'Jupyter',
-        'colab': 'Google Colab',
-        'kaggle': 'Kaggle',
-        'anaconda': 'Anaconda',
-        'conda': 'Conda',
-        'pip': 'pip',
-        'poetry': 'Poetry',
-        'pipenv': 'Pipenv',
-        'virtualenv': 'virtualenv',
-        'pyenv': 'pyenv',
-        'homebrew': 'Homebrew',
-        'chocolatey': 'Chocolatey',
-        'scoop': 'Scoop',
-        'winget': 'Winget',
-        'apt': 'APT',
-        'yum': 'YUM',
-        'dnf': 'DNF',
-        'pacman': 'Pacman',
-        'portage': 'Portage',
-        'zypper': 'Zypper',
-        'snap': 'Snap',
-        'flatpak': 'Flatpak',
-        'appimage': 'AppImage',
-        'docker compose': 'Docker Compose',
-        'podman': 'Podman',
-        'lxc': 'LXC',
-        'lxd': 'LXD',
-        'virtualbox': 'VirtualBox',
-        'vmware': 'VMware',
-        'qemu': 'QEMU',
-        'kvm': 'KVM',
-        'xen': 'Xen',
-        'hyper-v': 'Hyper-V',
-        'parallels': 'Parallels',
-        'utm': 'UTM',
-        'multipass': 'Multipass',
-        'lima': 'Lima',
-        'colima': 'Colima',
-        'rancher': 'Rancher Desktop',
-        'docker desktop': 'Docker Desktop',
-        'podman desktop': 'Podman Desktop',
-        'lens': 'Lens',
-        'k9s': 'K9s',
-        'kubectl': 'Kubectl',
-        'minikube': 'Minikube',
-        'kind': 'Kind',
-        'k3s': 'K3s',
-        'k3d': 'K3d',
-        'microk8s': 'MicroK8s',
-        'openshift': 'OpenShift',
-        'eks': 'EKS',
-        'gke': 'GKE',
-        'aks': 'AKS'
+        'figma': 'Figma'
       };
 
       Object.entries(techKeywords).forEach(([keyword, tech]) => {
@@ -1916,224 +1259,228 @@
     }
 
     async function loadRepos() {
-  try {
-    // Verificar límite de API primero
-    const rateLimitRes = await fetch('https://api.github.com/rate_limit');
-    const rateLimitData = await rateLimitRes.json();
-    
-    console.log('Rate limit info:', rateLimitData);
-    
-    if (rateLimitData.rate.remaining < 10) {
-      const resetTime = new Date(rateLimitData.rate.reset * 1000);
-      const loading = document.getElementById("loading");
-      loading.innerHTML = `
-        <div style="color: #f59e0b;">
-          <i class="fas fa-clock"></i>
-          <h3>Límite de API alcanzado</h3>
-          <p>Se ha alcanzado el límite de solicitudes a la API de GitHub.</p>
-          <p>Se restablecerá a las: <strong>${resetTime.toLocaleTimeString()}</strong></p>
-          <p style="margin-top: 1rem; font-size: 0.9rem;">Solicitudes restantes: ${rateLimitData.rate.remaining}/${rateLimitData.rate.limit}</p>
-          <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #3b82f6; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">
-            Intentar de nuevo
-          </button>
-        </div>
-      `;
-      return;
-    }
-
-    const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=20`);
-    
-    if (!res.ok) {
-      throw new Error(`HTTP ${res.status}: ${res.statusText}`);
-    }
-    
-    const repos = await res.json();
-    const container = document.getElementById("repos");
-    const loading = document.getElementById("loading");
-    
-    loading.style.display = "none";
-
-    // Filtrar repositorios fork y ordenar por estrellas y actividad
-    const filteredRepos = repos
-      .filter(repo => !repo.fork)
-      .sort((a, b) => {
-        if (b.stargazers_count !== a.stargazers_count) {
-          return b.stargazers_count - a.stargazers_count;
+      try {
+        // Verificar límite de API primero
+        const rateLimitRes = await fetch('https://api.github.com/rate_limit', {
+          headers: getAuthHeaders()
+        });
+        const rateLimitData = await rateLimitRes.json();
+        
+        console.log('Rate limit info:', rateLimitData);
+        
+        if (rateLimitData.rate.remaining < 10) {
+          const resetTime = new Date(rateLimitData.rate.reset * 1000);
+          const loading = document.getElementById("loading");
+          loading.innerHTML = `
+            <div style="color: #f59e0b;">
+              <i class="fas fa-clock"></i>
+              <h3>Límite de API alcanzado</h3>
+              <p>Se ha alcanzado el límite de solicitudes a la API de GitHub.</p>
+              <p>Se restablecerá a las: <strong>${resetTime.toLocaleTimeString()}</strong></p>
+              <p style="margin-top: 1rem; font-size: 0.9rem;">Solicitudes restantes: ${rateLimitData.rate.remaining}/${rateLimitData.rate.limit}</p>
+              <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #3b82f6; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">
+                Intentar de nuevo
+              </button>
+            </div>
+          `;
+          return;
         }
-        return new Date(b.updated_at) - new Date(a.updated_at);
-      });
 
-    // Procesar repos en lotes para evitar sobrecargar la API
-    for (let i = 0; i < filteredRepos.length; i++) {
-      const repo = filteredRepos[i];
-      
-      // Crear la tarjeta primero con información básica
-      const div = document.createElement("div");
-      div.className = "repo-card";
-      const readmeId = `readme-${repo.id}`;
-      
-      // Información básica sin llamadas adicionales a la API
-      div.innerHTML = `
-        <div class="repo-header">
-          <a href="${repo.html_url}" target="_blank" class="repo-title">
-            <i class="fab fa-github"></i> ${repo.name}
-          </a>
-          <div class="repo-stats">
-            <span title="Estrellas"><i class="fas fa-star"></i> ${formatNumber(repo.stargazers_count)}</span>
-            <span title="Forks"><i class="fas fa-code-branch"></i> ${formatNumber(repo.forks_count)}</span>
-            <span title="Última actualización"><i class="fas fa-clock"></i> ${formatDate(repo.updated_at)}</span>
-          </div>
-        </div>
+        const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=20`, {
+          headers: getAuthHeaders()
+        });
         
-        ${repo.description ? `<p class="repo-description">"${repo.description}"</p>` : ''}
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        }
         
-        <div class="tech-stack">
-          <h4><i class="fas fa-tools"></i> Tecnologías utilizadas:</h4>
-          <div class="tech-icons" id="tech-${repo.id}">
-            <span style="color: #94a3b8; font-style: italic;">Cargando tecnologías...</span>
-          </div>
-        </div>
+        const repos = await res.json();
+        const container = document.getElementById("repos");
+        const loading = document.getElementById("loading");
         
-        <button class="btn-toggle" onclick="loadReadmeForRepo('${repo.name}', '${readmeId}', this)">
-          <i class="fas fa-book-open"></i> Ver README
-        </button>
-        <div id="${readmeId}" class="readme" style="display: none;">
-          <p style="color: #94a3b8;">Cargando README...</p>
-        </div>
-      `;
-      
-      container.appendChild(div);
-      
-      // Cargar tecnologías de forma asíncrona
-      loadTechnologiesForRepo(repo);
-      
-      // Pequeña pausa para animación escalonada
-      await new Promise(resolve => setTimeout(resolve, 100));
-    }
-    
-    // Mostrar información del rate limit
-    const rateLimitInfo = document.createElement('div');
-    rateLimitInfo.style.cssText = 'text-align: center; margin-top: 2rem; padding: 1rem; background: rgba(59, 130, 246, 0.1); border-radius: 0.5rem; font-size: 0.9rem; color: #94a3b8;';
-    rateLimitInfo.innerHTML = `
-      <i class="fas fa-info-circle"></i> 
-      Solicitudes API restantes: ${rateLimitData.rate.remaining}/${rateLimitData.rate.limit} 
-      (se restablece a las ${new Date(rateLimitData.rate.reset * 1000).toLocaleTimeString()})
-    `;
-    container.appendChild(rateLimitInfo);
-    
-  } catch (error) {
-    const loading = document.getElementById("loading");
-    loading.innerHTML = `
-      <div style="color: #ef4444;">
-        <i class="fas fa-exclamation-triangle"></i>
-        <h3>Error al cargar los repositorios</h3>
-        <p>Ha ocurrido un error al conectar con GitHub.</p>
-        <p style="font-size: 0.9rem; margin-top: 1rem; color: #94a3b8;">Error: ${error.message}</p>
-        <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #3b82f6; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">
-          Intentar de nuevo
-        </button>
-      </div>
-    `;
-  }
-}
+        loading.style.display = "none";
 
-// Función para cargar tecnologías de forma asíncrona
-async function loadTechnologiesForRepo(repo) {
-  try {
-    const languages = await getRepoLanguages(repo.name);
-    
-    // Verificar si es un proyecto conocido primero
-    let additionalTechs = [];
-    const normalizedRepoName = repo.name.toLowerCase().replace(/[-_\s]/g, '');
-    
-    // Buscar coincidencias en proyectos conocidos
-    for (const [projectName, techs] of Object.entries(knownProjects)) {
-      const normalizedProjectName = projectName.toLowerCase().replace(/[-_\s]/g, '');
-      if (normalizedRepoName.includes(normalizedProjectName) || normalizedProjectName.includes(normalizedRepoName)) {
-        additionalTechs = [...techs];
-        break;
+        // Filtrar repositorios fork y ordenar por estrellas y actividad
+        const filteredRepos = repos
+          .filter(repo => !repo.fork)
+          .sort((a, b) => {
+            if (b.stargazers_count !== a.stargazers_count) {
+              return b.stargazers_count - a.stargazers_count;
+            }
+            return new Date(b.updated_at) - new Date(a.updated_at);
+          });
+
+        // Procesar repos en lotes para evitar sobrecargar la API
+        for (let i = 0; i < filteredRepos.length; i++) {
+          const repo = filteredRepos[i];
+          
+          // Crear la tarjeta primero con información básica
+          const div = document.createElement("div");
+          div.className = "repo-card";
+          const readmeId = `readme-${repo.id}`;
+          
+          // Información básica sin llamadas adicionales a la API
+          div.innerHTML = `
+            <div class="repo-header">
+              <a href="${repo.html_url}" target="_blank" class="repo-title">
+                <i class="fab fa-github"></i> ${repo.name}
+              </a>
+              <div class="repo-stats">
+                <span title="Estrellas"><i class="fas fa-star"></i> ${formatNumber(repo.stargazers_count)}</span>
+                <span title="Forks"><i class="fas fa-code-branch"></i> ${formatNumber(repo.forks_count)}</span>
+                <span title="Última actualización"><i class="fas fa-clock"></i> ${formatDate(repo.updated_at)}</span>
+              </div>
+            </div>
+            
+            ${repo.description ? `<p class="repo-description">"${repo.description}"</p>` : ''}
+            
+            <div class="tech-stack">
+              <h4><i class="fas fa-tools"></i> Tecnologías utilizadas:</h4>
+              <div class="tech-icons" id="tech-${repo.id}">
+                <span style="color: #94a3b8; font-style: italic;">Cargando tecnologías...</span>
+              </div>
+            </div>
+            
+            <button class="btn-toggle" onclick="loadReadmeForRepo('${repo.name}', '${readmeId}', this)">
+              <i class="fas fa-book-open"></i> Ver README
+            </button>
+            <div id="${readmeId}" class="readme" style="display: none;">
+              <p style="color: #94a3b8;">Cargando README...</p>
+            </div>
+          `;
+          
+          container.appendChild(div);
+          
+          // Cargar tecnologías de forma asíncrona
+          loadTechnologiesForRepo(repo);
+          
+          // Pequeña pausa para animación escalonada
+          await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        
+        // Mostrar información del rate limit
+        const rateLimitInfo = document.createElement('div');
+        rateLimitInfo.style.cssText = 'text-align: center; margin-top: 2rem; padding: 1rem; background: rgba(59, 130, 246, 0.1); border-radius: 0.5rem; font-size: 0.9rem; color: #94a3b8;';
+        rateLimitInfo.innerHTML = `
+          <i class="fas fa-info-circle"></i> 
+          Solicitudes API restantes: ${rateLimitData.rate.remaining}/${rateLimitData.rate.limit} 
+          (se restablece a las ${new Date(rateLimitData.rate.reset * 1000).toLocaleTimeString()})
+        `;
+        container.appendChild(rateLimitInfo);
+        
+      } catch (error) {
+        const loading = document.getElementById("loading");
+        loading.innerHTML = `
+          <div style="color: #ef4444;">
+            <i class="fas fa-exclamation-triangle"></i>
+            <h3>Error al cargar los repositorios</h3>
+            <p>Ha ocurrido un error al conectar con GitHub.</p>
+            <p style="font-size: 0.9rem; margin-top: 1rem; color: #94a3b8;">Error: ${error.message}</p>
+            <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #3b82f6; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">
+              Intentar de nuevo
+            </button>
+          </div>
+        `;
       }
     }
-    
-    // Si no es un proyecto conocido, detectar tecnologías
-    if (additionalTechs.length === 0) {
-      additionalTechs = detectAdditionalTechs(repo.name, repo.description, '');
-    }
-    
-    const githubTechs = Object.keys(languages);
-    const allTechs = [...new Set([...githubTechs, ...additionalTechs])];
-    
-    const techContainer = document.getElementById(`tech-${repo.id}`);
-    if (techContainer && allTechs.length > 0) {
-      const techStack = allTechs.map(tech => createTechIcon(tech)).join('');
-      techContainer.innerHTML = techStack;
-    } else if (techContainer) {
-      techContainer.innerHTML = '<span style="color: #94a3b8; font-style: italic;">No se detectaron tecnologías específicas</span>';
-    }
-  } catch (error) {
-    const techContainer = document.getElementById(`tech-${repo.id}`);
-    if (techContainer) {
-      techContainer.innerHTML = '<span style="color: #ef4444; font-style: italic;">Error al cargar tecnologías</span>';
-    }
-  }
-}
 
-// Función para cargar README bajo demanda
-async function loadReadmeForRepo(repoName, readmeId, button) {
-  const readmeDiv = document.getElementById(readmeId);
-
-  if (readmeDiv.style.display === "none" || readmeDiv.style.display === "") {
-    // Si el README no se ha cargado aún
-    if (readmeDiv.innerHTML.includes('Cargando README...')) {
+    // Función para cargar tecnologías de forma asíncrona
+    async function loadTechnologiesForRepo(repo) {
       try {
-        button.disabled = true;
-        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Cargando...';
+        const languages = await getRepoLanguages(repo.name);
         
-        const readme = await getReadme(repoName);
-        if (readme) {
-          readmeDiv.innerHTML = readme;
-          
-          // Después de cargar el README, intentar detectar más tecnologías
-          const repoElement = button.closest('.repo-card');
-          const repoId = readmeId.replace('readme-', '');
-          const techContainer = document.getElementById(`tech-${repoId}`);
-          
-          if (techContainer) {
-            // Obtener tecnologías actuales
-            const currentTechs = Array.from(techContainer.querySelectorAll('.tech-icon'))
-              .map(el => el.textContent.trim());
-            
-            // Detectar tecnologías adicionales del README
-            const additionalTechs = detectAdditionalTechs(repoName, '', readme);
-            
-            // Filtrar solo las nuevas tecnologías
-            const newTechs = additionalTechs.filter(tech => !currentTechs.includes(tech));
-            
-            // Añadir nuevas tecnologías si se encontraron
-            if (newTechs.length > 0) {
-              const newTechIcons = newTechs.map(tech => createTechIcon(tech)).join('');
-              techContainer.innerHTML += newTechIcons;
-            }
+        // Verificar si es un proyecto conocido primero
+        let additionalTechs = [];
+        const normalizedRepoName = repo.name.toLowerCase().replace(/[-_\s]/g, '');
+        
+        // Buscar coincidencias en proyectos conocidos
+        for (const [projectName, techs] of Object.entries(knownProjects)) {
+          const normalizedProjectName = projectName.toLowerCase().replace(/[-_\s]/g, '');
+          if (normalizedRepoName.includes(normalizedProjectName) || normalizedProjectName.includes(normalizedRepoName)) {
+            additionalTechs = [...techs];
+            break;
           }
-        } else {
-          readmeDiv.innerHTML = '<p style="color: #94a3b8; font-style: italic;"><i class="fas fa-info-circle"></i> No hay README disponible.</p>';
+        }
+        
+        // Si no es un proyecto conocido, detectar tecnologías
+        if (additionalTechs.length === 0) {
+          additionalTechs = detectAdditionalTechs(repo.name, repo.description, '');
+        }
+        
+        const githubTechs = Object.keys(languages);
+        const allTechs = [...new Set([...githubTechs, ...additionalTechs])];
+        
+        const techContainer = document.getElementById(`tech-${repo.id}`);
+        if (techContainer && allTechs.length > 0) {
+          const techStack = allTechs.map(tech => createTechIcon(tech)).join('');
+          techContainer.innerHTML = techStack;
+        } else if (techContainer) {
+          techContainer.innerHTML = '<span style="color: #94a3b8; font-style: italic;">No se detectaron tecnologías específicas</span>';
         }
       } catch (error) {
-        readmeDiv.innerHTML = '<p style="color: #ef4444; font-style: italic;"><i class="fas fa-exclamation-triangle"></i> Error al cargar README.</p>';
-      } finally {
-        button.disabled = false;
-        button.innerHTML = '<i class="fas fa-book"></i> Ocultar README';
+        const techContainer = document.getElementById(`tech-${repo.id}`);
+        if (techContainer) {
+          techContainer.innerHTML = '<span style="color: #ef4444; font-style: italic;">Error al cargar tecnologías</span>';
+        }
       }
     }
-    readmeDiv.style.display = "block";
-    if (!button.disabled) {
-      button.innerHTML = '<i class="fas fa-book"></i> Ocultar README';
+
+    // Función para cargar README bajo demanda
+    async function loadReadmeForRepo(repoName, readmeId, button) {
+      const readmeDiv = document.getElementById(readmeId);
+
+      if (readmeDiv.style.display === "none" || readmeDiv.style.display === "") {
+        // Si el README no se ha cargado aún
+        if (readmeDiv.innerHTML.includes('Cargando README...')) {
+          try {
+            button.disabled = true;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Cargando...';
+            
+            const readme = await getReadme(repoName);
+            if (readme) {
+              readmeDiv.innerHTML = readme;
+              
+              // Después de cargar el README, intentar detectar más tecnologías
+              const repoElement = button.closest('.repo-card');
+              const repoId = readmeId.replace('readme-', '');
+              const techContainer = document.getElementById(`tech-${repoId}`);
+              
+              if (techContainer) {
+                // Obtener tecnologías actuales
+                const currentTechs = Array.from(techContainer.querySelectorAll('.tech-icon'))
+                  .map(el => el.textContent.trim());
+                
+                // Detectar tecnologías adicionales del README
+                const additionalTechs = detectAdditionalTechs(repoName, '', readme);
+                
+                // Filtrar solo las nuevas tecnologías
+                const newTechs = additionalTechs.filter(tech => !currentTechs.includes(tech));
+                
+                // Añadir nuevas tecnologías si se encontraron
+                if (newTechs.length > 0) {
+                  const newTechIcons = newTechs.map(tech => createTechIcon(tech)).join('');
+                  techContainer.innerHTML += newTechIcons;
+                }
+              }
+            } else {
+              readmeDiv.innerHTML = '<p style="color: #94a3b8; font-style: italic;"><i class="fas fa-info-circle"></i> No hay README disponible.</p>';
+            }
+          } catch (error) {
+            readmeDiv.innerHTML = '<p style="color: #ef4444; font-style: italic;"><i class="fas fa-exclamation-triangle"></i> Error al cargar README.</p>';
+          } finally {
+            button.disabled = false;
+            button.innerHTML = '<i class="fas fa-book"></i> Ocultar README';
+          }
+        }
+        readmeDiv.style.display = "block";
+        if (!button.disabled) {
+          button.innerHTML = '<i class="fas fa-book"></i> Ocultar README';
+        }
+      } else {
+        readmeDiv.style.display = "none";
+        button.innerHTML = '<i class="fas fa-book-open"></i> Ver README';
+      }
     }
-  } else {
-    readmeDiv.style.display = "none";
-    button.innerHTML = '<i class="fas fa-book-open"></i> Ver README';
-  }
-}
 
     // Inicializar la página
     document.addEventListener('DOMContentLoaded', () => {

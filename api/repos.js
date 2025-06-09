@@ -12,3 +12,13 @@ export default async function handler(req, res) {
   const data = await response.json();
   res.status(200).json(data);
 }
+
+export default function handler(req, res) {
+  const token = process.env.GITHUB_TOKEN;
+
+  if (!token) {
+    return res.status(500).json({ error: "GITHUB_TOKEN not set" });
+  }
+
+  return res.status(200).json({ message: "Token recibido correctamente (no se muestra por seguridad)" });
+}

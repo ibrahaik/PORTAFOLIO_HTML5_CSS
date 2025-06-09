@@ -657,24 +657,6 @@
 
   <script>
     const username = "ibrahaik";
-    
-    // ⚠️ IMPORTANTE: Para producción, NUNCA expongas tokens en el frontend
-    // Opciones seguras para producción:
-    // 1. Usar variables de entorno del servidor (Vercel, Netlify)
-    // 2. Crear un backend/API proxy que maneje las llamadas a GitHub
-    // 3. Usar GitHub Apps con permisos limitados
-    // 4. Implementar autenticación OAuth para que los usuarios usen sus propios tokens
-    
-    // Para desarrollo/demo únicamente - REMOVER en producción
-    const GITHUB_TOKEN = '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';
-    
-    // Headers para autenticación con GitHub
-    const getAuthHeaders = () => {
-      return {
-        'Authorization': `token ${GITHUB_TOKEN}`,
-        'Accept': 'application/vnd.github.v3+json'
-      };
-    };
 
     // Mapeo extenso de tecnologías a iconos y colores
     const techIcons = {
@@ -1041,8 +1023,6 @@
       'Locust': { icon: 'fas fa-bug', color: '#a1c538' },
       'Postman': { icon: 'fas fa-paper-plane', color: '#ff6c37' },
       'Insomnia': { icon: 'fas fa-moon', color: '#4000bf' },
-      'SoapUI': { icon: 'fas fa-soap',
-      'Insomnia': { icon: 'fas fa-moon', color: '#4000bf' },
       'SoapUI': { icon: 'fas fa-soap', color: '#4dc07c' },
       'Pact': { icon: 'fas fa-handshake', color: '#fff200' },
       'Swagger': { icon: 'fas fa-file-alt', color: '#85ea2d' },
@@ -1090,14 +1070,10 @@
 
     async function getReadme(repo) {
       try {
-        const url = `https://api.github.com/repos/${username}/${repo}/readme`;
-        const res = await fetch(url, {
-          headers: getAuthHeaders()
-        });
+        const res = await fetch(`/api/readme?repo=${repo}`);
         if (!res.ok) return null;
         const data = await res.json();
-        const content = decodeBase64Utf8(data.content);
-        return content;
+        return data.content;
       } catch (error) {
         return null;
       }
@@ -1105,10 +1081,7 @@
 
     async function getRepoLanguages(repo) {
       try {
-        const url = `https://api.github.com/repos/${username}/${repo}/languages`;
-        const res = await fetch(url, {
-          headers: getAuthHeaders()
-        });
+        const res = await fetch(`/api/languages?repo=${repo}`);
         if (!res.ok) return {};
         return await res.json();
       } catch (error) {
@@ -1260,44 +1233,17 @@
 
     async function loadRepos() {
       try {
-        // Verificar límite de API primero
-        const rateLimitRes = await fetch('https://api.github.com/rate_limit', {
-          headers: getAuthHeaders()
-        });
-        const rateLimitData = await rateLimitRes.json();
+        const loading = document.getElementById("loading");
+        const container = document.getElementById("repos");
         
-        console.log('Rate limit info:', rateLimitData);
-        
-        if (rateLimitData.rate.remaining < 10) {
-          const resetTime = new Date(rateLimitData.rate.reset * 1000);
-          const loading = document.getElementById("loading");
-          loading.innerHTML = `
-            <div style="color: #f59e0b;">
-              <i class="fas fa-clock"></i>
-              <h3>Límite de API alcanzado</h3>
-              <p>Se ha alcanzado el límite de solicitudes a la API de GitHub.</p>
-              <p>Se restablecerá a las: <strong>${resetTime.toLocaleTimeString()}</strong></p>
-              <p style="margin-top: 1rem; font-size: 0.9rem;">Solicitudes restantes: ${rateLimitData.rate.remaining}/${rateLimitData.rate.limit}</p>
-              <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #3b82f6; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">
-                Intentar de nuevo
-              </button>
-            </div>
-          `;
-          return;
-        }
-
-        const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=20`, {
-          headers: getAuthHeaders()
-        });
+        // Usar nuestra API segura en lugar de llamar directamente a GitHub
+        const res = await fetch('/api/repos');
         
         if (!res.ok) {
           throw new Error(`HTTP ${res.status}: ${res.statusText}`);
         }
         
         const repos = await res.json();
-        const container = document.getElementById("repos");
-        const loading = document.getElementById("loading");
-        
         loading.style.display = "none";
 
         // Filtrar repositorios fork y ordenar por estrellas y actividad
@@ -1358,15 +1304,14 @@
           await new Promise(resolve => setTimeout(resolve, 100));
         }
         
-        // Mostrar información del rate limit
-        const rateLimitInfo = document.createElement('div');
-        rateLimitInfo.style.cssText = 'text-align: center; margin-top: 2rem; padding: 1rem; background: rgba(59, 130, 246, 0.1); border-radius: 0.5rem; font-size: 0.9rem; color: #94a3b8;';
-        rateLimitInfo.innerHTML = `
-          <i class="fas fa-info-circle"></i> 
-          Solicitudes API restantes: ${rateLimitData.rate.remaining}/${rateLimitData.rate.limit} 
-          (se restablece a las ${new Date(rateLimitData.rate.reset * 1000).toLocaleTimeString()})
+        // Mostrar información de éxito
+        const successInfo = document.createElement('div');
+        successInfo.style.cssText = 'text-align: center; margin-top: 2rem; padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 0.5rem; font-size: 0.9rem; color: #22c55e;';
+        successInfo.innerHTML = `
+          <i class="fas fa-check-circle"></i> 
+          Repositorios cargados exitosamente usando API segura
         `;
-        container.appendChild(rateLimitInfo);
+        container.appendChild(successInfo);
         
       } catch (error) {
         const loading = document.getElementById("loading");
@@ -1374,7 +1319,7 @@
           <div style="color: #ef4444;">
             <i class="fas fa-exclamation-triangle"></i>
             <h3>Error al cargar los repositorios</h3>
-            <p>Ha ocurrido un error al conectar con GitHub.</p>
+            <p>Ha ocurrido un error al conectar con la API.</p>
             <p style="font-size: 0.9rem; margin-top: 1rem; color: #94a3b8;">Error: ${error.message}</p>
             <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #3b82f6; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">
               Intentar de nuevo

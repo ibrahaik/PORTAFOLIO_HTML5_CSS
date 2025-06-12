@@ -275,30 +275,6 @@
       margin: 0 auto;
     }
 
-    .projects-controls {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      margin-bottom: 32px;
-    }
-
-    .show-all-btn {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: var(--transition);
-      display: none;
-    }
-
-    .show-all-btn:hover {
-      background: var(--primary-dark);
-    }
-
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
@@ -320,10 +296,6 @@
       box-shadow: var(--shadow-elevated);
       transform: translateY(-2px);
       border-color: var(--primary);
-    }
-
-    .repo-card.hidden {
-      display: none;
     }
 
     .repo-header {
@@ -574,15 +546,6 @@
       color: var(--on-surface-secondary);
     }
 
-    /* Project count indicator */
-    .projects-count {
-      text-align: center;
-      margin-bottom: 24px;
-      color: var(--on-surface-variant);
-      font-size: 14px;
-      font-weight: 500;
-    }
-
     /* Responsive */
     @media (max-width: 768px) {
       .nav-container {
@@ -808,17 +771,7 @@
     <div class="projects-container">
       <div class="projects-header">
         <h2>Todos mis Proyectos</h2>
-        <p>Explora mi portafolio completo de repositorios públicos y las tecnologías utilizadas en cada uno</p>
-      </div>
-      
-      <div class="projects-count" id="projectsCount" style="display: none;">
-        Mostrando <span id="visibleCount">0</span> de <span id="totalCount">0</span> proyectos
-      </div>
-
-      <div class="projects-controls">
-        <button class="show-all-btn" id="showAllBtn" onclick="toggleShowAll()">
-          <i class="fas fa-eye"></i> Mostrar todos los proyectos
-        </button>
+        <p>Mi portafolio completo de repositorios públicos y las tecnologías utilizadas en cada uno</p>
       </div>
       
       <div class="loading" id="loading">
@@ -853,9 +806,6 @@
 
   <script>
     const username = "ibrahaik";
-    let allRepos = [];
-    let showingAll = false;
-    const INITIAL_DISPLAY = 8;
 
     const techIcons = {
       'JavaScript': { icon: 'fab fa-js-square', color: '#f7df1e' },
@@ -1004,48 +954,6 @@
       }
     }
 
-    function updateProjectsCount() {
-      const totalCount = allRepos.length;
-      const visibleCount = showingAll ? totalCount : Math.min(INITIAL_DISPLAY, totalCount);
-      
-      document.getElementById('totalCount').textContent = totalCount;
-      document.getElementById('visibleCount').textContent = visibleCount;
-      document.getElementById('projectsCount').style.display = totalCount > 0 ? 'block' : 'none';
-      
-      const showAllBtn = document.getElementById('showAllBtn');
-      if (totalCount > INITIAL_DISPLAY) {
-        showAllBtn.style.display = 'block';
-        showAllBtn.innerHTML = showingAll 
-          ? '<i class="fas fa-eye-slash"></i> Mostrar menos proyectos'
-          : `<i class="fas fa-eye"></i> Mostrar todos los proyectos (${totalCount - INITIAL_DISPLAY} más)`;
-      } else {
-        showAllBtn.style.display = 'none';
-      }
-    }
-
-    function toggleShowAll() {
-      showingAll = !showingAll;
-      const cards = document.querySelectorAll('.repo-card');
-      
-      cards.forEach((card, index) => {
-        if (showingAll || index < INITIAL_DISPLAY) {
-          card.classList.remove('hidden');
-        } else {
-          card.classList.add('hidden');
-        }
-      });
-      
-      updateProjectsCount();
-      
-      // Scroll suave al botón si se está mostrando menos
-      if (!showingAll) {
-        document.getElementById('showAllBtn').scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'center' 
-        });
-      }
-    }
-
     async function loadRepos() {
       try {
         const loading = document.getElementById("loading");
@@ -1065,7 +973,7 @@
         const repos = await res.json();
         loading.style.display = "none";
 
-        allRepos = repos
+        const filteredRepos = repos
           .filter(repo => !repo.fork)
           .sort((a, b) => {
             if (b.stargazers_count !== a.stargazers_count) {
@@ -1074,12 +982,12 @@
             return new Date(b.updated_at) - new Date(a.updated_at);
           });
 
-        for (let i = 0; i < allRepos.length; i++) {
-          const repo = allRepos[i];
+        for (let i = 0; i < filteredRepos.length; i++) {
+          const repo = filteredRepos[i];
           
           const div = document.createElement("div");
-          div.className = `repo-card fade-in ${i >= INITIAL_DISPLAY ? 'hidden' : ''}`;
-          div.style.animationDelay = `${(i % INITIAL_DISPLAY) * 0.1}s`;
+          div.className = "repo-card fade-in";
+          div.style.animationDelay = `${i * 0.1}s`;
           const readmeId = `readme-${repo.id}`;
           
           div.innerHTML = `
@@ -1116,8 +1024,6 @@
           
           await new Promise(resolve => setTimeout(resolve, 30));
         }
-        
-        updateProjectsCount();
         
       } catch (error) {
         console.error('Error loading repos:', error);
@@ -1254,7 +1160,6 @@
 
     // Global functions
     window.loadReadmeForRepo = loadReadmeForRepo;
-    window.toggleShowAll = toggleShowAll;
   </script>
 </body>
 </html>

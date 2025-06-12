@@ -3,19 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ibrahim Haik - Full Stack Developer | Portfolio Premium</title>
+  <title>Ibrahim Haik - Full Stack Developer | Portfolio</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-      --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-      --glass-bg: rgba(255, 255, 255, 0.05);
-      --glass-border: rgba(255, 255, 255, 0.1);
-      --text-primary: #ffffff;
-      --text-secondary: #e2e8f0;
-      --text-muted: #94a3b8;
+      --primary-color: #2563eb;
+      --primary-light: #3b82f6;
+      --secondary-color: #64748b;
+      --accent-color: #0ea5e9;
+      --text-primary: #1e293b;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --bg-tertiary: #f1f5f9;
+      --border-color: #e2e8f0;
+      --border-light: #f1f5f9;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
     }
 
     * {
@@ -26,648 +34,318 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background: #0a0a0f;
+      background: var(--bg-primary);
       color: var(--text-primary);
-      min-height: 100vh;
       line-height: 1.6;
       overflow-x: hidden;
-      position: relative;
-    }
-
-    /* Fondo animado mejorado */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.4) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.4) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 60% 70%, rgba(255, 165, 0, 0.2) 0%, transparent 50%);
-      animation: backgroundShift 25s ease-in-out infinite;
-      z-index: -2;
-    }
-
-    body::after {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.08"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E') repeat;
-      z-index: -1;
-    }
-
-    @keyframes backgroundShift {
-      0%, 100% { 
-        transform: scale(1) rotate(0deg);
-        filter: hue-rotate(0deg);
-      }
-      25% { 
-        transform: scale(1.1) rotate(90deg);
-        filter: hue-rotate(90deg);
-      }
-      50% { 
-        transform: scale(1.2) rotate(180deg);
-        filter: hue-rotate(180deg);
-      }
-      75% { 
-        transform: scale(1.1) rotate(270deg);
-        filter: hue-rotate(270deg);
-      }
     }
 
     .container {
-      max-width: 1400px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 2rem;
-      position: relative;
-      z-index: 1;
     }
 
-    /* Partículas flotantes mejoradas */
-    .particles {
+    /* Navegación */
+    .nav {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .particle {
-      position: absolute;
-      border-radius: 50%;
-      background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #06b6d4);
-      background-size: 400% 400%;
-      animation: float 8s ease-in-out infinite, gradientShift 4s ease-in-out infinite;
-    }
-
-    .particle:nth-child(odd) {
-      animation-direction: reverse;
-    }
-
-    @keyframes float {
-      0%, 100% { 
-        transform: translateY(0px) translateX(0px) rotate(0deg); 
-        opacity: 0; 
-        scale: 0;
-      }
-      25% { 
-        opacity: 0.3; 
-        scale: 0.5;
-      }
-      50% { 
-        transform: translateY(-120px) translateX(50px) rotate(180deg); 
-        opacity: 1; 
-        scale: 1;
-      }
-      75% { 
-        opacity: 0.7; 
-        scale: 0.8;
-      }
-    }
-
-    @keyframes gradientShift {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-
-    /* Navegación flotante */
-    .nav-floating {
-      position: fixed;
-      top: 2rem;
-      right: 2rem;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
       z-index: 1000;
-      display: flex;
-      gap: 1rem;
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      border-radius: 2rem;
-      padding: 1rem;
-      animation: slideInFromRight 1s ease-out;
-    }
-
-    .nav-floating a {
-      color: var(--text-muted);
-      text-decoration: none;
-      padding: 0.5rem 1rem;
-      border-radius: 1rem;
       transition: all 0.3s ease;
-      font-weight: 500;
     }
 
-    .nav-floating a:hover {
-      color: var(--text-primary);
-      background: var(--glass-bg);
-      transform: translateY(-2px);
-    }
-
-    @keyframes slideInFromRight {
-      from { transform: translateX(100px); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-
-    /* Hero Section Premium */
-    .hero {
-      min-height: 100vh;
+    .nav-container {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
+      padding: 1rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+      background: var(--bg-tertiary);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 8rem 0 6rem;
+      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
       text-align: center;
-      padding: 6rem 0;
-      position: relative;
-      overflow: hidden;
-      z-index: 10;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: conic-gradient(from 0deg, transparent, rgba(59, 130, 246, 0.1), transparent, rgba(147, 51, 234, 0.1), transparent);
-      animation: rotate 30s linear infinite;
-      z-index: -1;
-    }
-
-    @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
     }
 
     .hero-avatar {
-      width: 150px;
-      height: 150px;
+      width: 120px;
+      height: 120px;
       margin: 0 auto 2rem;
-      position: relative;
-      animation: avatarFloat 6s ease-in-out infinite;
-      z-index: 15;
-    }
-
-    .hero-avatar::before {
-      content: '';
-      position: absolute;
-      inset: -4px;
       border-radius: 50%;
-      background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #06b6d4, #3b82f6);
-      background-size: 300% 300%;
-      animation: gradientRotate 4s ease-in-out infinite;
-      z-index: -1;
-    }
-
-    .hero-avatar-inner {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Orbitron', monospace;
-      font-size: 3rem;
-      font-weight: 900;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-avatar-inner::before {
-      content: 'IH';
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      animation: textGlow 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes avatarFloat {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(180deg); }
-    }
-
-    @keyframes gradientRotate {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-
-    @keyframes textGlow {
-      from { filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.5)); }
-      to { filter: drop-shadow(0 0 40px rgba(139, 92, 246, 0.8)); }
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: white;
+      box-shadow: var(--shadow-lg);
     }
 
     .hero h1 {
-      font-size: clamp(3rem, 8vw, 6rem);
-      font-weight: 900;
-      font-family: 'Orbitron', monospace;
-      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 25%, #ec4899 50%, #06b6d4 75%, #3b82f6 100%);
-      background-size: 300% 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      color: var(--text-primary);
       margin-bottom: 1rem;
-      animation: gradientShift 4s ease-in-out infinite, textPulse 2s ease-in-out infinite alternate;
-      position: relative;
-      letter-spacing: -0.02em;
-      z-index: 15;
-    }
-
-    @keyframes textPulse {
-      from { transform: scale(1); }
-      to { transform: scale(1.02); }
     }
 
     .hero .subtitle {
-      font-size: clamp(1.2rem, 4vw, 2rem);
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
       color: var(--text-secondary);
       margin-bottom: 2rem;
-      font-weight: 300;
-      animation: fadeInUp 1s ease-out 0.5s both;
-      letter-spacing: 0.05em;
-      position: relative;
-      z-index: 15;
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      font-weight: 400;
     }
 
     .hero .description {
-      max-width: 900px;
+      max-width: 800px;
       margin: 0 auto 3rem;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color: var(--text-secondary);
-      line-height: 1.8;
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      padding: 3rem;
-      border-radius: 2rem;
-      border: 1px solid var(--glass-border);
-      box-shadow: 
-        0 25px 50px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      animation: fadeInUp 1s ease-out 1s both;
-      position: relative;
-      overflow: hidden;
-      z-index: 15;
+      line-height: 1.7;
+      background: var(--bg-primary);
+      padding: 2.5rem;
+      border-radius: 1rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
     }
 
-    .hero .description::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-      animation: shimmer 3s ease-in-out infinite;
-    }
-
-    @keyframes shimmer {
-      0% { left: -100%; }
-      100% { left: 100%; }
-    }
-
-    /* Botones de acción premium */
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 1.5rem;
+      gap: 1rem;
       margin-bottom: 3rem;
-      animation: fadeInUp 1s ease-out 1.2s both;
-      position: relative;
-      z-index: 20;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 2rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      background: var(--primary-color);
       color: white;
-      border: none;
-      padding: 1rem 2.5rem;
-      border-radius: 2rem;
-      font-weight: 600;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
-      z-index: 25;
-    }
-
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      transition: left 0.6s;
-    }
-
-    .btn-primary:hover::before {
-      left: 100%;
+      box-shadow: var(--shadow-md);
     }
 
     .btn-primary:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.5);
-      z-index: 30;
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
     }
 
     .btn-secondary {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      color: white;
-      border: 1px solid var(--glass-border);
-      padding: 1rem 2.5rem;
-      border-radius: 2rem;
-      font-weight: 600;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: all 0.4s ease;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      position: relative;
-      z-index: 25;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      border: 2px solid var(--border-color);
     }
 
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-      transform: translateY(-3px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-      z-index: 30;
-    }
-
-    /* Scroll indicator */
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      animation: bounce 2s infinite;
-      color: var(--text-muted);
-      z-index: 15;
-    }
-
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-      40% { transform: translateX(-50%) translateY(-10px); }
-      60% { transform: translateX(-50%) translateY(-5px); }
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+      transform: translateY(-2px);
     }
 
     /* Stats Section */
     .stats-section {
-      padding: 6rem 0;
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.5) 0%, rgba(30, 41, 59, 0.5) 100%);
-      backdrop-filter: blur(20px);
-      border-top: 1px solid var(--glass-border);
-      border-bottom: 1px solid var(--glass-border);
-      position: relative;
-      z-index: 5;
+      padding: 4rem 0;
+      background: var(--bg-secondary);
     }
 
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
-      margin-top: 3rem;
     }
 
     .stat-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      border-radius: 1.5rem;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 1rem;
       padding: 2rem;
       text-align: center;
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899, #06b6d4);
-      background-size: 300% 100%;
-      animation: gradientMove 3s ease-in-out infinite;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-sm);
     }
 
     .stat-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 30px 60px rgba(59, 130, 246, 0.3);
-      border-color: rgba(59, 130, 246, 0.6);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary-color);
     }
 
     .stat-icon {
-      font-size: 3rem;
+      font-size: 2.5rem;
       margin-bottom: 1rem;
       display: block;
     }
 
     .stat-number {
-      font-size: 3rem;
-      font-weight: 900;
-      color: var(--text-primary);
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--primary-color);
       margin-bottom: 0.5rem;
-      font-family: 'Orbitron', monospace;
     }
 
     .stat-label {
-      color: var(--text-muted);
+      color: var(--text-secondary);
       font-size: 1rem;
       font-weight: 500;
     }
 
-    /* Projects Section mejorada */
+    /* Projects Section */
+    .projects-section {
+      padding: 6rem 0;
+      background: var(--bg-primary);
+    }
+
     .projects-header {
       text-align: center;
       margin-bottom: 4rem;
-      padding: 4rem 0;
-      position: relative;
-      z-index: 5;
     }
 
     .projects-header h2 {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 900;
-      font-family: 'Orbitron', monospace;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
       color: var(--text-primary);
       margin-bottom: 1rem;
-      background: linear-gradient(135deg, #f1f5f9 0%, #3b82f6 50%, #8b5cf6 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: gradientShift 4s ease-in-out infinite;
     }
 
     .projects-header p {
-      font-size: 1.3rem;
-      color: var(--text-muted);
+      font-size: 1.2rem;
+      color: var(--text-secondary);
       max-width: 600px;
       margin: 0 auto;
     }
 
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-      gap: 2.5rem;
-      margin-bottom: 4rem;
-      position: relative;
-      z-index: 5;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
     }
 
     .repo-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      border-radius: 2rem;
-      padding: 2.5rem;
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 1rem;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-sm);
       position: relative;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-
-    .repo-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899, #06b6d4);
-      background-size: 300% 100%;
-      animation: gradientMove 3s ease-in-out infinite;
-    }
-
-    .repo-card::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      border-radius: 2rem;
-      pointer-events: none;
-    }
-
-    .repo-card:hover::after {
-      opacity: 1;
     }
 
     .repo-card:hover {
-      transform: translateY(-15px) scale(1.02);
-      box-shadow: 0 40px 80px rgba(59, 130, 246, 0.4);
-      border-color: rgba(59, 130, 246, 0.6);
-    }
-
-    @keyframes gradientMove {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--primary-color);
     }
 
     .repo-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 1.5rem;
-      position: relative;
-      z-index: 2;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
 
     .repo-title {
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       font-weight: 700;
       color: var(--text-primary);
       text-decoration: none;
-      transition: all 0.3s ease;
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      transition: color 0.3s ease;
     }
 
     .repo-title:hover {
-      color: #3b82f6;
-      transform: scale(1.05);
+      color: var(--primary-color);
     }
 
     .repo-stats {
       display: flex;
-      gap: 1.5rem;
-      font-size: 0.95rem;
+      gap: 1rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
-      font-weight: 500;
+      flex-wrap: wrap;
     }
 
     .repo-stats span {
       display: flex;
       align-items: center;
       gap: 0.3rem;
-      transition: color 0.3s ease;
-      padding: 0.3rem 0.6rem;
-      border-radius: 0.5rem;
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .repo-stats span:hover {
-      color: #3b82f6;
-      background: rgba(59, 130, 246, 0.1);
+      padding: 0.25rem 0.5rem;
+      background: var(--bg-tertiary);
+      border-radius: 0.375rem;
+      font-weight: 500;
     }
 
     .repo-description {
       color: var(--text-secondary);
-      margin-bottom: 2rem;
-      font-style: italic;
-      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
       line-height: 1.6;
-      position: relative;
-      z-index: 2;
       padding: 1rem;
-      background: rgba(255, 255, 255, 0.02);
-      border-radius: 1rem;
-      border-left: 4px solid rgba(59, 130, 246, 0.5);
+      background: var(--bg-secondary);
+      border-radius: 0.5rem;
+      border-left: 4px solid var(--primary-color);
     }
 
     .tech-stack {
-      margin-bottom: 2rem;
-      position: relative;
-      z-index: 2;
+      margin-bottom: 1.5rem;
     }
 
     .tech-stack h4 {
       color: var(--text-primary);
-      margin-bottom: 1rem;
-      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
       font-weight: 600;
       display: flex;
       align-items: center;
@@ -677,153 +355,105 @@
     .tech-icons {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.8rem;
+      gap: 0.5rem;
     }
 
     .tech-icon {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
-      background: var(--glass-bg);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--glass-border);
-      padding: 0.6rem 1rem;
-      border-radius: 1rem;
-      font-size: 0.9rem;
+      gap: 0.5rem;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
       color: var(--text-secondary);
       font-weight: 500;
       transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .tech-icon::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-      transition: left 0.5s;
-    }
-
-    .tech-icon:hover::before {
-      left: 100%;
     }
 
     .tech-icon:hover {
-      background: rgba(59, 130, 246, 0.2);
-      transform: translateY(-2px) scale(1.05);
-      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
-      border-color: rgba(59, 130, 246, 0.6);
+      background: var(--primary-color);
+      color: white;
+      transform: translateY(-1px);
     }
 
     .btn-toggle {
-      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+      background: var(--primary-color);
       color: white;
       border: none;
-      padding: 1rem 2rem;
-      border-radius: 1rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
       cursor: pointer;
       font-weight: 600;
-      font-size: 1rem;
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-      z-index: 2;
-      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
       width: 100%;
-    }
-
-    .btn-toggle::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      transition: left 0.6s;
-    }
-
-    .btn-toggle:hover::before {
-      left: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
     }
 
     .btn-toggle:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.5);
+      background: var(--primary-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-toggle:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
     }
 
     .readme {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      border-radius: 1rem;
-      padding: 2rem;
-      margin-top: 1.5rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      margin-top: 1rem;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.9rem;
+      font-size: 0.875rem;
       color: var(--text-secondary);
       white-space: pre-wrap;
       display: none;
-      max-height: 500px;
+      max-height: 400px;
       overflow-y: auto;
-      box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
-      position: relative;
-      z-index: 2;
     }
 
     .readme::-webkit-scrollbar {
-      width: 10px;
+      width: 8px;
     }
 
     .readme::-webkit-scrollbar-track {
-      background: rgba(15, 23, 42, 0.5);
-      border-radius: 5px;
+      background: var(--bg-tertiary);
+      border-radius: 4px;
     }
 
     .readme::-webkit-scrollbar-thumb {
-      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-      border-radius: 5px;
+      background: var(--secondary-color);
+      border-radius: 4px;
     }
 
     .readme::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      background: var(--primary-color);
     }
 
-    /* Loading mejorado */
+    /* Loading */
     .loading {
       text-align: center;
       padding: 4rem;
       color: var(--text-muted);
-      position: relative;
-      z-index: 5;
     }
 
     .spinner {
-      border: 4px solid rgba(59, 130, 246, 0.3);
+      border: 3px solid var(--border-color);
       border-radius: 50%;
-      border-top: 4px solid #3b82f6;
-      width: 60px;
-      height: 60px;
+      border-top: 3px solid var(--primary-color);
+      width: 40px;
+      height: 40px;
       animation: spin 1s linear infinite;
-      margin: 0 auto 2rem;
-      position: relative;
-    }
-
-    .spinner::after {
-      content: '';
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      right: 2px;
-      bottom: 2px;
-      border-radius: 50%;
-      border: 2px solid transparent;
-      border-top: 2px solid #8b5cf6;
-      animation: spin 0.8s linear infinite reverse;
+      margin: 0 auto 1rem;
     }
 
     @keyframes spin {
@@ -831,116 +461,75 @@
       100% { transform: rotate(360deg); }
     }
 
+    /* Footer */
     .footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      padding: 4rem 0;
       text-align: center;
-      padding: 6rem 0;
-      border-top: 1px solid var(--glass-border);
-      margin-top: 5rem;
-      color: var(--text-muted);
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.8) 100%);
-      backdrop-filter: blur(20px);
-      position: relative;
-      z-index: 5;
     }
 
-    .footer::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), transparent);
+    .footer h2 {
+      color: var(--text-primary);
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      font-weight: 700;
     }
 
     .social-links {
       display: flex;
       justify-content: center;
-      gap: 2rem;
-      margin-bottom: 3rem;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
     }
 
     .social-links a {
       color: var(--text-muted);
-      font-size: 2rem;
-      transition: all 0.4s ease;
-      padding: 1.5rem;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+      padding: 1rem;
       border-radius: 50%;
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .social-links a::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(147, 51, 234, 0.2));
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      border-radius: 50%;
-    }
-
-    .social-links a:hover::before {
-      opacity: 1;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .social-links a:hover {
-      color: #3b82f6;
-      transform: translateY(-10px) scale(1.1);
-      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.4);
-      background: rgba(59, 130, 246, 0.1);
+      color: var(--primary-color);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-color);
     }
 
     .footer-text {
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
+      color: var(--text-secondary);
+      font-size: 1rem;
     }
 
-    .footer-subtext {
-      font-size: 0.9rem;
-      opacity: 0.7;
-    }
-
+    /* Responsive */
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.8rem;
-      }
-      
-      .hero .subtitle {
-        font-size: 1.4rem;
-      }
-      
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-      
       .container {
         padding: 0 1rem;
       }
-      
-      .repo-card {
+
+      .nav-container {
+        padding: 1rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .hero {
+        padding: 6rem 0 4rem;
+      }
+
+      .hero .description {
         padding: 2rem;
-      }
-      
-      .tech-icons {
-        gap: 0.6rem;
-      }
-
-      .tech-icon {
-        padding: 0.5rem 0.8rem;
-        font-size: 0.85rem;
-      }
-
-      .nav-floating {
-        top: 1rem;
-        right: 1rem;
-        padding: 0.8rem;
       }
 
       .hero-actions {
@@ -948,40 +537,59 @@
         align-items: center;
       }
 
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .repo-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .repo-stats {
+        gap: 0.5rem;
+      }
+
+      .tech-icons {
+        gap: 0.375rem;
+      }
+
+      .tech-icon {
+        padding: 0.375rem 0.5rem;
+        font-size: 0.8rem;
       }
 
       .social-links {
-        gap: 1.5rem;
+        gap: 1rem;
       }
 
       .social-links a {
-        padding: 1rem;
-        font-size: 1.5rem;
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
       }
     }
 
+    /* Animaciones suaves */
     .fade-in {
       opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 0.8s ease-out forwards;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease-out forwards;
     }
 
-    .fade-in-delay-1 { animation-delay: 0.2s; }
-    .fade-in-delay-2 { animation-delay: 0.4s; }
-    .fade-in-delay-3 { animation-delay: 0.6s; }
-    .fade-in-delay-4 { animation-delay: 0.8s; }
+    .fade-in-delay-1 { animation-delay: 0.1s; }
+    .fade-in-delay-2 { animation-delay: 0.2s; }
+    .fade-in-delay-3 { animation-delay: 0.3s; }
+    .fade-in-delay-4 { animation-delay: 0.4s; }
 
-    .hover-glow:hover {
-      filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.5));
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .hover-scale:hover {
-      transform: scale(1.05);
-    }
-
+    /* Accesibilidad */
     @media (prefers-reduced-motion: reduce) {
       *,
       *::before,
@@ -994,12 +602,12 @@
 
     button:focus,
     a:focus {
-      outline: 2px solid #3b82f6;
+      outline: 2px solid var(--primary-color);
       outline-offset: 2px;
     }
   </style>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-D5B2DZM7WH"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D5B2DZM7WH"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -1008,46 +616,45 @@
   </script>
 </head>
 <body>
-  <nav class="nav-floating">
-    <a href="#home">Inicio</a>
-    <a href="#projects">Proyectos</a>
-    <a href="#contact">Contacto</a>
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">IH</a>
+      <ul class="nav-links">
+        <li><a href="#home">Inicio</a></li>
+        <li><a href="#projects">Proyectos</a></li>
+        <li><a href="#contact">Contacto</a></li>
+      </ul>
+    </div>
   </nav>
-
-  <div class="particles" id="particles"></div>
 
   <section class="hero" id="home">
     <div class="container">
-      <div class="hero-avatar">
-        <div class="hero-avatar-inner"></div>
+      <div class="hero-avatar fade-in">
+        IH
       </div>
       
-      <h1 class="fade-in">Ibrahim Haik</h1>
-      <p class="subtitle fade-in-delay-1">Full Stack Developer & Freelancer</p>
+      <h1 class="fade-in-delay-1">Ibrahim Haik</h1>
+      <p class="subtitle fade-in-delay-2">Full Stack Developer & Freelancer</p>
       
-      <div class="description fade-in-delay-2">
-        <p>Soy desarrollador Full Stack titulado en <strong>Desarrollo de Aplicaciones Multiplataforma (DAM)</strong>, con base en <strong>Sistemas Microinformáticos y Redes</strong>. Me gusta trabajar sobre todo el backend, donde me siento más cómodo y productivo.</p>
+      <div class="description fade-in-delay-3">
+        <p>Soy desarrollador Full Stack titulado en <strong>Desarrollo de Aplicaciones Multiplataforma (DAM)</strong>, con base en <strong>Sistemas Microinformáticos y Redes</strong>. Me especializo principalmente en backend, donde me siento más cómodo y productivo.</p>
         <br>
-        <p>He desarrollado todo tipo de proyectos: apps móviles, programas de escritorio y algunas webs. Uno de los más completos fue <strong>Golden Bulk</strong>, una app que hice desde cero y puedes ver en mi portafolio.</p>
+        <p>He desarrollado todo tipo de proyectos: aplicaciones móviles, programas de escritorio y aplicaciones web. Uno de los más completos fue <strong>Golden Bulk</strong>, una aplicación que desarrollé desde cero y que puedes ver en mi portafolio.</p>
         <br>
-        <p>Trabajo con tecnologías como <strong>Java, Node.js, React, PostgreSQL, MongoDB, Linux, Express y React Native</strong>. Me gusta escribir código limpio, modular y bien organizado. He trabajado tanto por mi cuenta como en equipo, y siempre intento seguir aprendiendo y mejorando.</p>
+        <p>Trabajo con tecnologías como <strong>Java, Node.js, React, PostgreSQL, MongoDB, Linux, Express y React Native</strong>. Me enfoco en escribir código limpio, modular y bien organizado. He trabajado tanto de forma independiente como en equipo, siempre buscando aprender y mejorar continuamente.</p>
         <br>
-        <p>Estoy buscando incorporarme a proyectos reales cuanto antes, especialmente en desarrollo backend, donde creo que más puedo aportar.</p>
+        <p>Estoy buscando incorporarme a proyectos reales cuanto antes, especialmente en desarrollo backend, donde creo que puedo aportar más valor.</p>
       </div>
 
-      <div class="hero-actions fade-in-delay-3">
-        <a href="./assets/Ibrahim_Haik_CV.pdf" class="btn-primary">
+      <div class="hero-actions fade-in-delay-4">
+        <a href="./assets/Ibrahim_Haik_CV.pdf" class="btn btn-primary">
           <i class="fas fa-download"></i>
           Descargar CV
         </a>
-        <a href="#projects" class="btn-secondary">
+        <a href="#projects" class="btn btn-secondary">
           <i class="fas fa-eye"></i>
           Ver Proyectos
         </a>
-      </div>
-
-      <div class="scroll-indicator">
-        <i class="fas fa-chevron-down"></i>
       </div>
     </div>
   </section>
@@ -1079,39 +686,39 @@
     </div>
   </section>
 
-  <section class="container" id="projects">
-    <div class="projects-header">
-      <h2>Mis Proyectos</h2>
-      <p>A continuación os muestro algunos de mis repositorios públicos </p>
+  <section class="projects-section" id="projects">
+    <div class="container">
+      <div class="projects-header">
+        <h2>Mis Proyectos</h2>
+        <p>A continuación te muestro algunos de mis repositorios públicos más destacados</p>
+      </div>
+      
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Cargando proyectos...</p>
+      </div>
+      
+      <div class="projects-grid" id="repos"></div>
     </div>
-    
-    <div class="loading" id="loading">
-      <div class="spinner"></div>
-      <p>Cargando proyectos increíbles...</p>
-    </div>
-    
-    <div class="projects-grid" id="repos"></div>
   </section>
 
   <footer class="footer" id="contact">
     <div class="container">
-      <h2 style="margin-bottom: 2rem; background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-        ¿Te interesa mi perfil?
-      </h2>
+      <h2>¿Te interesa mi perfil?</h2>
       
       <div class="social-links">
-        <a href="https://github.com/ibrahaik" target="_blank" title="GitHub" class="hover-glow">
+        <a href="https://github.com/ibrahaik" target="_blank" title="GitHub">
           <i class="fab fa-github"></i>
         </a>
-        <a href="https://www.linkedin.com/in/ibrahim-haik-a12654226/" target="_blank" title="LinkedIn" class="hover-glow">
+        <a href="https://www.linkedin.com/in/ibrahim-haik-a12654226/" target="_blank" title="LinkedIn">
           <i class="fab fa-linkedin"></i>
         </a>
-        <a href="mailto:ibrahimelhaouzihaik@gmail.com" title="Email" class="hover-glow">
+        <a href="mailto:ibrahimelhaouzihaik@gmail.com" title="Email">
           <i class="fas fa-envelope"></i>
         </a>
       </div>
       
-  
+      <p class="footer-text">© 2024 Ibrahim Haik. Todos los derechos reservados.</p>
     </div>
   </footer>
 
@@ -1152,31 +759,15 @@
       'Vercel': { icon: 'fas fa-triangle', color: '#000000' },
       'Netlify': { icon: 'fas fa-globe', color: '#00c7b7' },
       'Heroku': { icon: 'fas fa-cloud', color: '#430098' },
+      'Java': { icon: 'fab fa-java', color: '#f89820' },
     };
 
     const knownProjects = {
-      'GOLDEN_BULK_BACKEND': ['Node.js', 'Express', 'PostgreSQL', 'Firebase', 'Cloudinary', 'React Native', 'JavaScript'],
-      'GOLDEN_BULK_FRONTEND': ['Node.js', 'Express', 'PostgreSQL', 'Firebase', 'Cloudinary', 'React Native', 'JavaScript'],
+      'GOLDEN_BULK_BACKEND': ['Node.js', 'Express', 'PostgreSQL', 'Firebase', 'Cloudinary', 'JavaScript'],
+      'GOLDEN_BULK_FRONTEND': ['React Native', 'JavaScript', 'Firebase'],
       'golden_bulk': ['Node.js', 'Express', 'PostgreSQL', 'Firebase', 'Cloudinary', 'React Native', 'JavaScript'],
       'GoldenBulk': ['Node.js', 'Express', 'PostgreSQL', 'Firebase', 'Cloudinary', 'React Native', 'JavaScript'],
     };
-
-    function createParticles() {
-      const particlesContainer = document.getElementById('particles');
-      if (!particlesContainer) return;
-      
-      for (let i = 0; i < 60; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = Math.random() * 100 + '%';
-        particle.style.width = Math.random() * 6 + 2 + 'px';
-        particle.style.height = particle.style.width;
-        particle.style.animationDelay = Math.random() * 8 + 's';
-        particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
-        particlesContainer.appendChild(particle);
-      }
-    }
 
     async function getReadme(repo) {
       try {
@@ -1239,6 +830,7 @@
         'vercel': 'Vercel',
         'netlify': 'Netlify',
         'heroku': 'Heroku',
+        'java': 'Java',
       };
 
       Object.entries(techKeywords).forEach(([keyword, tech]) => {
@@ -1252,7 +844,7 @@
 
     function createTechIcon(tech) {
       const techInfo = techIcons[tech] || { icon: 'fas fa-code', color: '#6b7280' };
-      return `<span class="tech-icon" style="border-color: ${techInfo.color}33; background: linear-gradient(135deg, ${techInfo.color}15, ${techInfo.color}25);">
+      return `<span class="tech-icon" style="border-color: ${techInfo.color}33;">
         <i class="${techInfo.icon}" style="color: ${techInfo.color};"></i> 
         ${tech}
       </span>`;
@@ -1312,7 +904,7 @@
           
           div.innerHTML = `
             <div class="repo-header">
-              <a href="${repo.html_url}" target="_blank" class="repo-title hover-scale">
+              <a href="${repo.html_url}" target="_blank" class="repo-title">
                 <i class="fab fa-github"></i> ${repo.name}
               </a>
               <div class="repo-stats">
@@ -1322,12 +914,12 @@
               </div>
             </div>
             
-            ${repo.description ? `<p class="repo-description">"${repo.description}"</p>` : ''}
+            ${repo.description ? `<p class="repo-description">${repo.description}</p>` : ''}
             
             <div class="tech-stack">
               <h4><i class="fas fa-tools"></i> Tecnologías utilizadas:</h4>
               <div class="tech-icons" id="tech-${repo.id}">
-                <span style="color: #94a3b8; font-style: italic;">Cargando tecnologías...</span>
+                <span style="color: #64748b; font-style: italic;">Cargando tecnologías...</span>
               </div>
             </div>
             
@@ -1335,7 +927,7 @@
               <i class="fas fa-book-open"></i> Ver README
             </button>
             <div id="${readmeId}" class="readme" style="display: none;">
-              <p style="color: #94a3b8;">Cargando README...</p>
+              <p style="color: #64748b;">Cargando README...</p>
             </div>
           `;
           
@@ -1343,35 +935,20 @@
           
           loadTechnologiesForRepo(repo);
           
-          await new Promise(resolve => setTimeout(resolve, 100));
+          await new Promise(resolve => setTimeout(resolve, 50));
         }
-        
-        const successInfo = document.createElement('div');
-        successInfo.style.cssText = `
-          text-align: center; 
-          margin-top: 3rem; 
-          padding: 2rem; 
-          background: var(--glass-bg); 
-          backdrop-filter: blur(20px);
-          border-radius: 1rem; 
-          font-size: 1rem; 
-          color: #22c55e;
-          border: 1px solid rgba(34, 197, 94, 0.3);
-        `;
-        
         
       } catch (error) {
         console.error('Error loading repos:', error);
         const loading = document.getElementById("loading");
         if (loading) {
           loading.innerHTML = `
-            <div style="color: #ef4444; background: var(--glass-bg); backdrop-filter: blur(20px); border-radius: 1rem; padding: 2rem; border: 1px solid rgba(239, 68, 68, 0.3);">
-              <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+            <div style="color: #ef4444; background: var(--bg-primary); border-radius: 1rem; padding: 2rem; border: 1px solid #fecaca; text-align: center;">
+              <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 1rem;"></i>
               <h3>Error al cargar los repositorios</h3>
-              <p>Ha ocurrido un error al conectar con la API.</p>
-              
-              <p style="font-size: 0.9rem; margin-top: 1rem; color: #94a3b8;">Error: ${error.message}</p>
-              <button onclick="location.reload()" class="btn-primary" style="margin-top: 1rem;">
+              <p>Ha ocurrido un error al conectar con la API de GitHub.</p>
+              <p style="font-size: 0.9rem; margin-top: 1rem; color: #64748b;">Error: ${error.message}</p>
+              <button onclick="location.reload()" class="btn btn-primary" style="margin-top: 1rem;">
                 <i class="fas fa-redo"></i> Intentar de nuevo
               </button>
             </div>
@@ -1395,7 +972,6 @@
           }
         }
         
-        // Si no es un proyecto conocido, detectar tecnologías
         if (additionalTechs.length === 0) {
           additionalTechs = detectAdditionalTechs(repo.name, repo.description, '');
         }
@@ -1408,7 +984,7 @@
           const techStack = allTechs.map(tech => createTechIcon(tech)).join('');
           techContainer.innerHTML = techStack;
         } else if (techContainer) {
-          techContainer.innerHTML = '<span style="color: #94a3b8; font-style: italic;">No se detectaron tecnologías específicas</span>';
+          techContainer.innerHTML = '<span style="color: #64748b; font-style: italic;">No se detectaron tecnologías específicas</span>';
         }
       } catch (error) {
         console.error('Error loading technologies for repo:', repo.name, error);
@@ -1453,7 +1029,7 @@
                 }
               }
             } else {
-              readmeDiv.innerHTML = '<p style="color: #94a3b8; font-style: italic;"><i class="fas fa-info-circle"></i> No hay README disponible.</p>';
+              readmeDiv.innerHTML = '<p style="color: #64748b; font-style: italic;"><i class="fas fa-info-circle"></i> No hay README disponible para este repositorio.</p>';
             }
           } catch (error) {
             console.error('Error loading README:', error);
@@ -1473,19 +1049,23 @@
       }
     }
 
+    // Smooth scrolling para navegación
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
+          const navHeight = document.querySelector('.nav').offsetHeight;
+          const targetPosition = target.offsetTop - navHeight;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
           });
         }
       });
     });
 
+    // Intersection Observer para animaciones
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
@@ -1500,38 +1080,15 @@
       });
     }, observerOptions);
 
+    // Inicialización
     document.addEventListener('DOMContentLoaded', () => {
       const fadeElements = document.querySelectorAll('.fade-in, .fade-in-delay-1, .fade-in-delay-2, .fade-in-delay-3, .fade-in-delay-4');
       fadeElements.forEach(el => observer.observe(el));
-    });
-
-    document.addEventListener('DOMContentLoaded', () => {
-      createParticles();
+      
       loadRepos();
-      
-      const title = document.querySelector('.hero h1');
-      if (title) {
-        title.style.overflow = 'hidden';
-        title.style.borderRight = '3px solid';
-        title.style.whiteSpace = 'nowrap';
-        title.style.animation = 'typing 3s steps(40, end), blink-caret 0.75s step-end infinite';
-      }
     });
 
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes typing {
-        from { width: 0 }
-        to { width: 100% }
-      }
-      
-      @keyframes blink-caret {
-        from, to { border-color: transparent }
-        50% { border-color: #3b82f6; }
-      }
-    `;
-    document.head.appendChild(style);
-
+    // Hacer la función global para el onclick
     window.loadReadmeForRepo = loadReadmeForRepo;
   </script>
 </body>
